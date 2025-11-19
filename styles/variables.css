@@ -2,21 +2,21 @@
   /* ======================================= */
   /* 1. 배경색 계열 (Background Color / Gray / Black) */
   /* ======================================= */
-  --color-gray-5: #e3e7e9;
-  --color-gray-10: #d5dddf;
-  --color-gray-20: #b9c3c8;
-  --color-gray-30: #a7b3bc;
-  --color-gray-40: #9eaaaf;
-  --color-gray-50: #9599a4;
-  --color-gray-100: #828e9e;
-  --color-gray-200: #6f788a;
-  --color-gray-300: #5c626f;
-  --color-gray-400: #40454b;
-  --color-gray-500: #33383b;
-  --color-gray-600: #262b2f;
-  --color-gray-700: #22262b;
-  --color-gray-800: #1b1e22;
-  --color-gray-900: #15171b;
+  --color-gray-50: #e3e7e9;
+  --color-gray-100: #d5dddf;
+  --color-gray-200: #b9c3c8;
+  --color-gray-300: #a7b3bc;
+  --color-gray-400: #9eaaaf;
+  --color-gray-500: #9599a4;
+  --color-gray-600: #828e9e;
+  --color-gray-700: #6f788a;
+  --color-gray-800: #5c626f;
+  --color-gray-850: #40454b;
+  --color-gray-900: #33383b;
+  --color-gray-920: #262b2f;
+  --color-gray-940: #22262b;
+  --color-gray-960: #1b1e22;
+  --color-gray-980: #15171b;
 
   --color-stroke-primary: #292e33;
   --color-black-secondary: #202429;
@@ -80,6 +80,6 @@
   /* 7. 줄 간격 (Line Height) */
   /* ======================================= */
   /* 150% -> 1.5, 160% -> 1.6 으로 변환 */
-  --line-height-150: 1.5;
-  --line-height-160: 1.6;
+  --line-height-normal: 1.5;
+  --line-height-loose: 1.6;
 }

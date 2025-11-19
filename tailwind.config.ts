@@ -8,21 +8,21 @@ const config: Config = {
       colors: {
         // Gray
         gray: {
-          5: 'var(--color-gray-5)',
-          10: 'var(--color-gray-10)',
-          20: 'var(--color-gray-20)',
-          30: 'var(--color-gray-30)',
-          40: 'var(--color-gray-40)',
-          50: 'var(--color-gray-50)',
-          100: 'var(--color-gray-100)',
-          200: 'var(--color-gray-200)',
-          300: 'var(--color-gray-300)',
-          400: 'var(--color-gray-400)',
-          500: 'var(--color-gray-500)',
-          600: 'var(--color-gray-600)',
-          700: 'var(--color-gray-700)',
-          800: 'var(--color-gray-800)',
-          900: 'var(--color-gray-900)',
+          50: 'var(--color-gray-5)',
+          100: 'var(--color-gray-10)',
+          200: 'var(--color-gray-20)',
+          300: 'var(--color-gray-30)',
+          400: 'var(--color-gray-40)',
+          500: 'var(--color-gray-50)',
+          600: 'var(--color-gray-100)',
+          700: 'var(--color-gray-200)',
+          800: 'var(--color-gray-300)',
+          850: 'var(--color-gray-400)',
+          900: 'var(--color-gray-500)',
+          920: 'var(--color-gray-600)',
+          940: 'var(--color-gray-700)',
+          960: 'var(--color-gray-800)',
+          980: 'var(--color-gray-900)',
         },
         // Brand (Green)
         brand: {
@@ -84,8 +84,8 @@ const config: Config = {
       },
 
       lineHeight: {
-        150: 'var(--line-height-150)',
-        160: 'var(--line-height-160)',
+        normal: 'var(--line-height-normal)',
+        loose: 'var(--line-height-loose)',
       },
 
       fontWeight: {
