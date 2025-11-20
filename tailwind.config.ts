@@ -36,16 +36,16 @@ const config: Config = {
 
         // BRAND COLORS (Green) - 'brand-green' 네임스페이스 사용
         'brand-green': {
-          100: 'var(--color-brand-green-100)',
-          200: 'var(--color-brand-green-200)',
-          300: 'var(--color-brand-green-300)',
-          400: 'var(--color-brand-green-400)',
-          500: 'var(--color-brand-green-500)',
-          600: 'var(--color-brand-green-600)',
-          700: 'var(--color-brand-green-700)',
-          800: 'var(--color-brand-green-800)',
-          900: 'var(--color-brand-green-900)',
-          950: 'var(--color-brand-green-950)',
+          100: 'var(--color-brand-100)',
+          200: 'var(--color-brand-200)',
+          300: 'var(--color-brand-300)',
+          400: 'var(--color-brand-400)',
+          500: 'var(--color-brand-500)',
+          600: 'var(--color-brand-600)',
+          700: 'var(--color-brand-700)',
+          800: 'var(--color-brand-800)',
+          900: 'var(--color-brand-900)',
+          950: 'var(--color-brand-950)',
         },
 
         // SYSTEM & BASE COLORS
@@ -59,13 +59,15 @@ const config: Config = {
         'blue-b': 'var(--color-blue-B)',
 
         // PROFILE RANDOM COLORS - 'profile' 네임스페이스 사용
-        'profile-green': 'var(--color-profile-green)',
-        'profile-violet': 'var(--color-profile-violet)',
-        'profile-cyan': 'var(--color-profile-cyan)',
-        'profile-rose': 'var(--color-profile-rose)',
-        'profile-cobalt': 'var(--color-profile-cobalt)',
-        'profile-yellow': 'var(--color-profile-yellow)',
-        'profile-orange': 'var(--color-profile-orange)',
+        profile: {
+          green: 'var(--color-profile-green)',
+          violet: 'var(--color-profile-violet)',
+          cyan: 'var(--color-profile-cyan)',
+          rose: 'var(--color-profile-rose)',
+          cobalt: 'var(--color-profile-cobalt)',
+          yellow: 'var(--color-profile-yellow)',
+          orange: 'var(--color-profile-orange)',
+        },
       },
 
       // Typography Class는 @layer base를 사용하여 이미 정의했으므로, 여기에서는 제외합니다.
