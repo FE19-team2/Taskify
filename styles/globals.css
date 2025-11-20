@@ -1,1 +1,206 @@
 @import 'tailwindcss';
+
+/* -----------------------------
+    DESIGN TOKENS – COLORS
+------------------------------ */
+
+@theme {
+  /* --- Background Color Group --- */
+  --color-bg-primary: #1b1b1f;
+  --color-bg-model: #242429;
+  --color-bg-stroke: #676975;
+
+  /* --- Black Tones (100 -> 600) --- */
+  --color-black-100: #4b4b4b;
+  --color-black-200: #333236;
+  --color-black-300: #262629;
+  --color-black-400: #201f23;
+  --color-black-500: #131215;
+  --color-black-600: #000000;
+
+  /* --- Gray Tones (100 -> 700) --- */
+  --color-gray-100: #d6d5d9;
+  --color-gray-200: #a39fb2;
+  --color-gray-300: #787486;
+  --color-gray-400: #5b5963;
+  --color-gray-500: #524f5b;
+  --color-gray-600: #49474f;
+  --color-gray-700: #3c3c41;
+
+  /* --- BRAND COLORS (Green) (100 -> 950) --- */
+  --color-brand-100: #cff8d2;
+  --color-brand-200: #a6ebaa;
+  --color-brand-300: #6bda71;
+  --color-brand-400: #3fc03f;
+  --color-brand-500: #00a200;
+  --color-brand-600: #0b8a0b;
+  --color-brand-700: #0d7910;
+  --color-brand-800: #10671f;
+  --color-brand-900: #00490c;
+  --color-brand-950: #00330d;
+
+  /* --- SYSTEM & BASE COLORS --- */
+  --color-white: #ffffff;
+
+  /* Red Shades */
+  --color-red-A: #ca372b;
+
+  /* Blue Shades */
+  --color-blue-A: #1458bc;
+  --color-blue-B: #76a5ea;
+
+  /* --- PROFILE RANDOM COLORS --- */
+  --color-profile-green: #206e4e;
+  --color-profile-violet: #893ea5;
+  --color-profile-cyan: #1f6a83;
+  --color-profile-rose: #ae2e24;
+  --color-profile-cobalt: #1458bc;
+  --color-profile-yellow: #bd8c00;
+  --color-profile-orange: #9f4b00;
+}
+
+/* Pretendard 기본 적용 */
+:root {
+  --font-pretendard:
+    'Pretendard', -apple-system, BlinkMacSystemFont, system-ui, Roboto, 'Helvetica Neue',
+    'Segoe UI', Arial, sans-serif;
+}
+
+body {
+  font-family: var(--font-pretendard);
+  background: var(--color-bg-primary);
+  color: var(--color-white);
+}
+
+/* -----------------------------
+    TYPOGRAPHY TOKENS
+------------------------------ */
+
+@layer base {
+  /* xs */
+  .xs-12px-medium {
+    font-size: 12px;
+    line-height: auto;
+    font-weight: 500;
+  }
+
+  .xs-12px-semibold {
+    font-size: 12px;
+    line-height: auto;
+    font-weight: 600;
+  }
+
+  /* sm */
+  .sm-13px-medium {
+    font-size: 13px;
+    font-weight: 500;
+  }
+
+  .sm-13px-semibold {
+    font-size: 13px;
+    font-weight: 600;
+  }
+
+  /* md */
+  .md-14px-medium {
+    font-size: 14px;
+    font-weight: 500;
+  }
+
+  .md-14px-medium-150 {
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 150%;
+  }
+
+  /* lg */
+  .lg-14px-semibold {
+    font-size: 14px;
+    font-weight: 600;
+  }
+
+  .lg-14px-bold {
+    font-size: 14px;
+    font-weight: 700;
+  }
+
+  .lg-16px-medium {
+    font-size: 16px;
+    font-weight: 500;
+  }
+
+  .lg-16px-semibold {
+    font-size: 16px;
+    font-weight: 600;
+  }
+
+  .lg-16px-medium-160 {
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 160%;
+  }
+
+  .lg-16px-bold {
+    font-size: 16px;
+    font-weight: 700;
+  }
+
+  /* 2lg */
+  .lg2-18px-medium {
+    font-size: 18px;
+    font-weight: 500;
+  }
+
+  .lg2-18px-semibold {
+    font-size: 18px;
+    font-weight: 600;
+  }
+
+  .lg2-18px-bold {
+    font-size: 18px;
+    font-weight: 700;
+  }
+
+  /* xl 20px */
+  .xl-20px-medium {
+    font-size: 20px;
+    font-weight: 500;
+  }
+
+  .xl-20px-semibold {
+    font-size: 20px;
+    font-weight: 600;
+  }
+
+  .xl-20px-bold {
+    font-size: 20px;
+    font-weight: 700;
+  }
+
+  /* 2xl 24px */
+  .xl2-24px-medium {
+    font-size: 24px;
+    font-weight: 500;
+  }
+
+  .xl2-24px-semibold {
+    font-size: 24px;
+    font-weight: 600;
+  }
+
+  .xl2-24px-bold {
+    font-size: 24px;
+    font-weight: 700;
+  }
+
+  /* 3xl 32px */
+  .xl3-32px-semibold {
+    font-size: 32px;
+    font-weight: 600;
+  }
+
+  .xl3-32px-bold {
+    font-size: 32px;
+    font-weight: 700;
+  }
+}
