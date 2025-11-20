@@ -1,3 +1,3 @@
 export default function Page() {
-  return <div className="text-brand-400">Taskify</div>;
+  return <div>Taskify</div>;
 }
