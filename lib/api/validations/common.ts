@@ -38,11 +38,7 @@ export const Id = z.number().int().positive({
   message: 'ID는 양의 정수여야 합니다',
 });
 
-export const OptionalUrl = z.union([
-  z.url({ message: '유효한 URL이 아닙니다' }),
-  z.literal(''),
-  z.undefined(),
-]);
+export const OptionalUrl = z.union([z.url({ message: '유효한 URL이 아닙니다' }), z.literal('')]);
 
 export const TagSchema = z.array(z.string().min(1).max(6)).max(10, {
   message: '태그는 최대 10개까지 추가할 수 있습니다',
@@ -58,9 +54,6 @@ export const CommentContentSchema = z
     message: '댓글 내용은 최대 200자까지 입력할 수 있습니다',
   });
 
-export const DescriptionSchema = z
-  .string()
-  .max(500, {
-    message: '설명은 최대 500자까지 입력할 수 있습니다',
-  })
-  .optional();
+export const DescriptionSchema = z.string().max(500, {
+  message: '설명은 최대 500자까지 입력할 수 있습니다',
+});
