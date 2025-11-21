@@ -4,7 +4,7 @@
     DESIGN TOKENS – COLORS
 ------------------------------ */
 
-:root {
+@theme {
   /* --- Background Color Group --- */
   --color-bg-primary: #1b1b1f;
   --color-bg-model: #242429;
