@@ -15,13 +15,6 @@ const eslintConfig = defineConfig([
     },
     rules: {
       'id-length': ['error', { min: 2, exceptions: ['i', 'j', '_'] }],
-      'no-restricted-syntax': [
-        'error',
-        {
-          selector: 'ThisExpression',
-          message: '`this` 사용은 피하고 함수/훅 기반으로 작성해주세요.',
-        },
-      ],
       'id-match': [
         'error',
         '^[A-Za-z][A-Za-z0-9_]*$',
