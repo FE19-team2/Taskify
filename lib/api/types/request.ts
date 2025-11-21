@@ -54,10 +54,7 @@ export interface CreateDashboardRequest {
   color: string;
 }
 
-export interface UpdateDashboardRequest {
-  title: string;
-  color: string;
-}
+export type UpdateDashboardRequest = CreateDashboardRequest;
 
 export interface DashboardInviteRequest {
   email: string;
