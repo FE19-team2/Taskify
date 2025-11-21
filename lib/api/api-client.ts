@@ -1,27 +1,18 @@
 const BASE_URL = 'https://sp-taskify-api.vercel.app/FE19-2team/';
 const DEFAULT_HEADERS = { 'Content-Type': 'application/json' };
 
-type Primitive = string | number | boolean | null | undefined;
-
-export type QueryParams = Record<string, Primitive>;
-export type Json = Record<string, unknown> | unknown[];
-
 export type PutAndPostMethod = <T, B>(path: string, body: B) => Promise<T | void>;
 export type GetAndDeleteMethod = <T>(path: string) => Promise<T | void>;
-export type PostMethod = PutAndPostMethod;
-export type PutMethod = PutAndPostMethod;
-export type GetMethod = GetAndDeleteMethod;
-export type DeleteMethod = GetAndDeleteMethod;
 export interface HttpErrorPayload {
   status: number;
   data: { message: string };
 }
 
 export type FetchClient = {
-  get: GetMethod;
-  post: PostMethod;
-  put: PutMethod;
-  delete: DeleteMethod;
+  get: GetAndDeleteMethod;
+  post: PutAndPostMethod;
+  put: PutAndPostMethod;
+  delete: GetAndDeleteMethod;
 };
 
 export function createHttpError(status: number, message: string): Error & HttpErrorPayload {
