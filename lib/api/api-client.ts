@@ -1,3 +1,5 @@
+import { is } from 'zod/locales';
+
 const BASE_URL = 'https://sp-taskify-api.vercel.app/FE19-2team/';
 const DEFAULT_HEADERS = { 'Content-Type': 'application/json' };
 
@@ -36,10 +38,20 @@ export async function request<T, B>(
   const res = await fetch(BASE_URL + path, init);
   if (res.status === 204) return;
 
-  const data = await res.json();
-  if (!res.ok) throw createHttpError(res.status, data.message);
+  const text = await res.text();
 
-  return data;
+  if (!res.ok) {
+    let message = res.statusText;
+    try {
+      const json = JSON.parse(text);
+      message = json.message || json.error || text || res.statusText;
+    } catch {
+      message = text || res.statusText;
+    }
+    throw createHttpError(res.status, message);
+  }
+
+  return JSON.parse(text) as T;
 }
 
 export const Client: FetchClient = {
