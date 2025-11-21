@@ -1,5 +1,3 @@
-import { is } from 'zod/locales';
-
 const BASE_URL = 'https://sp-taskify-api.vercel.app/FE19-2team/';
 const DEFAULT_HEADERS = { 'Content-Type': 'application/json' };
 
