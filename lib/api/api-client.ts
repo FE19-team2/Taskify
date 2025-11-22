@@ -3,10 +3,6 @@ const DEFAULT_HEADERS = { 'Content-Type': 'application/json' };
 
 export type PutAndPostMethod = <T, B>(path: string, body: B) => Promise<T | void>;
 export type GetAndDeleteMethod = <T>(path: string) => Promise<T | void>;
-export interface HttpErrorPayload {
-  status: number;
-  data: { message: string };
-}
 
 export type FetchClient = {
   get: GetAndDeleteMethod;
@@ -14,11 +10,16 @@ export type FetchClient = {
   put: PutAndPostMethod;
   delete: GetAndDeleteMethod;
 };
-
-export function createHttpError(status: number, message: string): Error & HttpErrorPayload {
-  const err = new Error(message) as Error & HttpErrorPayload;
-  Object.assign(err, { status, data: { message } });
-  return err;
+export class HttpError extends Error {
+  public data: { message: string };
+  constructor(
+    public status: number,
+    message: string,
+  ) {
+    super(message);
+    this.name = 'HttpError';
+    this.data = { message };
+  }
 }
 
 export async function request<T, B>(
@@ -46,7 +47,7 @@ export async function request<T, B>(
     } catch {
       message = text || res.statusText;
     }
-    throw createHttpError(res.status, message);
+    throw new HttpError(res.status, message);
   }
 
   return JSON.parse(text) as T;
