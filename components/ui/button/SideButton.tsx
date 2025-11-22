@@ -2,7 +2,7 @@ import { forwardRef } from 'react';
 import { buttonVariants } from './ButtonStyle'; // CVA로 정의한 클래스
 import { cn } from '@/lib/utils/twmerge';
 import HashIcon from '@/public/colorchips/color=red.svg';
-import IconMap from '@/components/ui/IconMap';
+import IconMap from '@/components/ui/Icons/IconMap';
 
 const { CrownIcon } = IconMap;
 
