@@ -2,7 +2,9 @@ import { forwardRef } from 'react';
 import { buttonVariants } from './ButtonStyle'; // CVA로 정의한 클래스
 import { cn } from '@/lib/utils/twmerge';
 import HashIcon from '@/public/colorchips/color=red.svg';
-import CrownIcon from './CrownIcon';
+import IconMap from '@/components/ui/IconMap';
+
+const { CrownIcon } = IconMap;
 
 export interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   variant?: 'ghost';
