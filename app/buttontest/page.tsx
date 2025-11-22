@@ -26,7 +26,7 @@ export default function ButtonTest() {
         <>
           사이드버튼
           <div>
-            <SideButton variant="ghost" size="side">
+            <SideButton variant="ghost" size="side" label="lebel">
               사이드 버튼
             </SideButton>
           </div>
