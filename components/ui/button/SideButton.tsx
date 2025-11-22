@@ -1,10 +1,9 @@
 import { forwardRef } from 'react';
 import { buttonVariants } from './ButtonStyle'; // CVA로 정의한 클래스
 import { cn } from '@/lib/utils/twmerge';
-import HashIcon from '@/public/colorchips/color=red.svg';
 import IconMap from '@/components/ui/Icons/IconMap';
 
-const { CrownIcon } = IconMap;
+const { CrownIcon, HashIcon } = IconMap;
 
 export interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   variant?: 'ghost';
@@ -24,7 +23,7 @@ const CrownWrapper: React.FC = () => (
 const HashWrapper: React.FC = () => (
   // Tailwind로 크기, 여백 및 색상 제어
   // 이미지에 따라 색상은 SVG 파일 내부의 fill="currentColor"를 통해 제어될 수 있습니다.
-  <div className="mr-2 shrink-0 w-4 h-4 text-red-400">
+  <div className="mt-4 mr-2 shrink-0 w-6 h-6 text-red-400">
     <HashIcon className="w-full h-full" />
   </div>
 );

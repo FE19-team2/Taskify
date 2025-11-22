@@ -1,5 +1,5 @@
-import Button from '@/components/ui/Button';
-import SideButton from '@/components/ui/SideButton';
+import Button from '@/components/ui/button/Button';
+import SideButton from '@/components/ui/button/SideButton';
 
 export default function ButtonTest() {
   return (
@@ -26,7 +26,7 @@ export default function ButtonTest() {
         <>
           사이드버튼
           <div>
-            <SideButton variant="ghost" size="side" label="lebel" hasCrown={true}>
+            <SideButton variant="ghost" size="side" label="lebel" hasCrown={true} hasHash={true}>
               사이드 버튼
             </SideButton>
           </div>
