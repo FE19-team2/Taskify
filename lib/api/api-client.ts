@@ -11,14 +11,12 @@ export type FetchClient = {
   delete: GetAndDeleteMethod;
 };
 export class HttpError extends Error {
-  public data: { message: string };
   constructor(
     public status: number,
     message: string,
   ) {
     super(message);
     this.name = 'HttpError';
-    this.data = { message };
   }
 }
 
