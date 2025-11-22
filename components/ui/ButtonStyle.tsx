@@ -44,8 +44,42 @@ export const buttonVariants = cva(
         true: 'w-full',
         false: '',
       },
-    },
 
+      color: {
+        rose: `bg-profile-rose`,
+        orange: `bg-profile-orange`,
+        yellow: `bg-profile-yellow`,
+        green: `bg-profile-green`,
+        cobalt: `bg-profile-cobalt`,
+      },
+    },
+    compoundVariants: [
+      {
+        variant: 'primary',
+        color: 'rose',
+        className: 'bg-profile-rose hover:bg-profile-rose active:bg-profile-rose',
+      },
+      {
+        variant: 'primary',
+        color: 'orange',
+        className: 'bg-profile-orange hover:bg-profile-orange active:bg-profile-orange',
+      },
+      {
+        variant: 'primary',
+        color: 'yellow',
+        className: 'bg-profile-yellow hover:bg-profile-yellow active:bg-profile-yellow',
+      },
+      {
+        variant: 'primary',
+        color: 'green',
+        className: 'bg-profile-green hover:bg-profile-green active:bg-profile-green',
+      },
+      {
+        variant: 'primary',
+        color: 'cobalt',
+        className: 'bg-profile-cobalt hover:bg-profile-cobalt active:bg-profile-cobalt',
+      },
+    ],
     defaultVariants: {
       variant: 'primary',
       size: 'md',
