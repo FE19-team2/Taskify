@@ -7,14 +7,17 @@ export interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElemen
   variant?: 'primary' | 'secondary' | 'ghost' | 'profile';
   size?: 'lg' | 'md' | 'sm' | 'xs';
   full?: boolean;
+  color?: 'rose' | 'orange' | 'yellow' | 'green' | 'cobalt'; // 👈 color prop 정의
 }
 
+// 💡 color prop을 함수 인자에서 추출합니다.
 const Button = forwardRef<HTMLButtonElement, ButtonProps>(
-  ({ className, variant, size, full, ...props }, ref) => {
+  ({ className, variant, size, full, color, ...props }, ref) => {
+    // 👈 color 추가
     return (
       <button
-        ref={ref}
-        className={cn(buttonVariants({ variant, size, full }), className)}
+        ref={ref} // 💡 CVA 함수에 color prop을 전달합니다.
+        className={cn(buttonVariants({ variant, size, full, color }), className)}
         {...props}
       />
     );
