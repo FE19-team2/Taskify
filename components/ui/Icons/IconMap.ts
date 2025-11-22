@@ -1,7 +1,9 @@
-import CrownIcon from './Icons/CrownIcon';
+import CrownIcon from './CrownIcon';
+import HashIcon from './Hasgicon';
 
 const IconMap = {
   CrownIcon,
+  HashIcon,
 };
 
 export type IconName = keyof typeof IconMap;
