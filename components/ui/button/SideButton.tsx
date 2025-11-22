@@ -23,7 +23,7 @@ const CrownWrapper: React.FC = () => (
 const HashWrapper: React.FC = () => (
   // Tailwind로 크기, 여백 및 색상 제어
   // 이미지에 따라 색상은 SVG 파일 내부의 fill="currentColor"를 통해 제어될 수 있습니다.
-  <div className="mt-4 mr-2 shrink-0 w-6 h-6 text-red-400">
+  <div className="mt-5 mr-2 shrink-0 w-6 h-6 text-red-400">
     <HashIcon className="w-full h-full" />
   </div>
 );
