@@ -1,5 +1,5 @@
 import CrownIcon from './CrownIcon';
-import HashIcon from './Hasgicon';
+import HashIcon from './Hashicon';
 
 const IconMap = {
   CrownIcon,
