@@ -25,7 +25,7 @@ const HashWrapper: React.FC = () => (
   </div>
 );
 
-const SideButton = forwardRef<HTMLButtonElement, ButtonProps>(
+const SideButton = forwardRef<HTMLButtonElement, SideButtonProps>(
   ({ className, variant, size, full, label, hasCrown = false, hasHash = false, ...props }, ref) => {
     const baseClassName = cn(buttonVariants({ variant, size, full }), className);
 
