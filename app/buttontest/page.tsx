@@ -5,9 +5,11 @@ export default function ButtonTest() {
   return (
     <>
       <div className=" flex flex-col gap-4 p-8">
-        <Button variant="primary" size="lg">
-          Primary Large
-        </Button>
+        <div className="w-[520px]">
+          <Button variant="primary" size="lg">
+            로그인
+          </Button>
+        </div>
         <div>
           <Button variant="secondary" size="md">
             md사이즈버튼
@@ -26,7 +28,7 @@ export default function ButtonTest() {
         <>
           사이드버튼
           <div>
-            <SideButton variant="ghost" size="side" label="label" hasCrown={true} hasHash={true}>
+            <SideButton variant="ghost" size="side" label="lebel" hasCrown={true} hasHash={true}>
               사이드 버튼
             </SideButton>
           </div>
