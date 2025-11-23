@@ -1,5 +1,5 @@
-import CrownIcon from './CrownIcon';
-import HashIcon from './HashIcon';
+import CrownIcon from '@/components/ui/Icons/CrownIcon';
+import HashIcon from '@/components/ui/Icons/Hashicon';
 
 const IconMap = {
   CrownIcon,
