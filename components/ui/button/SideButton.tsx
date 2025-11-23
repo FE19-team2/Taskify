@@ -5,7 +5,7 @@ import IconMap from '@/components/ui/Icons/IconMap';
 
 const { CrownIcon, HashIcon } = IconMap;
 
-export interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
+export interface SideButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   variant?: 'ghost';
   size?: 'lg' | 'md' | 'sm' | 'xs' | 'side';
   full?: boolean;
