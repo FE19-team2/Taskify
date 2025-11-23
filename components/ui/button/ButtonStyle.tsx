@@ -33,11 +33,11 @@ export const buttonVariants = cva(
       },
 
       size: {
-        lg: 'w-[200px] h-[60px] gap-2 px-[30px] py-[6px] text-lg',
-        md: 'w-[200px] h-[50px] gap-2 px-[24px] text-md',
-        sm: 'w-[112px] h-[36px] gap-1 px-[12px] text-sm',
-        xs: 'w-[91px]  h-[29px] gap-[2px] px-[10px] text-xs',
-        side: 'w-[280px] h-[50px] pl-[12px] pr-[14px] py-[16px]',
+        lg: 'w-full h-[60px] gap-2 px-[30px] py-[6px] text-lg',
+        md: 'w-full h-[50px] gap-2 px-[24px] text-md',
+        sm: 'w-full h-[36px] gap-1 px-[12px] text-sm',
+        xs: 'w-full  h-[29px] gap-[2px] px-[10px] text-xs',
+        side: 'w-full h-[50px] pl-[12px] pr-[14px] py-[16px]',
       },
 
       full: {
