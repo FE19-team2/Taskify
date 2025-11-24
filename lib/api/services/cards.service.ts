@@ -14,7 +14,7 @@ import {
   EditCardResponse,
   getCardDetailResDto,
   GetCardDetailResponse,
-} from '../validations/card';
+} from '../validations/cards';
 
 // 카드 생성 서비스
 export async function createCard(cardData: CreateCardRequest): Promise<CreateCardResponse> {
