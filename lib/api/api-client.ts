@@ -1,4 +1,4 @@
-const BASE_URL = 'https://sp-taskify-api.vercel.app/FE19-2team/';
+const BASE_URL = 'https://sp-taskify-api.vercel.app/FE19-2team';
 const DEFAULT_HEADERS = { 'Content-Type': 'application/json' };
 
 // Generic types for HTTP methods
