@@ -1,4 +1,4 @@
-import { Client } from '../api-client';
+import { Client } from '../client/api-client';
 import {
   createCardReqDto,
   createCardResDto,

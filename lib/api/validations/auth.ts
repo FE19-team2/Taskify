@@ -21,12 +21,19 @@ export const LoginReqDto = z.object({
 
 export const LoginResDto = z.object({
   user: UserSchema,
-  accessToken: z.string(),
 });
 
 // 타입 추출
 export type LoginRequest = z.infer<typeof LoginReqDto>;
 export type LoginResponse = z.infer<typeof LoginResDto>;
+
+// 백엔드 로그인 응답 DTO (액세스 토큰 포함)
+export const LoginBackendResDto = LoginResDto.extend({
+  accessToken: z.string(),
+});
+
+//  타입 추출
+export type LoginBackendResponse = z.infer<typeof LoginBackendResDto>;
 
 // 비밀번호 변경 유효성 검사 스키마
 export const PasswordChangeDto = z.object({
