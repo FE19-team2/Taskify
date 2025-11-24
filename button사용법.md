@@ -30,7 +30,7 @@ color: rose | orange | yellow | green | cobalt
 
 ```
 <div className="w-[520px]">
-    <Button variant="primary" size="lg" full={true}>
+    <Button variant="primary" size="lg" full>
         로그인
     </Button>
 </div>

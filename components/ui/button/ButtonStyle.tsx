@@ -10,14 +10,14 @@ export const buttonVariants = cva(
           bg-brand-500 text-white
           hover:bg-brand-600 hover:text-gray-100 hover:cursor-pointer
           active:bg-brand-700 active:text-white
-          disabled:bg-brand-800 disabled:text-brand-300 disabled:hover:bg-brand-800 disabled:hover:text-brand-300 
+          disabled:bg-brand-800 disabled:text-brand-300  
         `,
 
         secondary: `
           bg-gray-700 text-gray-100
           hover:bg-gray-600 hover:text-white hover:cursor-pointer
           active:bg-gray-500 active:text-white
-          disabled:bg-gray-800 disabled:text-gray-500 disabled:hover:bg-gray-800 disabled:hover:text-gray-500
+          disabled:bg-gray-800 disabled:text-gray-500  
         `,
 
         ghost: `
@@ -25,7 +25,7 @@ export const buttonVariants = cva(
           text-gray-100 text-white
           hover:bg-black-300 hover:text-white hover:cursor-pointer
           active:bg-gray-800 active:text-gray-200
-          disabled:text-gray-600 disabled:hover:bg-transparent disabled:hover:text-gray-600
+          disabled:text-gray-600  
         `,
         profile: `
           w-[110px] h-[44px] gap-[9px] hover:cursor-pointer

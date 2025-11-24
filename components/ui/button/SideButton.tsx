@@ -14,20 +14,20 @@ export interface SideButtonProps extends React.ButtonHTMLAttributes<HTMLButtonEl
   hasHash?: boolean;
 }
 const CrownWrapper: React.FC = () => (
-  <div className="shrink-0 w-4 h-4 ">
+  <div className="shrink-0  ">
     <CrownIcon className="w-full h-full" />
   </div>
 );
 
 const HashWrapper: React.FC = () => (
-  <div className="shrink-0 w-6 h-6 ">
+  <div className="shrink-0  ">
     <HashIcon className="w-full h-full" />
   </div>
 );
 
 const SideButton = forwardRef<HTMLButtonElement, SideButtonProps>(
-  ({ className, variant, size, full, label, hasCrown = false, hasHash = false, ...props }, ref) => {
-    const baseClassName = cn(buttonVariants({ variant, size, full }), className);
+  ({ className, label, hasCrown = false, hasHash = false, ...props }, ref) => {
+    const baseClassName = cn(buttonVariants({ variant: 'ghost', size: 'side' }), className);
 
     return (
       <button
