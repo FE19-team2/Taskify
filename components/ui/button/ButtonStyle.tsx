@@ -57,27 +57,27 @@ export const buttonVariants = cva(
       {
         variant: 'primary',
         color: 'rose',
-        className: 'bg-profile-rose hover:bg-profile-rose active:bg-profile-rose',
+        className: 'bg-profile-rose hover:bg-profile-rose/90 active:bg-profile-rose/80',
       },
       {
         variant: 'primary',
         color: 'orange',
-        className: 'bg-profile-orange hover:bg-profile-orange active:bg-profile-orange',
+        className: 'bg-profile-orange hover:bg-profile-orange/90 active:bg-profile-orange/80',
       },
       {
         variant: 'primary',
         color: 'yellow',
-        className: 'bg-profile-yellow hover:bg-profile-yellow active:bg-profile-yellow',
+        className: 'bg-profile-yellow hover:bg-profile-yellow/90 active:bg-profile-yellow/80',
       },
       {
         variant: 'primary',
         color: 'green',
-        className: 'bg-profile-green hover:bg-profile-green active:bg-profile-green',
+        className: 'bg-profile-green hover:bg-profile-green/90 active:bg-profile-green/80',
       },
       {
         variant: 'primary',
         color: 'cobalt',
-        className: 'bg-profile-cobalt hover:bg-profile-cobalt active:bg-profile-cobalt',
+        className: 'bg-profile-cobalt hover:bg-profile-cobalt/90 active:bg-profile-cobalt/80',
       },
     ],
     defaultVariants: {

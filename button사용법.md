@@ -22,7 +22,7 @@ size: lg | md | sm | xs | side
 
 full : true
 
-color: roes | orange | yellow | green | cobalt
+color: rose | orange | yellow | green | cobalt
 
 예시
 
@@ -52,7 +52,7 @@ color: roes | orange | yellow | green | cobalt
 
 - label-대시보드 제목
 - hasCrown- 왕관의 유무를 담당합니다
-- haHash- 해시태그를 담당합니다
+- hasHash- 해시태그를 담당합니다
 
 ### 사용법
 
@@ -60,7 +60,7 @@ color: roes | orange | yellow | green | cobalt
      <SideButton 
         variant="ghost" 
         size="side" 
-        label="lebel" 
+        label="label" 
         hasCrown={true} 
         hasHash={true}>
        사이드 버튼        

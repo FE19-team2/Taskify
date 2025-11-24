@@ -28,7 +28,7 @@ export default function ButtonTest() {
         <>
           사이드버튼
           <div>
-            <SideButton variant="ghost" size="side" label="lebel" hasCrown={true} hasHash={true}>
+            <SideButton variant="ghost" size="side" label="label" hasCrown={true} hasHash={true}>
               사이드 버튼
             </SideButton>
           </div>
