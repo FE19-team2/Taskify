@@ -3,7 +3,7 @@ import { buttonVariants } from './ButtonStyle';
 import { cn } from '@/lib/utils/twmerge';
 
 export interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
-  variant?: 'primary' | 'secondary' | 'ghost' | 'profile';
+  variant?: 'primary' | 'secondary' | 'ghost';
   size?: 'lg' | 'md' | 'sm' | 'xs';
   full?: boolean;
   color?: 'rose' | 'orange' | 'yellow' | 'green' | 'cobalt';

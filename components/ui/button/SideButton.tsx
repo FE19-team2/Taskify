@@ -6,8 +6,6 @@ import IconMap from '@/components/ui/Icons/IconMap';
 const { CrownIcon, HashIcon } = IconMap;
 
 export interface SideButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
-  variant?: 'ghost';
-  size?: 'lg' | 'md' | 'sm' | 'xs' | 'side';
   full?: boolean;
   label: string;
   hasCrown?: boolean;
@@ -26,8 +24,8 @@ const HashWrapper: React.FC = () => (
 );
 
 const SideButton = forwardRef<HTMLButtonElement, SideButtonProps>(
-  ({ className, variant, size, full, label, hasCrown = false, hasHash = false, ...props }, ref) => {
-    const baseClassName = cn(buttonVariants({ variant, size, full }), className);
+  ({ className, full, label, hasCrown = false, hasHash = false, ...props }, ref) => {
+    const baseClassName = cn(buttonVariants({ variant: 'ghost', size: 'side', full }), className);
 
     return (
       <button
@@ -38,7 +36,7 @@ const SideButton = forwardRef<HTMLButtonElement, SideButtonProps>(
         <div className="flex items-center truncate">
           {hasHash && <HashWrapper />}
 
-          <span className="text-white truncate">{label}</span>
+          <span className="text-white ">{label}</span>
         </div>
 
         {hasCrown && <CrownWrapper />}
