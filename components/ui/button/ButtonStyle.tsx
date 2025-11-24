@@ -30,16 +30,16 @@ export const buttonVariants = cva(
       },
 
       size: {
-        lg: 'w-[200px] h-[60px] gap-2 px-[30px] py-[6px] text-lg',
-        md: 'w-[200px] h-[50px] gap-2 px-[24px] text-md',
-        sm: 'w-[112px] h-[36px] gap-1 px-[12px] text-sm',
-        xs: 'w-[91px]  h-[29px] gap-[2px] px-[10px] text-xs',
-        side: 'w-[280px] h-[50px] pl-[12px] pr-[14px] py-[16px] rounded-[12px] ',
-        profile: 'w-[110px] h-[44px] gap-[9px]',
+        lg: ' gap-2 px-[30px] py-[6px] text-lg',
+        md: ' gap-2 px-[24px] py-3 text-md',
+        sm: ' gap-1 px-[12px] py-2 text-sm',
+        xs: ' gap-[2px] px-[10px] text-xs',
+        side: ' pl-[12px] pr-[14px] py-[16px] rounded-[12px] ',
+        profile: ' gap-[9px]',
       },
 
       full: {
-        true: 'w-full',
+        true: 'w-full y-full',
         false: '',
       },
 
