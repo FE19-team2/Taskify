@@ -24,3 +24,10 @@ export const LoginResDto = z.object({
 
 export type LoginRequest = z.infer<typeof LoginReqDto>;
 export type LoginResponse = z.infer<typeof LoginResDto>;
+
+export const PasswordChangeDto = z.object({
+  password: Password,
+  newPassword: Password,
+});
+
+export type PasswordChange = z.infer<typeof PasswordChangeDto>;
