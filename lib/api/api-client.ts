@@ -1,15 +1,19 @@
 const BASE_URL = 'https://sp-taskify-api.vercel.app/FE19-2team/';
 const DEFAULT_HEADERS = { 'Content-Type': 'application/json' };
 
+// Generic types for HTTP methods
 export type PutAndPostMethod = <T, B>(path: string, body: B) => Promise<T | void>;
 export type GetAndDeleteMethod = <T>(path: string) => Promise<T | void>;
 
+// Fetch client 구현
 export type FetchClient = {
   get: GetAndDeleteMethod;
   post: PutAndPostMethod;
   put: PutAndPostMethod;
   delete: GetAndDeleteMethod;
 };
+
+// HTTP 오류 클래스
 export class HttpError extends Error {
   constructor(
     public status: number,
@@ -20,6 +24,7 @@ export class HttpError extends Error {
   }
 }
 
+// 공통 요청 함수
 export async function request<T, B>(
   method: 'GET' | 'POST' | 'PUT' | 'DELETE',
   path: string,
@@ -51,6 +56,7 @@ export async function request<T, B>(
   return JSON.parse(text) as T;
 }
 
+// FetchClient 인스턴스
 export const Client: FetchClient = {
   async get(path) {
     return request('GET', path);
