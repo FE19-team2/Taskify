@@ -50,9 +50,9 @@ export type CreateCardResponse = z.infer<typeof createCardResDto>;
 
 // 카드 조회 쿼리 DTO
 export const getCardsQueryDto = z.object({
-  columnId: Id,
-  size: z.number().int().nonnegative().optional(),
-  cursorId: Id.optional(),
+  columnId: z.coerce.number().int().positive(),
+  size: z.coerce.number().int().nonnegative().optional(),
+  cursorId: z.coerce.number().int().positive().optional(),
 });
 
 // 타입 추출
@@ -60,8 +60,8 @@ export type GetCardsQuery = z.infer<typeof getCardsQueryDto>;
 
 // 카드 조회 요청 DTO
 export const getCardsResDto = z.object({
-  cursorId: Id,
-  totalCount: z.number().int().positive(),
+  cursorId: Id.nullable(),
+  totalCount: z.number().int().nonnegative(),
   cards: z.array(defaultCardResDto),
 });
 

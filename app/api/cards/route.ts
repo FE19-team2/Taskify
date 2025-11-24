@@ -35,10 +35,10 @@ export async function GET(req: Request) {
   try {
     const { searchParams } = new URL(req.url);
 
-    const raw: GetCardsQuery = {
-      columnId: Number(searchParams.get('columnId')),
-      size: searchParams.get('size') ? Number(searchParams.get('size')) : undefined,
-      cursorId: searchParams.get('cursorId') ? Number(searchParams.get('cursorId')) : undefined,
+    const raw = {
+      columnId: searchParams.get('columnId'),
+      size: searchParams.get('size'),
+      cursorId: searchParams.get('cursorId'),
     };
 
     const validParams: GetCardsQuery = getCardsQueryDto.parse(raw);

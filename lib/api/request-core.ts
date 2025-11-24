@@ -57,6 +57,10 @@ export function createRequester({ baseUrl, getToken }: CreateRequesterOptions) {
       throw new HttpError(res.status, message);
     }
 
-    return JSON.parse(text) as T;
+    try {
+      return JSON.parse(text) as T;
+    } catch {
+      throw new HttpError(500, 'JSON 파싱 오류');
+    }
   };
 }
