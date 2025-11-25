@@ -11,13 +11,13 @@ export interface SideButtonProps extends React.ButtonHTMLAttributes<HTMLButtonEl
   hasCrown?: boolean;
   hasHash?: boolean;
 }
-const CrownWrapper: React.FC = () => (
+const CrownWrapper = () => (
   <div className="shrink-0 w-4 h-4 ">
     <CrownIcon className="w-full h-full" />
   </div>
 );
 
-const HashWrapper: React.FC = () => (
+const HashWrapper = () => (
   <div className="mt-4.5 shrink-0 w-6 h-6 ">
     <HashIcon className="w-full h-full" />
   </div>
