@@ -4,7 +4,7 @@ import { cn } from '@/lib/utils/twmerge';
 const HashIcon: React.FC<React.SVGProps<SVGSVGElement>> = ({ className, ...props }) => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
-    viewBox="0 0 24 24"
+    viewBox="0 0 10 11"
     fill="none"
     className={cn('w-full h-full', className)}
     {...props}
