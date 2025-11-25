@@ -13,7 +13,11 @@ const DropdownButton: FC<DropdownButtonProps> = ({ label, IconName, isopen = fal
     <button
       type="button"
       onClick={onClick}
+<<<<<<< HEAD
       aria-expanded={isopen === true}
+=======
+      aria-expanded={state === 'focused'}
+>>>>>>> 2f163c6 (refacor: 리뷰반영 수정(#65))
       className={cn(
         'w-full flex justify-between items-center px-4 py-2 rounded-md transition',
         isopen === false && 'bg-transparent text-gray-200 hover:bg-gray-700',
