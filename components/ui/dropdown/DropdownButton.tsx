@@ -18,6 +18,7 @@ const DropdownButton: FC<DropdownButtonProps> = ({
     <button
       type="button"
       onClick={onClick}
+      aria-expanded={state === 'focused'}
       className={cn(
         'w-full flex justify-between items-center px-4 py-2 rounded-md transition',
         state === 'unfocused' && 'bg-transparent text-gray-200 hover:bg-gray-700',

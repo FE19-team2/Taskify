@@ -3,7 +3,9 @@
 import { FC } from 'react';
 import { cn } from '@/lib/utils/twmerge';
 import { Icon, IconName } from '../Icons/Icon';
-import { IconMap } from '../Icons/IconMap';
+
+const BUTTON_ICON_NAME: IconName = `SettingIcon`;
+const BUTTON_LABEL = '관리';
 
 interface Option {
   label: string;
@@ -34,24 +36,23 @@ const editOptions: Option[] = [
 ];
 
 const EditDropdown: FC<EditDropdownProps> = ({ isOpen, onToggle, onSelect }) => {
-  const ButtonIcon: IconName = `SettingIcon`;
-  const buttonLabel = '관리';
-
   return (
     <div className="relative inline-block ">
       <button
         type="button"
         onClick={onToggle}
+        aria-haspopup="listbox"
+        aria-expanded={isOpen}
         className={cn(
-          'w-[105px] h-[54px] flex justify-between items-center px-5 py-1.5 rounded-[14px] transition',
+          'w-[105px] h-[54px] flex justify-center items-center px-5 py-1.5 rounded-[14px] transition',
           !isOpen && 'bg-black-400 border border-gray-500 text-gray-200 hover:bg-gray-700',
           isOpen && 'bg-gray-700 text-gray-100 ring-2 ring-gray-500',
         )}
       >
         <span className="flex items-center space-x-1 ">
-          {ButtonIcon && (
+          {BUTTON_ICON_NAME && (
             <Icon
-              name={ButtonIcon}
+              name={BUTTON_ICON_NAME}
               className={cn(
                 'w-4 h-4 transition-colors duration-200 bg-transparent',
                 !isOpen && 'text-gray-200',
@@ -59,12 +60,13 @@ const EditDropdown: FC<EditDropdownProps> = ({ isOpen, onToggle, onSelect }) => 
               )}
             />
           )}
-          <span>{buttonLabel}</span>
+          <span>{BUTTON_LABEL}</span>
         </span>
       </button>
 
       {isOpen && (
         <ul
+          role="listbox"
           className={cn(
             'absolute w-32 h-[114px]  mt-2 shadow-lg z-50',
             'px-2.5 py-2.5 rounded-[14px] bg-black-400 border border-gray-500',
@@ -74,6 +76,7 @@ const EditDropdown: FC<EditDropdownProps> = ({ isOpen, onToggle, onSelect }) => 
           {editOptions.map((opt) => (
             <li
               key={opt.value}
+              role="options"
               onClick={() => onSelect(opt.value)}
               className={cn(
                 'flex items-center  px-2.5 py-3 hover:bg-gray-700 cursor-pointer rounded-[10px]',
