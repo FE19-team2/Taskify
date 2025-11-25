@@ -14,10 +14,10 @@ export type IconName =
   | 'SettingIcon';
 
 export const IconMap: Record<IconName, React.FC<React.SVGProps<SVGSVGElement>>> = {
-  ArrowDown: ArrowDown,
-  CrownIcon: CrownIcon,
-  DeleteIcon: DeleteIcon,
-  EditIcon: EditIcon,
-  HashIcon: HashIcon,
-  SettingIcon: SettingIcon,
+  ArrowDown,
+  CrownIcon,
+  DeleteIcon,
+  EditIcon,
+  HashIcon,
+  SettingIcon,
 };
