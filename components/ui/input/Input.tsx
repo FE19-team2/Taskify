@@ -76,8 +76,8 @@ const Input = forwardRef<HTMLInputElement | HTMLTextAreaElement, InputProps>(
 
     if (isTextarea && variant === 'comment') {
       const containerClasses = cn(
-        'relative',
-        isFocused ? 'w-[584px] min-h-[120px]' : 'w-[554px] h-[39px]',
+        'relative w-full',
+        isFocused ? ' min-h-[120px]' : 'w-[554px] h-[39px]',
       );
       return (
         <div className={containerClasses}>
@@ -89,7 +89,7 @@ const Input = forwardRef<HTMLInputElement | HTMLTextAreaElement, InputProps>(
             {...props}
           />
           {isFocused && showCommentButtons && (
-            <div className="absolute bottom-10 right-16 flex gap-2 z-10">
+            <div className="absolute  flex gap-2 z-10">
               <Button variant="secondary" size="xs">
                 취소
               </Button>
