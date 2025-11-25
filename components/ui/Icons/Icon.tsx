@@ -1,5 +1,5 @@
 import React from 'react';
-import { IconMap, IconName } from './IconMap';
+import { IconMap, IconName } from '../../components/ui/Icons/IconMap';
 
 export type { IconName };
 
