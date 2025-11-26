@@ -1,5 +1,6 @@
 import { NextResponse } from 'next/server';
 import { BEclient } from '@/lib/api/server/api-client';
+import { createErrorResponse } from '@/lib/api/handle-error';
 import {
   CreateCardRequest,
   CreateCardResponse,
@@ -24,10 +25,7 @@ export async function POST(req: Request) {
 
     return NextResponse.json(data);
   } catch (err: unknown) {
-    const message =
-      err instanceof Error ? err.message : typeof err === 'string' ? err : 'Unknown error';
-
-    return NextResponse.json({ message }, { status: 400 });
+    return createErrorResponse(err);
   }
 }
 
@@ -54,9 +52,6 @@ export async function GET(req: Request) {
 
     return NextResponse.json(data);
   } catch (err: unknown) {
-    const message =
-      err instanceof Error ? err.message : typeof err === 'string' ? err : 'Unknown error';
-
-    return NextResponse.json({ message }, { status: 400 });
+    return createErrorResponse(err);
   }
 }

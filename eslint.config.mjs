@@ -17,7 +17,7 @@ const eslintConfig = defineConfig([
       'id-length': ['error', { min: 2, exceptions: ['i', 'j', '_'] }],
       'id-match': [
         'error',
-        '^[A-Za-z][A-Za-z0-9_]*$',
+        '^[A-Za-z_][A-Za-z0-9_]*$',
         {
           properties: false,
           onlyDeclarations: true,

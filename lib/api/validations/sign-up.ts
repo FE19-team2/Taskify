@@ -1,7 +1,7 @@
 import { z } from 'zod';
 
 export const Email = z.email();
-export const Nickname = z.string().min(2).max(8);
+export const Nickname = z.string().min(2).max(10);
 export const Password = z.string().min(8).max(16);
 
 export const signUpReqDto = z.object({
@@ -16,7 +16,7 @@ export const signUpResDto = z.object({
   id: z.number().int().positive(),
   email: Email,
   nickname: Nickname,
-  profileImageUrl: z.url().or(z.literal('')),
+  profileImageUrl: z.url().or(z.null()),
   createdAt: z.iso.datetime(),
   updatedAt: z.iso.datetime(),
 });

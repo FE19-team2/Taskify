@@ -1,3 +1,4 @@
+import { createErrorResponse } from '@/lib/api/handle-error';
 import { NextResponse } from 'next/server';
 import { cookies } from 'next/headers';
 import { BEclient } from '@/lib/api/server/api-client';
@@ -27,11 +28,11 @@ export async function POST(req: Request) {
       path: '/',
     });
 
-    return NextResponse.json({ user: data.user });
+    return NextResponse.json(
+      { user: data.user },
+      { status: 201, headers: { 'Cache-Control': 'no-store' } },
+    );
   } catch (err: unknown) {
-    const message =
-      err instanceof Error ? err.message : typeof err === 'string' ? err : 'Unknown error';
-
-    return NextResponse.json({ message }, { status: 400 });
+    return createErrorResponse(err);
   }
 }

@@ -50,17 +50,16 @@ export function createRequester({ baseUrl, getToken }: CreateRequesterOptions) {
       let message = res.statusText;
       try {
         const json = JSON.parse(text);
-        message = json.message || json.error || text || res.statusText;
+        if (typeof json.message === 'string' && json.message.trim()) {
+          message = json.message;
+        }
+        return json as T;
       } catch {
-        message = text || res.statusText;
+        if (text.trim()) {
+          message = text;
+        }
       }
       throw new HttpError(res.status, message);
-    }
-
-    try {
-      return JSON.parse(text) as T;
-    } catch {
-      throw new HttpError(500, 'JSON 파싱 오류');
     }
   };
 }

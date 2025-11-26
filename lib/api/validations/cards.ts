@@ -4,21 +4,21 @@ import { z } from 'zod';
 export const Id = z.number().int().positive();
 export const Title = z.string().min(1).max(16);
 export const Description = z.string().max(256);
-export const dueDate = z.iso.datetime({ offset: true }).or(z.literal(''));
+export const dueDate = z.iso.datetime({ offset: true }).or(z.null());
 export const Tags = z.array(z.string().min(1).max(12)).max(10);
-export const URL = z.url().or(z.literal(''));
+export const URL = z.url().or(z.null());
 
 // 카드 담당자 스키마
 export const CardAssigneeSchema = z.object({
   profileImageUrl: URL,
-  nickname: z.string(),
+  nickname: z.string().min(2).max(10),
   id: Id,
 });
 
 // 카드 기본 요청 DTO
 export const defaultCardReqDto = z.object({
   columnId: Id,
-  assigneeUserId: Id,
+  assigneeUserId: Id.nullable(),
   title: Title,
   description: Description,
   dueDate: dueDate,
@@ -32,7 +32,7 @@ export const defaultCardResDto = z.object({
   description: Description,
   tags: Tags,
   dueDate: dueDate,
-  assignee: CardAssigneeSchema,
+  assignee: CardAssigneeSchema.nullable(),
   imageUrl: URL,
   teamId: z.string(),
   columnId: Id,
@@ -51,7 +51,7 @@ export type CreateCardResponse = z.infer<typeof createCardResDto>;
 // 카드 조회 쿼리 DTO
 export const getCardsQueryDto = z.object({
   columnId: z.coerce.number().int().positive(),
-  size: z.coerce.number().int().nonnegative().optional(),
+  size: z.coerce.number().int().nonnegative().default(10),
   cursorId: z.coerce.number().int().positive().optional(),
 });
 

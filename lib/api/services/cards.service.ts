@@ -1,4 +1,5 @@
 import { Client } from '../client/api-client';
+import { GetCommentsResponse, getCommentsResDto } from '../validations/comments';
 import {
   createCardReqDto,
   createCardResDto,
@@ -49,10 +50,17 @@ export async function editCard(
   return editCardResDto.parse(res);
 }
 
-// 카드 상세 조회 서비스
-export async function getCardDetail(cardId: number): Promise<GetCardDetailResponse> {
-  const res = await Client.get<GetCardDetailResponse>(`/cards/${cardId}`);
-  return getCardDetailResDto.parse(res);
+// 카드 상세 조회 서비스 (댓글 포함)
+export async function getCardDetail(
+  cardId: number,
+): Promise<{ card: GetCardDetailResponse; comments: GetCommentsResponse }> {
+  const cardRes = await Client.get<GetCardDetailResponse>(`/cards/${cardId}`);
+  const commentRes = await Client.get<GetCommentsResponse>(`/comments?size=10&cardId=${cardId}`);
+
+  const validCard = getCardDetailResDto.parse(cardRes);
+  const validComments = getCommentsResDto.parse(commentRes);
+
+  return { card: validCard, comments: validComments };
 }
 
 // 카드 삭제 서비스
