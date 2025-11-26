@@ -1,6 +1,6 @@
 import { NextResponse } from 'next/server';
 import { cookies } from 'next/headers';
-import { Client } from '@/lib/api/server/api-client';
+import { BEclient } from '@/lib/api/server/api-client';
 import {
   LoginReqDto,
   LoginBackendResDto,
@@ -13,7 +13,7 @@ export async function POST(req: Request) {
     const body = await req.json();
     const validate = LoginReqDto.parse(body);
 
-    const backendRes = await Client.post<LoginBackendResponse, LoginRequest>(
+    const backendRes = await BEclient.post<LoginBackendResponse, LoginRequest>(
       '/auth/login',
       validate,
     );

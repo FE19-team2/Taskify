@@ -1,5 +1,5 @@
 import { NextResponse } from 'next/server';
-import { Client } from '@/lib/api/server/api-client';
+import { BEclient } from '@/lib/api/server/api-client';
 import {
   CreateCardRequest,
   CreateCardResponse,
@@ -16,7 +16,7 @@ export async function POST(req: Request) {
     const body = await req.json();
     const validatedData = createCardReqDto.parse(body);
 
-    const backendRes = await Client.post<CreateCardResponse, CreateCardRequest>(
+    const backendRes = await BEclient.post<CreateCardResponse, CreateCardRequest>(
       '/cards',
       validatedData,
     );
@@ -49,7 +49,7 @@ export async function GET(req: Request) {
       ...(validParams.cursorId && { cursorId: String(validParams.cursorId) }),
     });
 
-    const backendRes = await Client.get<getCardsResponse>(`/cards?${query.toString()}`);
+    const backendRes = await BEclient.get<getCardsResponse>(`/cards?${query.toString()}`);
     const data = getCardsResDto.parse(backendRes);
 
     return NextResponse.json(data);

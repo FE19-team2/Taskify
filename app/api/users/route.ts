@@ -1,5 +1,5 @@
 import { NextResponse } from 'next/server';
-import { Client } from '@/lib/api/server/api-client';
+import { BEclient } from '@/lib/api/server/api-client';
 import {
   signUpReqDto,
   signUpResDto,
@@ -12,7 +12,7 @@ export async function POST(req: Request) {
     const body = await req.json();
     const validatedData = signUpReqDto.parse(body);
 
-    const backendRes = await Client.post<SignUpResponse, SignUpRequest>('/users', validatedData);
+    const backendRes = await BEclient.post<SignUpResponse, SignUpRequest>('/users', validatedData);
     const data = signUpResDto.parse(backendRes);
 
     return NextResponse.json(data);
