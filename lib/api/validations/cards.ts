@@ -81,3 +81,11 @@ export const getCardDetailResDto = defaultCardResDto;
 
 // 타입 추출
 export type GetCardDetailResponse = z.infer<typeof getCardDetailResDto>;
+
+// 카드 이미지 업데이트 응답 DTO
+export const UpdateCardImageResDto = z.object({
+  imageUrl: URL,
+});
+
+//  타입 추출
+export type UpdateCardImageResponse = z.infer<typeof UpdateCardImageResDto>;

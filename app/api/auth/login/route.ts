@@ -1,5 +1,5 @@
 import { createErrorResponse } from '@/lib/api/handle-error';
-import { NextResponse } from 'next/server';
+import { NextResponse, NextRequest } from 'next/server';
 import { cookies } from 'next/headers';
 import { BEclient } from '@/lib/api/server/api-client';
 import {
@@ -9,7 +9,7 @@ import {
   LoginRequest,
 } from '@/lib/api/validations/auth';
 
-export async function POST(req: Request) {
+export async function POST(req: NextRequest) {
   try {
     const body = await req.json();
     const validate = LoginReqDto.parse(body);
