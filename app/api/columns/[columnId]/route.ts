@@ -8,7 +8,10 @@ import {
   EditColumnResponse,
 } from '@/lib/api/validations/columns';
 
-export async function PUT(req: NextRequest, { params }: { params: { columnId: string } }) {
+export async function PUT(
+  req: NextRequest,
+  { params }: { params: { columnId: string } },
+): Promise<NextResponse<EditColumnResponse | { message: string }>> {
   try {
     const body = await req.json();
     const validatedData = editColumnReqDto.parse(body);
@@ -26,7 +29,10 @@ export async function PUT(req: NextRequest, { params }: { params: { columnId: st
   }
 }
 
-export async function DELETE(_: NextRequest, { params }: { params: { columnId: string } }) {
+export async function DELETE(
+  _: NextRequest,
+  { params }: { params: { columnId: string } },
+): Promise<Response | NextResponse<{ message: string }>> {
   try {
     const { columnId } = params;
     await BEclient.delete<void>(`/columns/${columnId}`);

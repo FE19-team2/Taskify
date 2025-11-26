@@ -44,22 +44,17 @@ export function createRequester({ baseUrl, getToken }: CreateRequesterOptions) {
     const res = await fetch(baseUrl + path, init);
     if (res.status === 204) return;
 
-    const text = await res.text();
-
-    if (!res.ok) {
-      let message = res.statusText;
+    if (res.ok) {
+      const data = await res.json();
+      return data as T;
+    } else {
       try {
-        const json = JSON.parse(text);
-        if (typeof json.message === 'string' && json.message.trim()) {
-          message = json.message;
-        }
-        return json as T;
+        const errorData = await res.json();
+        const errorMessage = errorData?.message || res.statusText;
+        throw new HttpError(res.status, errorMessage);
       } catch {
-        if (text.trim()) {
-          message = text;
-        }
+        throw new HttpError(res.status, res.statusText);
       }
-      throw new HttpError(res.status, message);
     }
   };
 }

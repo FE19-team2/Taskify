@@ -7,9 +7,12 @@ import {
   LoginBackendResDto,
   LoginBackendResponse,
   LoginRequest,
+  LoginResponse,
 } from '@/lib/api/validations/auth';
 
-export async function POST(req: NextRequest) {
+export async function POST(
+  req: NextRequest,
+): Promise<NextResponse<LoginResponse | { message: string }>> {
   try {
     const body = await req.json();
     const validate = LoginReqDto.parse(body);

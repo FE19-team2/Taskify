@@ -1,8 +1,10 @@
 import { z } from 'zod';
 
+// 칼럼 유효성 검사 스키마
 export const Title = z.string().min(1).max(32);
 export const Id = z.number().int().positive();
 
+// 칼럼 생성 요청 및 응답 DTO
 export const createColumnReqDto = z.object({
   title: Title,
   dashboardId: Id,
@@ -19,6 +21,7 @@ export const createColumnResDto = z.object({
 export type CreateColumnRequest = z.infer<typeof createColumnReqDto>;
 export type CreateColumnResponse = z.infer<typeof createColumnResDto>;
 
+// 칼럼 조회 응답 DTO
 export const getColumnsResDto = z.object({
   result: z.enum(['SUCCESS']),
   data: z.array(createColumnResDto),
@@ -26,6 +29,7 @@ export const getColumnsResDto = z.object({
 
 export type GetColumnsResponse = z.infer<typeof getColumnsResDto>;
 
+// 칼럼 수정 요청 및 응답 DTO
 export const editColumnReqDto = z.object({
   title: Title,
 });
@@ -33,3 +37,19 @@ export const editColumnResDto = createColumnResDto;
 
 export type EditColumnResponse = z.infer<typeof editColumnResDto>;
 export type EditColumnRequest = z.infer<typeof editColumnReqDto>;
+
+export const getColumnsQueryDto = z.object({
+  cardId: z.coerce.number().int().positive(),
+  size: z.coerce.number().int().nonnegative().default(10),
+  cursorId: z.coerce.number().int().positive().optional(),
+});
+
+export type GetColumnsQuery = z.infer<typeof getColumnsQueryDto>;
+
+// 카드 이미지 업데이트 응답 DTO
+export const UpdateCardImageResDto = z.object({
+  imageUrl: URL,
+});
+
+//  타입 추출
+export type UpdateCardImageResponse = z.infer<typeof UpdateCardImageResDto>;

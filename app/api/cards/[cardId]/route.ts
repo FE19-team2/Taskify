@@ -11,7 +11,10 @@ import {
 } from '@/lib/api/validations/cards';
 import { getCommentsResDto, GetCommentsResponse } from '@/lib/api/validations/comments';
 
-export async function PUT(req: Request, { params }: { params: { cardId: string } }) {
+export async function PUT(
+  req: Request,
+  { params }: { params: { cardId: string } },
+): Promise<NextResponse<EditCardResponse | { message: string }>> {
   try {
     const body = await req.json();
     const validatedData = editCardReqDto.parse(body);
@@ -29,7 +32,12 @@ export async function PUT(req: Request, { params }: { params: { cardId: string }
   }
 }
 
-export async function GET(_: Request, { params }: { params: { cardId: string } }) {
+export async function GET(
+  _: Request,
+  { params }: { params: { cardId: string } },
+): Promise<
+  NextResponse<{ card: GetCardDetailResponse; comments: GetCommentsResponse } | { message: string }>
+> {
   try {
     const { cardId } = params;
     const cardRes = await BEclient.get<GetCardDetailResponse>(`/cards/${cardId}`);
@@ -46,7 +54,10 @@ export async function GET(_: Request, { params }: { params: { cardId: string } }
   }
 }
 
-export async function DELETE(_: Request, { params }: { params: { cardId: string } }) {
+export async function DELETE(
+  _: Request,
+  { params }: { params: { cardId: string } },
+): Promise<Response | NextResponse<{ message: string }>> {
   try {
     const { cardId } = params;
     await BEclient.delete<void>(`/cards/${cardId}`);

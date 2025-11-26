@@ -2,28 +2,28 @@ import { NextResponse, NextRequest } from 'next/server';
 import { BEclient } from '@/lib/api/server/api-client';
 import { createErrorResponse } from '@/lib/api/handle-error';
 import {
-  CreateCardRequest,
-  CreateCardResponse,
-  createCardResDto,
-  createCardReqDto,
-  getCardsQueryDto,
-  GetCardsQuery,
-  getCardsResDto,
-  getCardsResponse,
-} from '@/lib/api/validations/cards';
+  createCommentReqDto,
+  createCommentResDto,
+  CreateCommentRequest,
+  CreateCommentResponse,
+  getCommentsResDto,
+  GetCommentsResponse,
+  GetCommentsQuery,
+  getCommentsQueryDto,
+} from '@/lib/api/validations/comments';
 
 export async function POST(
   req: NextRequest,
-): Promise<NextResponse<CreateCardResponse | { message: string }>> {
+): Promise<NextResponse<CreateCommentResponse | { message: string }>> {
   try {
     const body = await req.json();
-    const validatedData = createCardReqDto.parse(body);
+    const validatedData = createCommentReqDto.parse(body);
 
-    const backendRes = await BEclient.post<CreateCardResponse, CreateCardRequest>(
-      '/cards',
+    const backendRes = await BEclient.post<CreateCommentResponse, CreateCommentRequest>(
+      '/comments',
       validatedData,
     );
-    const data = createCardResDto.parse(backendRes);
+    const data = createCommentResDto.parse(backendRes);
 
     return NextResponse.json(data);
   } catch (err: unknown) {
@@ -33,25 +33,24 @@ export async function POST(
 
 export async function GET(
   req: NextRequest,
-): Promise<NextResponse<getCardsResponse | { message: string }>> {
+): Promise<NextResponse<GetCommentsResponse | { message: string }>> {
   try {
     const searchParams = req.nextUrl.searchParams;
     const raw = {
-      columnId: searchParams.get('columnId'),
+      cardId: searchParams.get('cardId'),
       size: searchParams.get('size'),
       cursorId: searchParams.get('cursorId'),
     };
 
-    const validParams: GetCardsQuery = getCardsQueryDto.parse(raw);
-
+    const validParams: GetCommentsQuery = getCommentsQueryDto.parse(raw);
     const query = new URLSearchParams({
-      columnId: String(validParams.columnId),
+      cardId: String(validParams.cardId),
       ...(validParams.size && { size: String(validParams.size) }),
       ...(validParams.cursorId && { cursorId: String(validParams.cursorId) }),
     });
 
-    const backendRes = await BEclient.get<getCardsResponse>(`/cards?${query.toString()}`);
-    const data = getCardsResDto.parse(backendRes);
+    const backendRes = await BEclient.get<GetCommentsResponse>(`/comments?${query.toString()}`);
+    const data = getCommentsResDto.parse(backendRes);
 
     return NextResponse.json(data);
   } catch (err: unknown) {

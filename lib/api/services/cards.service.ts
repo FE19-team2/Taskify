@@ -25,7 +25,7 @@ export async function createCard(cardData: CreateCardRequest): Promise<CreateCar
 }
 
 // 카드 조회 서비스
-export async function getCard(params: GetCardsQuery) {
+export async function getCard(params: GetCardsQuery): Promise<getCardsResponse> {
   const validParams = getCardsQueryDto.parse(params);
   const { columnId, size, cursorId } = validParams;
   const query = new URLSearchParams({
