@@ -4,7 +4,7 @@ import { FC } from 'react';
 import { cn } from '@/lib/utils/twmerge';
 import { Icon, IconName } from '../Icons/Icon';
 
-const BUTTON_ICON_NAME: IconName = `SettingIcon`;
+const BUTTON_ICON_NAME: IconName = 'SettingIcon';
 const BUTTON_LABEL = '관리';
 
 interface Option {
@@ -24,13 +24,13 @@ const editOptions: Option[] = [
   {
     label: '수정하기',
     value: 'edit',
-    IconName: `EditIcon`,
+    IconName: 'EditIcon',
     colorClass: 'text-gray-100',
   },
   {
     label: '삭제하기',
     value: 'delete',
-    IconName: `DeleteIcon`,
+    IconName: 'DeleteIcon',
     colorClass: 'text-red-500 hover:text-red-400',
   },
 ];
@@ -76,7 +76,7 @@ const EditDropdown: FC<EditDropdownProps> = ({ isOpen, onToggle, onSelect }) => 
           {editOptions.map((opt) => (
             <li
               key={opt.value}
-              role="options"
+              role="option"
               onClick={() => onSelect(opt.value)}
               className={cn(
                 'flex items-center  px-2.5 py-3 hover:bg-gray-700 cursor-pointer rounded-[10px]',

@@ -4,25 +4,20 @@ import { Icon, IconName } from '../Icons/Icon';
 interface DropdownButtonProps {
   label: string;
   IconName?: IconName;
-  state?: 'focused' | 'unfocused';
+  isopen?: boolean;
   onClick: () => void;
 }
 
-const DropdownButton: FC<DropdownButtonProps> = ({
-  label,
-  IconName,
-  state = 'unfocused',
-  onClick,
-}) => {
+const DropdownButton: FC<DropdownButtonProps> = ({ label, IconName, isopen = false, onClick }) => {
   return (
     <button
       type="button"
       onClick={onClick}
-      aria-expanded={state === 'focused'}
+      aria-expanded={isopen === true}
       className={cn(
         'w-full flex justify-between items-center px-4 py-2 rounded-md transition',
-        state === 'unfocused' && 'bg-transparent text-gray-200 hover:bg-gray-700',
-        state === 'focused' && 'bg-gray-700 text-gray-100 ring-2 ring-gray-500',
+        isopen === false && 'bg-transparent text-gray-200 hover:bg-gray-700',
+        isopen === true && 'bg-gray-700 text-gray-100 ring-2 ring-gray-500',
       )}
     >
       <span>{label}</span>
@@ -31,7 +26,7 @@ const DropdownButton: FC<DropdownButtonProps> = ({
           name={IconName}
           className={cn(
             'w-4 h-4 transition-transform duration-200',
-            state === 'focused' ? 'rotate-180' : '',
+            isopen === true ? 'rotate-180' : '',
           )}
         />
       )}
