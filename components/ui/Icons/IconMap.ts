@@ -4,6 +4,7 @@ import DeleteIcon from './DeleteIcon';
 import EditIcon from './EditIcon';
 import HashIcon from './HashIcon';
 import SettingIcon from './SettingIcon';
+import CirclePlus from './CirclePlus';
 
 export type IconName =
   | 'ArrowDown'
@@ -11,7 +12,8 @@ export type IconName =
   | 'DeleteIcon'
   | 'EditIcon'
   | 'HashIcon'
-  | 'SettingIcon';
+  | 'SettingIcon'
+  | 'CirclePlus';
 
 export const IconMap: Record<IconName, React.FC<React.SVGProps<SVGSVGElement>>> = {
   ArrowDown,
@@ -20,4 +22,5 @@ export const IconMap: Record<IconName, React.FC<React.SVGProps<SVGSVGElement>>> 
   EditIcon,
   HashIcon,
   SettingIcon,
+  CirclePlus,
 };
