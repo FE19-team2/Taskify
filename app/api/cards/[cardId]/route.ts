@@ -37,10 +37,10 @@ export async function GET(
 ): Promise<Response> {
   try {
     const { cardId } = await params;
-    const cardRes = await BEclient.get<getCardByIdResponse>(`/cards/${cardId}`);
-    const commentRes = await BEclient.get<GetCommentsResponse>(
-      `/comments?size=10&cardId=${cardId}`,
-    );
+    const [cardRes, commentRes] = await Promise.all([
+      BEclient.get<getCardByIdResponse>(`/cards/${cardId}`),
+      BEclient.get<GetCommentsResponse>(`/comments?size=10&cardId=${cardId}`),
+    ]);
 
     const validCard = getCardByIdResDto.parse(cardRes);
     const validComments = getCommentsResDto.parse(commentRes);

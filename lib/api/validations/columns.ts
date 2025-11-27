@@ -37,9 +37,7 @@ export type EditColumnRequest = z.infer<typeof editColumnReqDto>;
 
 // 칼럼 조회 쿼리 DTO
 export const getColumnsQueryDto = z.object({
-  cardId: z.coerce.number().int().positive(),
-  size: z.coerce.number().int().nonnegative().default(10),
-  cursorId: z.coerce.number().int().positive().optional(),
+  dashboardId: Id,
 });
 
 export type GetColumnsQuery = z.infer<typeof getColumnsQueryDto>;

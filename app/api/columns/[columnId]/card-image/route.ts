@@ -1,7 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { cookies } from 'next/headers';
 import { createErrorResponse } from '@/lib/api/handle-error';
-import { file } from 'zod';
 import { UpdateCardImageResDto } from '@/lib/api/validations/columns';
 
 export async function POST(
@@ -11,6 +10,7 @@ export async function POST(
   try {
     const { columnId } = await params;
     const form = await req.formData();
+    const file = form.get('image');
 
     if (!(file instanceof File)) {
       throw new Error('No image file provided');

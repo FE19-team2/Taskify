@@ -8,6 +8,7 @@ import {
   CreateColumnResponse,
   getColumnsResDto,
   GetColumnsResponse,
+  getColumnsQueryDto,
 } from '@/lib/api/validations/columns';
 
 export async function POST(req: NextRequest): Promise<Response> {
@@ -30,9 +31,15 @@ export async function POST(req: NextRequest): Promise<Response> {
 export async function GET(req: NextRequest): Promise<Response> {
   try {
     const searchParams = req.nextUrl.searchParams;
-    const backendRes = await BEclient.get<GetColumnsResponse>(
-      `/columns?${searchParams.toString()}`,
-    );
+    const raw = {
+      dashboardId: searchParams.get('dashboardId'),
+    };
+
+    const validatedQuery = getColumnsQueryDto.parse(raw);
+    const query = new URLSearchParams({
+      dashboardId: String(validatedQuery.dashboardId),
+    });
+    const backendRes = await BEclient.get<GetColumnsResponse>(`/columns?${query.toString()}`);
     const data = getColumnsResDto.parse(backendRes);
 
     return NextResponse.json(data);

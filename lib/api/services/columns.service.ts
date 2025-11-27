@@ -16,11 +16,9 @@ import {
 
 export async function getColumns(params: GetColumnsQuery): Promise<GetColumnsResponse> {
   const validParams = getColumnsQueryDto.parse(params);
-  const { cardId, size, cursorId } = validParams;
+  const { dashboardId } = validParams;
   const query = new URLSearchParams({
-    cardId: String(cardId),
-    ...(size && { size: String(size) }),
-    ...(cursorId && { cursorId: String(cursorId) }),
+    dashboardId: String(dashboardId),
   });
   const res = await Client.get<GetColumnsResponse>(`/columns?${query}`);
   return getColumnsResDto.parse(res);
