@@ -1,8 +1,8 @@
 'use client';
 
-import { FC } from 'react';
-import type { SVGProps } from 'react';
-import { cn } from '@/lib/utils/twmerge'; // twMerge 또는 clsx 사용
+import { FC } from 'react'; // icon의 타입을 정의하기 위해 남겨두었습니다
+import type { SVGProps } from 'react'; // Icon은 SVG 아이콘 부품이어야한다 라는 타입 정의
+import { cn } from '@/lib/utils/twmerge';
 import { Icon, IconName } from '../Icons/Icon';
 
 interface Option {
