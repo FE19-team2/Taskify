@@ -1,4 +1,4 @@
-import { NextResponse } from 'next/server';
+import { NextResponse, NextRequest } from 'next/server';
 import { BEclient } from '@/lib/api/server/api-client';
 import { createErrorResponse } from '@/lib/api/handle-error';
 import {
@@ -12,7 +12,7 @@ import {
 import { getCommentsResDto, GetCommentsResponse } from '@/lib/api/validations/comments';
 
 export async function PUT(
-  req: Request,
+  req: NextRequest,
   { params }: { params: { cardId: string } },
 ): Promise<Response> {
   try {
@@ -32,11 +32,11 @@ export async function PUT(
 }
 
 export async function GET(
-  _: Request,
-  { params }: { params: { cardId: string } },
+  _: NextRequest,
+  { params }: { params: Promise<{ cardId: string }> },
 ): Promise<Response> {
   try {
-    const { cardId } = params;
+    const { cardId } = await params;
     const cardRes = await BEclient.get<getCardByIdResponse>(`/cards/${cardId}`);
     const commentRes = await BEclient.get<GetCommentsResponse>(
       `/comments?size=10&cardId=${cardId}`,
@@ -52,11 +52,11 @@ export async function GET(
 }
 
 export async function DELETE(
-  _: Request,
-  { params }: { params: { cardId: string } },
+  _: NextRequest,
+  { params }: { params: Promise<{ cardId: string }> },
 ): Promise<Response> {
   try {
-    const { cardId } = params;
+    const { cardId } = await params;
     await BEclient.delete<void>(`/cards/${cardId}`);
 
     return new Response(null, { status: 204 });

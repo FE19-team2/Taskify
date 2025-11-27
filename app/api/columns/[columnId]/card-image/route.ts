@@ -6,10 +6,10 @@ import { UpdateCardImageResDto } from '@/lib/api/validations/columns';
 
 export async function POST(
   req: NextRequest,
-  { params }: { params: { columnId: string } },
+  { params }: { params: Promise<{ columnId: string }> },
 ): Promise<Response> {
   try {
-    const { columnId } = params;
+    const { columnId } = await params;
     const form = await req.formData();
 
     if (!(file instanceof File)) {

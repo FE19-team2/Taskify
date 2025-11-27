@@ -10,12 +10,12 @@ import {
 
 export async function PUT(
   req: NextRequest,
-  { params }: { params: { commentId: string } },
+  { params }: { params: Promise<{ commentId: string }> },
 ): Promise<Response> {
   try {
     const body = await req.json();
     const validatedData = editCommentReqDto.parse(body);
-    const { commentId } = params;
+    const { commentId } = await params;
 
     const backendRes = await BEclient.put<EditCommentResponse, EditCommentRequest>(
       `/comments/${commentId}`,
@@ -31,10 +31,10 @@ export async function PUT(
 
 export async function DELETE(
   req: NextRequest,
-  { params }: { params: { commentId: string } },
+  { params }: { params: Promise<{ commentId: string }> },
 ): Promise<Response> {
   try {
-    const { commentId } = params;
+    const { commentId } = await params;
     await BEclient.delete(`/comments/${commentId}`);
 
     return new Response(null, { status: 204 });

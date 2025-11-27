@@ -28,12 +28,12 @@ export async function GET(
 
 export async function PUT(
   req: NextRequest,
-  { params }: { params: { dashboardId: string } },
+  { params }: { params: Promise<{ dashboardId: string }> },
 ): Promise<Response> {
   try {
     const body = await req.json();
     const validatedData = updateDashboardReqDto.parse(body);
-    const { dashboardId } = params;
+    const { dashboardId } = await params;
 
     const backendRes = await BEclient.put<UpdateDashboardResponse, UpdateDashboardRequest>(
       `/dashboards/${dashboardId}`,
@@ -49,10 +49,10 @@ export async function PUT(
 
 export async function DELETE(
   _: NextRequest,
-  { params }: { params: { dashboardId: string } },
+  { params }: { params: Promise<{ dashboardId: string }> },
 ): Promise<Response> {
   try {
-    const { dashboardId } = params;
+    const { dashboardId } = await params;
     await BEclient.delete(`/dashboards/${dashboardId}`);
 
     return new Response(null, { status: 204 });

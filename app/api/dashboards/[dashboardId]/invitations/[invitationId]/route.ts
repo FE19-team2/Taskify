@@ -4,10 +4,10 @@ import { createErrorResponse } from '@/lib/api/handle-error';
 
 export async function DELETE(
   _: NextRequest,
-  { params }: { params: { dashboardId: string; invitationId: string } },
+  { params }: { params: Promise<{ dashboardId: string; invitationId: string }> },
 ): Promise<Response> {
   try {
-    const { dashboardId, invitationId } = params;
+    const { dashboardId, invitationId } = await params;
     await BEclient.delete(`/dashboards/${dashboardId}/invitations/${invitationId}`);
 
     return new Response(null, { status: 204 });

@@ -34,10 +34,10 @@ export async function POST(
 
 export async function GET(
   req: NextRequest,
-  { params }: { params: { dashboardId: string } },
+  { params }: { params: Promise<{ dashboardId: string }> },
 ): Promise<Response> {
   try {
-    const { dashboardId } = params;
+    const { dashboardId } = await params;
     const searchParams = req.nextUrl.searchParams;
     const raw = {
       size: searchParams.get('size'),
