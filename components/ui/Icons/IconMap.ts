@@ -1,8 +1,8 @@
 import ArrowDown from './ArrowDown';
-import CrownIcon from '../../../public/icons/CrownIcon';
+import CrownIcon from './CrownIcon';
 import DeleteIcon from './DeleteIcon';
 import EditIcon from './EditIcon';
-import HashIcon from '../../../public/icons/HashIcon';
+import HashIcon from './HashIcon';
 import SettingIcon from './SettingIcon';
 
 export type IconName =
