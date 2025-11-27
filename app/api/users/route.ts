@@ -6,7 +6,7 @@ import {
   signUpResDto,
   SignUpRequest,
   SignUpResponse,
-} from '@/lib/api/validations/sign-up';
+} from '@/lib/api/validations/users';
 
 export async function POST(req: Request) {
   try {

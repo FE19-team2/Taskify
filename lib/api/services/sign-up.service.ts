@@ -1,5 +1,5 @@
 import { Client } from '../client/api-client';
-import { signUpReqDto, signUpResDto, SignUpRequest, SignUpResponse } from '../validations/sign-up';
+import { signUpReqDto, signUpResDto, SignUpRequest, SignUpResponse } from '../validations/users';
 
 export async function signUp(data: SignUpRequest): Promise<SignUpResponse> {
   const validated = signUpReqDto.parse(data);
