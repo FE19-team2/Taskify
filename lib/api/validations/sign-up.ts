@@ -1,9 +1,5 @@
 import { z } from 'zod';
-
-// 회원가입 유효성 검사 스키마
-export const Email = z.email();
-export const Nickname = z.string().min(2).max(10);
-export const Password = z.string().min(8).max(16);
+import { Email, Nickname, Password } from './common';
 
 // 회원가입 요청 및 응답 DTO
 export const signUpReqDto = z.object({

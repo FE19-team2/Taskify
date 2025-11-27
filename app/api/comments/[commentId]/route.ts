@@ -30,7 +30,7 @@ export async function PUT(
 }
 
 export async function DELETE(
-  req: NextRequest,
+  _: NextRequest,
   { params }: { params: Promise<{ commentId: string }> },
 ): Promise<Response> {
   try {

@@ -25,7 +25,7 @@ export async function createCard(cardData: CreateCardRequest): Promise<CreateCar
 }
 
 // 카드 조회 서비스
-export async function getCard(params: GetCardsQuery): Promise<GetCardsResponse> {
+export async function getCards(params: GetCardsQuery): Promise<GetCardsResponse> {
   const validParams = getCardsQueryDto.parse(params);
   const { columnId, size, cursorId } = validParams;
   const query = new URLSearchParams({
@@ -54,8 +54,10 @@ export async function updateCard(
 export async function getCardById(
   cardId: number,
 ): Promise<{ card: getCardByIdResponse; comments: GetCommentsResponse }> {
-  const cardRes = await Client.get<getCardByIdResponse>(`/cards/${cardId}`);
-  const commentRes = await Client.get<GetCommentsResponse>(`/comments?size=10&cardId=${cardId}`);
+  const [cardRes, commentRes] = await Promise.all([
+    Client.get<getCardByIdResponse>(`/cards/${cardId}`),
+    Client.get<GetCommentsResponse>(`/comments?size=10&cardId=${cardId}`),
+  ]);
 
   const validCard = getCardByIdResDto.parse(cardRes);
   const validComments = getCommentsResDto.parse(commentRes);
