@@ -38,7 +38,7 @@ export async function getCard(params: GetCardsQuery): Promise<GetCardsResponse> 
 }
 
 // 카드 수정 서비스
-export async function editCard(
+export async function updateCard(
   cardId: number,
   cardData: UpdateCardRequest,
 ): Promise<UpdateCardResponse> {
@@ -51,7 +51,7 @@ export async function editCard(
 }
 
 // 카드 상세 조회 서비스 (댓글 포함)
-export async function getCardDetail(
+export async function getCardById(
   cardId: number,
 ): Promise<{ card: getCardByIdResponse; comments: GetCommentsResponse }> {
   const cardRes = await Client.get<getCardByIdResponse>(`/cards/${cardId}`);

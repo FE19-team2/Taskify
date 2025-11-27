@@ -29,6 +29,8 @@ export const getDashboardsQueryDto = z.object({
   size: z.coerce.number().int().nonnegative().default(10),
 });
 
+export type GetDashboardsQuery = z.infer<typeof getDashboardsQueryDto>;
+
 // 대시보드 조회 응답 DTO
 export const getDashboardsResDto = z.object({
   cursorId: Id.nullable(),
