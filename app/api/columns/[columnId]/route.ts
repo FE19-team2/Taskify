@@ -31,10 +31,10 @@ export async function PUT(
 
 export async function DELETE(
   _: NextRequest,
-  { params }: { params: { columnId: string } },
+  { params }: { params: Promise<{ columnId: string }> },
 ): Promise<Response> {
   try {
-    const { columnId } = params;
+    const { columnId } = await params;
     await BEclient.delete<void>(`/columns/${columnId}`);
 
     return new Response(null, { status: 204 });

@@ -13,12 +13,12 @@ import {
 
 export async function POST(
   req: NextRequest,
-  { params }: { params: { dashboardId: string } },
+  { params }: { params: Promise<{ dashboardId: string }> },
 ): Promise<Response> {
   try {
     const body = await req.json();
     const validatedData = sendDashboardInvitationReqDto.parse(body);
-    const { dashboardId } = params;
+    const { dashboardId } = await params;
 
     const backendRes = await BEclient.post<
       SendDashboardInvitationResponse,

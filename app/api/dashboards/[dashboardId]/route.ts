@@ -12,10 +12,10 @@ import {
 
 export async function GET(
   _: NextRequest,
-  { params }: { params: { dashboardId: string } },
+  { params }: { params: Promise<{ dashboardId: string }> },
 ): Promise<Response> {
   try {
-    const { dashboardId } = params;
+    const { dashboardId } = await params;
 
     const backendRes = await BEclient.get<GetDashboardByIdResponse>(`/dashboards/${dashboardId}`);
     const data = getDashboardByIdResDto.parse(backendRes);
