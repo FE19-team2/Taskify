@@ -6,15 +6,15 @@ import {
   CreateCardRequest,
   CreateCardResponse,
   getCardsQueryDto,
-  getCardsResponse,
+  GetCardsResponse,
   GetCardsQuery,
   getCardsResDto,
-  editCardReqDto,
-  editCardResDto,
-  EditCardRequest,
-  EditCardResponse,
-  getCardDetailResDto,
-  GetCardDetailResponse,
+  updateCardReqDto,
+  updateCardResDto,
+  UpdateCardRequest,
+  UpdateCardResponse,
+  getCardByIdResDto,
+  getCardByIdResponse,
 } from '../validations/cards';
 
 // 카드 생성 서비스
@@ -25,7 +25,7 @@ export async function createCard(cardData: CreateCardRequest): Promise<CreateCar
 }
 
 // 카드 조회 서비스
-export async function getCard(params: GetCardsQuery): Promise<getCardsResponse> {
+export async function getCard(params: GetCardsQuery): Promise<GetCardsResponse> {
   const validParams = getCardsQueryDto.parse(params);
   const { columnId, size, cursorId } = validParams;
   const query = new URLSearchParams({
@@ -33,31 +33,31 @@ export async function getCard(params: GetCardsQuery): Promise<getCardsResponse> 
     ...(size && { size: String(size) }),
     ...(cursorId && { cursorId: String(cursorId) }),
   });
-  const res = await Client.get<getCardsResponse>(`/cards?${query}`);
+  const res = await Client.get<GetCardsResponse>(`/cards?${query}`);
   return getCardsResDto.parse(res);
 }
 
 // 카드 수정 서비스
 export async function editCard(
   cardId: number,
-  cardData: EditCardRequest,
-): Promise<EditCardResponse> {
-  const validatedData = editCardReqDto.parse(cardData);
-  const res = await Client.put<EditCardResponse, EditCardRequest>(
+  cardData: UpdateCardRequest,
+): Promise<UpdateCardResponse> {
+  const validatedData = updateCardReqDto.parse(cardData);
+  const res = await Client.put<UpdateCardResponse, UpdateCardRequest>(
     `/cards/${cardId}`,
     validatedData,
   );
-  return editCardResDto.parse(res);
+  return updateCardResDto.parse(res);
 }
 
 // 카드 상세 조회 서비스 (댓글 포함)
 export async function getCardDetail(
   cardId: number,
-): Promise<{ card: GetCardDetailResponse; comments: GetCommentsResponse }> {
-  const cardRes = await Client.get<GetCardDetailResponse>(`/cards/${cardId}`);
+): Promise<{ card: getCardByIdResponse; comments: GetCommentsResponse }> {
+  const cardRes = await Client.get<getCardByIdResponse>(`/cards/${cardId}`);
   const commentRes = await Client.get<GetCommentsResponse>(`/comments?size=10&cardId=${cardId}`);
 
-  const validCard = getCardDetailResDto.parse(cardRes);
+  const validCard = getCardByIdResDto.parse(cardRes);
   const validComments = getCommentsResDto.parse(commentRes);
 
   return { card: validCard, comments: validComments };

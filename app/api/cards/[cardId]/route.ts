@@ -2,30 +2,29 @@ import { NextResponse } from 'next/server';
 import { BEclient } from '@/lib/api/server/api-client';
 import { createErrorResponse } from '@/lib/api/handle-error';
 import {
-  editCardReqDto,
-  editCardResDto,
-  EditCardRequest,
-  EditCardResponse,
-  getCardDetailResDto,
-  GetCardDetailResponse,
+  updateCardReqDto,
+  updateCardResDto,
+  UpdateCardRequest,
+  UpdateCardResponse,
+  getCardByIdResDto,
+  getCardByIdResponse,
 } from '@/lib/api/validations/cards';
 import { getCommentsResDto, GetCommentsResponse } from '@/lib/api/validations/comments';
 
 export async function PUT(
   req: Request,
   { params }: { params: { cardId: string } },
-): Promise<NextResponse<EditCardResponse | { message: string }>> {
+): Promise<Response> {
   try {
     const body = await req.json();
-    const validatedData = editCardReqDto.parse(body);
+    const validatedData = updateCardReqDto.parse(body);
     const { cardId } = params;
 
-    const backendRes = await BEclient.put<EditCardResponse, EditCardRequest>(
+    const backendRes = await BEclient.put<UpdateCardResponse, UpdateCardRequest>(
       `/cards/${cardId}`,
       validatedData,
     );
-    const data = editCardResDto.parse(backendRes);
-
+    const data = updateCardResDto.parse(backendRes);
     return NextResponse.json(data);
   } catch (err: unknown) {
     return createErrorResponse(err);
@@ -35,17 +34,15 @@ export async function PUT(
 export async function GET(
   _: Request,
   { params }: { params: { cardId: string } },
-): Promise<
-  NextResponse<{ card: GetCardDetailResponse; comments: GetCommentsResponse } | { message: string }>
-> {
+): Promise<Response> {
   try {
     const { cardId } = params;
-    const cardRes = await BEclient.get<GetCardDetailResponse>(`/cards/${cardId}`);
+    const cardRes = await BEclient.get<getCardByIdResponse>(`/cards/${cardId}`);
     const commentRes = await BEclient.get<GetCommentsResponse>(
       `/comments?size=10&cardId=${cardId}`,
     );
 
-    const validCard = getCardDetailResDto.parse(cardRes);
+    const validCard = getCardByIdResDto.parse(cardRes);
     const validComments = getCommentsResDto.parse(commentRes);
 
     return NextResponse.json({ card: validCard, comments: validComments });
@@ -57,7 +54,7 @@ export async function GET(
 export async function DELETE(
   _: Request,
   { params }: { params: { cardId: string } },
-): Promise<Response | NextResponse<{ message: string }>> {
+): Promise<Response> {
   try {
     const { cardId } = params;
     await BEclient.delete<void>(`/cards/${cardId}`);

@@ -11,7 +11,7 @@ import {
 export async function PUT(
   req: NextRequest,
   { params }: { params: { commentId: string } },
-): Promise<NextResponse<EditCommentResponse | { message: string }>> {
+): Promise<Response> {
   try {
     const body = await req.json();
     const validatedData = editCommentReqDto.parse(body);
@@ -32,7 +32,7 @@ export async function PUT(
 export async function DELETE(
   req: NextRequest,
   { params }: { params: { commentId: string } },
-): Promise<Response | NextResponse<{ message: string }>> {
+): Promise<Response> {
   try {
     const { commentId } = params;
     await BEclient.delete(`/comments/${commentId}`);

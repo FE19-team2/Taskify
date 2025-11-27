@@ -10,9 +10,7 @@ import {
   GetColumnsResponse,
 } from '@/lib/api/validations/columns';
 
-export async function POST(
-  req: NextRequest,
-): Promise<NextResponse<CreateColumnResponse | { message: string }>> {
+export async function POST(req: NextRequest): Promise<Response> {
   try {
     const body = await req.json();
     const validatedData = createColumnReqDto.parse(body);
@@ -29,9 +27,7 @@ export async function POST(
   }
 }
 
-export async function GET(
-  req: NextRequest,
-): Promise<NextResponse<GetColumnsResponse | { message: string }>> {
+export async function GET(req: NextRequest): Promise<Response> {
   try {
     const searchParams = req.nextUrl.searchParams;
     const backendRes = await BEclient.get<GetColumnsResponse>(

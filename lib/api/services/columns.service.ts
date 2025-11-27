@@ -35,7 +35,7 @@ export async function createColumn(columnData: CreateColumnRequest): Promise<Cre
   return createColumnResDto.parse(res);
 }
 
-export async function editColumn(
+export async function updateColumn(
   columnId: number,
   columnData: EditColumnRequest,
 ): Promise<EditColumnResponse> {

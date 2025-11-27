@@ -1,8 +1,5 @@
 import { z } from 'zod';
-
-// 칼럼 유효성 검사 스키마
-export const Title = z.string().min(1).max(32);
-export const Id = z.number().int().positive();
+import { Id, Title, URL, ISODateTime } from './common';
 
 // 칼럼 생성 요청 및 응답 DTO
 export const createColumnReqDto = z.object({
@@ -14,8 +11,8 @@ export const createColumnResDto = z.object({
   id: Id,
   title: Title,
   teamId: z.string(),
-  createdAt: z.iso.datetime(),
-  updatedAt: z.iso.datetime(),
+  createdAt: ISODateTime,
+  updatedAt: ISODateTime,
 });
 
 export type CreateColumnRequest = z.infer<typeof createColumnReqDto>;
@@ -38,6 +35,7 @@ export const editColumnResDto = createColumnResDto;
 export type EditColumnResponse = z.infer<typeof editColumnResDto>;
 export type EditColumnRequest = z.infer<typeof editColumnReqDto>;
 
+// 칼럼 조회 쿼리 DTO
 export const getColumnsQueryDto = z.object({
   cardId: z.coerce.number().int().positive(),
   size: z.coerce.number().int().nonnegative().default(10),

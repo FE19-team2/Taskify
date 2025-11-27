@@ -1,16 +1,13 @@
 import { z } from 'zod';
-
-// 로그인 유효성 검사 스키마
-export const Email = z.email();
-export const Password = z.string().min(8).max(16);
+import { Email, Password, Id, Nickname, URL, ISODateTime } from './common';
 
 export const UserSchema = z.object({
-  id: z.number().int().positive(),
+  id: Id,
   email: Email,
-  nickname: z.string().min(2).max(10),
-  profileImageUrl: z.url().or(z.null()),
-  createdAt: z.iso.datetime(),
-  updatedAt: z.iso.datetime(),
+  nickname: Nickname,
+  profileImageUrl: URL,
+  createdAt: ISODateTime,
+  updatedAt: ISODateTime,
 });
 
 // 로그인 요청 및 응답 DTO
@@ -23,7 +20,6 @@ export const LoginResDto = z.object({
   user: UserSchema,
 });
 
-// 타입 추출
 export type LoginRequest = z.infer<typeof LoginReqDto>;
 export type LoginResponse = z.infer<typeof LoginResDto>;
 
@@ -32,7 +28,6 @@ export const LoginBackendResDto = LoginResDto.extend({
   accessToken: z.string(),
 });
 
-//  타입 추출
 export type LoginBackendResponse = z.infer<typeof LoginBackendResDto>;
 
 // 비밀번호 변경 유효성 검사 스키마
@@ -41,5 +36,4 @@ export const PasswordChangeDto = z.object({
   newPassword: Password,
 });
 
-// 타입 추출
 export type PasswordChange = z.infer<typeof PasswordChangeDto>;

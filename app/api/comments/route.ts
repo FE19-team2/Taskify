@@ -8,13 +8,10 @@ import {
   CreateCommentResponse,
   getCommentsResDto,
   GetCommentsResponse,
-  GetCommentsQuery,
   getCommentsQueryDto,
 } from '@/lib/api/validations/comments';
 
-export async function POST(
-  req: NextRequest,
-): Promise<NextResponse<CreateCommentResponse | { message: string }>> {
+export async function POST(req: NextRequest): Promise<Response> {
   try {
     const body = await req.json();
     const validatedData = createCommentReqDto.parse(body);
@@ -31,9 +28,7 @@ export async function POST(
   }
 }
 
-export async function GET(
-  req: NextRequest,
-): Promise<NextResponse<GetCommentsResponse | { message: string }>> {
+export async function GET(req: NextRequest): Promise<Response> {
   try {
     const searchParams = req.nextUrl.searchParams;
     const raw = {
@@ -42,7 +37,7 @@ export async function GET(
       cursorId: searchParams.get('cursorId'),
     };
 
-    const validParams: GetCommentsQuery = getCommentsQueryDto.parse(raw);
+    const validParams = getCommentsQueryDto.parse(raw);
     const query = new URLSearchParams({
       cardId: String(validParams.cardId),
       ...(validParams.size && { size: String(validParams.size) }),

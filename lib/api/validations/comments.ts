@@ -1,13 +1,11 @@
 import { z } from 'zod';
-
+import { Id, URL, Nickname, ISODateTime } from './common';
 // 댓글 유효성 검사 스키마
-export const Content = z.string().min(1).max(512);
-export const Id = z.number().int().positive();
-export const Url = z.url().or(z.null());
+const Content = z.string().min(1).max(512);
 
 export const AuthorSchema = z.object({
-  profileImageUrl: Url,
-  nickname: z.string().min(2).max(16),
+  profileImageUrl: URL,
+  nickname: Nickname,
   id: Id,
 });
 
@@ -24,13 +22,12 @@ export const createCommentReqDto = CommentsSchema;
 export const createCommentResDto = z.object({
   id: Id,
   content: Content,
-  createdAt: z.iso.datetime(),
-  updatedAt: z.iso.datetime(),
+  createdAt: ISODateTime,
+  updatedAt: ISODateTime,
   cardId: Id,
   author: AuthorSchema,
 });
 
-// 타입 추출
 export type CreateCommentRequest = z.infer<typeof createCommentReqDto>;
 export type CreateCommentResponse = z.infer<typeof createCommentResDto>;
 
@@ -41,16 +38,12 @@ export const getCommentsQueryDto = z.object({
   cursorId: z.coerce.number().int().positive().optional(),
 });
 
-// 타입 추출
-export type GetCommentsQuery = z.infer<typeof getCommentsQueryDto>;
-
 // 댓글 조회 응답 DTO
 export const getCommentsResDto = z.object({
   cursorId: Id.nullable(),
   comments: z.array(createCommentResDto),
 });
 
-// 타입 추출
 export type GetCommentsResponse = z.infer<typeof getCommentsResDto>;
 
 // 댓글 수정 요청 및 응답 DTO
@@ -60,6 +53,5 @@ export const editCommentReqDto = z.object({
 
 export const editCommentResDto = createCommentResDto;
 
-// 타입 추출
 export type EditCommentResponse = z.infer<typeof editCommentResDto>;
 export type EditCommentRequest = z.infer<typeof editCommentReqDto>;

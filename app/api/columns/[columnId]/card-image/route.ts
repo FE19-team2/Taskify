@@ -2,12 +2,12 @@ import { NextRequest, NextResponse } from 'next/server';
 import { cookies } from 'next/headers';
 import { createErrorResponse } from '@/lib/api/handle-error';
 import { file } from 'zod';
-import { UpdateCardImageResDto, UpdateCardImageResponse } from '@/lib/api/validations/columns';
+import { UpdateCardImageResDto } from '@/lib/api/validations/columns';
 
 export async function POST(
   req: NextRequest,
   { params }: { params: { columnId: string } },
-): Promise<NextResponse<UpdateCardImageResponse | { message: string }>> {
+): Promise<Response> {
   try {
     const { columnId } = params;
     const form = await req.formData();

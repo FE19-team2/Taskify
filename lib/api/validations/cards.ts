@@ -1,17 +1,13 @@
 import { z } from 'zod';
+import { Id, Nickname, Title, URL, ISODateTime } from './common';
 
-// 카드 유효성 검사 스키마
-export const Id = z.number().int().positive();
-export const Title = z.string().min(1).max(16);
 export const Description = z.string().max(256);
-export const dueDate = z.iso.datetime({ offset: true }).or(z.null());
 export const Tags = z.array(z.string().min(1).max(12)).max(10);
-export const URL = z.url().or(z.null());
 
 // 카드 담당자 스키마
 export const CardAssigneeSchema = z.object({
   profileImageUrl: URL,
-  nickname: z.string().min(2).max(10),
+  nickname: Nickname,
   id: Id,
 });
 
@@ -21,7 +17,7 @@ export const defaultCardReqDto = z.object({
   assigneeUserId: Id.nullable(),
   title: Title,
   description: Description,
-  dueDate: dueDate,
+  dueDate: ISODateTime,
   tags: Tags,
   imageUrl: URL,
 });
@@ -31,13 +27,13 @@ export const defaultCardResDto = z.object({
   title: Title,
   description: Description,
   tags: Tags,
-  dueDate: dueDate,
+  dueDate: ISODateTime,
   assignee: CardAssigneeSchema.nullable(),
   imageUrl: URL,
   teamId: z.string(),
   columnId: Id,
-  createdAt: z.iso.datetime(),
-  updatedAt: z.iso.datetime(),
+  createdAt: ISODateTime,
+  updatedAt: ISODateTime,
 });
 
 // 카드 생성 요청 및 응답 DTO
@@ -55,7 +51,6 @@ export const getCardsQueryDto = z.object({
   cursorId: z.coerce.number().int().positive().optional(),
 });
 
-// 타입 추출
 export type GetCardsQuery = z.infer<typeof getCardsQueryDto>;
 
 // 카드 조회 요청 DTO
@@ -65,19 +60,16 @@ export const getCardsResDto = z.object({
   cards: z.array(defaultCardResDto),
 });
 
-// 타입 추출
-export type getCardsResponse = z.infer<typeof getCardsResDto>;
+export type GetCardsResponse = z.infer<typeof getCardsResDto>;
 
 // 카드 수정 요청 및 응답 DTO
-export const editCardReqDto = defaultCardReqDto;
-export const editCardResDto = defaultCardResDto;
+export const updateCardReqDto = defaultCardReqDto;
+export const updateCardResDto = defaultCardResDto;
 
-// 타입 추출
-export type EditCardRequest = z.infer<typeof editCardReqDto>;
-export type EditCardResponse = z.infer<typeof editCardResDto>;
+export type UpdateCardRequest = z.infer<typeof updateCardReqDto>;
+export type UpdateCardResponse = z.infer<typeof updateCardResDto>;
 
 // 카드 상세 조회 응답 DTO
-export const getCardDetailResDto = defaultCardResDto;
+export const getCardByIdResDto = defaultCardResDto;
 
-// 타입 추출
-export type GetCardDetailResponse = z.infer<typeof getCardDetailResDto>;
+export type getCardByIdResponse = z.infer<typeof getCardByIdResDto>;
