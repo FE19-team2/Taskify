@@ -44,7 +44,8 @@ export type GetColumnsQuery = z.infer<typeof getColumnsQueryDto>;
 
 // 카드 이미지 업데이트 응답 DTO
 export const UpdateCardImageResDto = z.object({
-  imageUrl: URL,
+  imageUrl: URL.optional(),
+  profileImageUrl: URL.optional(),
 });
 
 //  타입 추출

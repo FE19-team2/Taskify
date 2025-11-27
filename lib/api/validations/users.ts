@@ -1,5 +1,6 @@
 import { z } from 'zod';
-import { Id, Email, Nickname, Password, URL, ISODateTime } from './common';
+import { Email, Nickname, Password, URL } from './common';
+import { UserSchema } from './auth';
 
 // 회원가입 요청 및 응답 DTO
 export const signUpReqDto = z.object({
@@ -8,14 +9,7 @@ export const signUpReqDto = z.object({
   password: Password,
 });
 
-export const signUpResDto = z.object({
-  id: Id,
-  email: Email,
-  nickname: Nickname,
-  profileImageUrl: URL.nullable(),
-  createdAt: ISODateTime,
-  updatedAt: ISODateTime,
-});
+export const signUpResDto = UserSchema;
 
 export type SignUpRequest = z.infer<typeof signUpReqDto>;
 export type SignUpResponse = z.infer<typeof signUpResDto>;
@@ -25,7 +19,8 @@ export const updateProfileReqDto = z.object({
   profileImageUrl: URL.nullable(),
 });
 
-export const updateProfileResDto = signUpResDto;
+export const updateProfileResDto = UserSchema;
 
 export type UpdateProfileRequest = z.infer<typeof updateProfileReqDto>;
 export type UpdateProfileResponse = z.infer<typeof updateProfileResDto>;
+export type User = z.infer<typeof UserSchema>;

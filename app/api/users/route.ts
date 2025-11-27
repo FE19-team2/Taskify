@@ -1,4 +1,4 @@
-import { NextResponse } from 'next/server';
+import { NextRequest, NextResponse } from 'next/server';
 import { BEclient } from '@/lib/api/server/api-client';
 import { createErrorResponse } from '@/lib/api/handle-error';
 import {
@@ -8,7 +8,7 @@ import {
   SignUpResponse,
 } from '@/lib/api/validations/users';
 
-export async function POST(req: Request) {
+export async function POST(req: NextRequest) {
   try {
     const body = await req.json();
     const validatedData = signUpReqDto.parse(body);

@@ -2,7 +2,7 @@ import { NextRequest } from 'next/server';
 import { BEclient } from '@/lib/api/server/api-client';
 import { createErrorResponse } from '@/lib/api/handle-error';
 
-export default async function DELETE(
+export async function DELETE(
   _: NextRequest,
   { params }: { params: Promise<{ memberId: string }> },
 ): Promise<Response> {

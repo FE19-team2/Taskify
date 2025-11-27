@@ -1,12 +1,13 @@
 import { HttpError } from '@/lib/api/request-core';
 
 export type UploadImageParams = {
-  columnId: number;
+  columnId?: number;
   file: File;
 };
 
 export type UploadImageResponse = {
-  imageUrl: string;
+  imageUrl?: string;
+  profileImageUrl?: string;
 };
 
 export async function uploadImage(params: UploadImageParams): Promise<UploadImageResponse> {
@@ -15,10 +16,14 @@ export async function uploadImage(params: UploadImageParams): Promise<UploadImag
   const formData = new FormData();
   formData.append('image', file);
 
-  const res = await fetch(`/api/columns/${columnId}/card-image`, {
-    method: 'POST',
-    body: formData,
-  });
+  const res = await fetch(
+    columnId ? `/api/columns/${columnId}/card-image` : `/api/users/me/image`,
+    {
+      method: 'POST',
+      body: formData,
+    },
+  );
+
   if (res.ok) {
     const data = await res.json();
     return data as UploadImageResponse;
