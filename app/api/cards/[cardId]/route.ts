@@ -13,12 +13,12 @@ import { getCommentsResDto, GetCommentsResponse } from '@/lib/api/validations/co
 
 export async function PUT(
   req: NextRequest,
-  { params }: { params: { cardId: string } },
+  { params }: { params: Promise<{ cardId: string }> },
 ): Promise<Response> {
   try {
     const body = await req.json();
     const validatedData = updateCardReqDto.parse(body);
-    const { cardId } = params;
+    const { cardId } = await params;
 
     const backendRes = await BEclient.put<UpdateCardResponse, UpdateCardRequest>(
       `/cards/${cardId}`,
