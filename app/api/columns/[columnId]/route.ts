@@ -10,12 +10,12 @@ import {
 
 export async function PUT(
   req: NextRequest,
-  { params }: { params: { columnId: string } },
+  { params }: { params: Promise<{ columnId: string }> },
 ): Promise<Response> {
   try {
     const body = await req.json();
     const validatedData = editColumnReqDto.parse(body);
-    const { columnId } = params;
+    const { columnId } = await params;
 
     const backendRes = await BEclient.put<EditColumnResponse, EditColumnRequest>(
       `/columns/${columnId}`,
