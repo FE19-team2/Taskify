@@ -37,7 +37,7 @@ export const UserAvatar: FC<UserAvatarProps> = ({ name, className }) => {
   return (
     <div
       className={cn(
-        'w-6 h-6 rounded-full flex items-center justify-center text-xs font-bold text-white',
+        'w-5 h-5 rounded-full flex items-center justify-center text-xs font-bold text-white',
         colorClass,
         className,
       )}

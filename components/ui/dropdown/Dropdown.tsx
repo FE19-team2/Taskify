@@ -4,6 +4,7 @@ import { FC } from 'react'; // icon의 타입을 정의하기 위해 남겨두�
 import type { SVGProps } from 'react'; // Icon은 SVG 아이콘 부품이어야한다 라는 타입 정의
 import { cn } from '@/lib/utils/twmerge';
 import { Icon, IconName } from '../Icons/Icon';
+import { UserAvatar } from './UserAvatar';
 
 interface Option {
   label: string;
@@ -56,9 +57,10 @@ const Dropdown: FC<DropdownProps> = ({ label, isOpen, options, onToggle, onSelec
               key={opt.value}
               role="options"
               onClick={() => onSelect(opt.value)}
-              className="px-4 py-2 hover:bg-gray-700 cursor-pointer text-gray-200 rounded-[10px]"
+              className="flex items-center space-x-2 px-4 py-2 hover:bg-gray-700 cursor-pointer text-gray-200 rounded-[10px]"
             >
-              {opt.label}
+              <UserAvatar name={opt.label} />
+              <span>{opt.label}</span>
             </li>
           ))}
         </ul>
