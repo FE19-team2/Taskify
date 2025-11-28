@@ -10,7 +10,7 @@ const Sidebar = () => {
       <SidebarHeader />
 
       <div className="flex-1 overflow-y-auto py-4 px-3">
-        <button className="text-gray-200 hover:text-white transition flex items-center space-x-25 cursor-pointer">
+        <button className="text-gray-200 hover:text-white transition flex items-center space-x-[100px] cursor-pointer">
           <span>대시보드 추가</span> <Icon name="PlusIcon" className="w-[12.5px] h-[12.5px]" />
         </button>
       </div>
