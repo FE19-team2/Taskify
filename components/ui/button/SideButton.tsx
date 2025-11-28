@@ -1,9 +1,7 @@
 import { forwardRef } from 'react';
 import { buttonVariants } from './ButtonStyle';
 import { cn } from '@/lib/utils/twmerge';
-import { IconMap } from '@/components/ui/Icons/IconMap';
-
-const { CrownIcon, HashIcon } = IconMap;
+import { Icon } from '@/components/ui/Icons/Icon';
 
 export interface SideButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   full?: boolean;
@@ -13,13 +11,13 @@ export interface SideButtonProps extends React.ButtonHTMLAttributes<HTMLButtonEl
 }
 const CrownWrapper = () => (
   <div className="shrink-0 w-4 h-4 ">
-    <CrownIcon className="w-full h-full" />
+    <Icon name="CrownIcon" className="w-full h-full" />
   </div>
 );
 
 const HashWrapper = () => (
   <div className="mt-4.5 shrink-0 w-6 h-6 ">
-    <HashIcon className="w-full h-full" />
+    <Icon name="HashIcon" className="w-full h-full" />
   </div>
 );
 

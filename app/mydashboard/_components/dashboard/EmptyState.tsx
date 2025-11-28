@@ -1,5 +1,3 @@
-// app/(dashboard)/_components/EmptyState.tsx
-
 import React from 'react';
 import Graph from '@/components/ui/Image/Graph';
 import Letter from '@/components/ui/Image/Letter';
