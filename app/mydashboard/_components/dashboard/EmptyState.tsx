@@ -12,7 +12,6 @@ interface EmptyStateProps {
 const EmptyState = ({ type }: EmptyStateProps) => {
   const isMine = type === 'mine';
   const message = isMine ? '대시보드가 없습니다' : '아직 초대받은 대시보드가 없습니다.';
-  const subAction = isMine ? '생성하기' : '대시보드 생성';
 
   const iconClassName = 'w-20 h-20 text-gray-600';
 
