@@ -1,10 +1,10 @@
 import React from 'react';
 import { cn } from '@/lib/utils/twmerge';
 
-const Graph: React.FC<React.SVGProps<SVGSVGElement>> = ({ className, ...props }) => (
+const Graph = ({ className, ...props }: React.SVGProps<SVGSVGElement>) => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
-    viewBox="0 0 24 24"
+    viewBox="0 0 65 55"
     fill="none"
     className={cn('w-full h-full', className)}
     {...props}
