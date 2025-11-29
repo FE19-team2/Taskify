@@ -94,6 +94,8 @@ export const getDashboardInvitationsQueryDto = z.object({
   size: z.coerce.number().int().nonnegative().default(10),
 });
 
+export type GetDashboardInvitationsQuery = z.infer<typeof getDashboardInvitationsQueryDto>;
+
 // 대시보드 초대장 조회 응답 DTO
 export const getDashboardInvitationsResDto = z.object({
   totalCount: z.number().int().nonnegative(),
