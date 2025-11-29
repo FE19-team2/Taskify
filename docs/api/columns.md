@@ -44,7 +44,7 @@ import { API } from '@/services/...';
   id: number,
   title: string,
   teamId: string,
-  createAt: string,
+  createdAt: string,
   updatedAt: string,
 }
 ```
