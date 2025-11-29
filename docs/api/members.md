@@ -11,7 +11,7 @@ import { API } from '@/services/...';
 
 ## Members API (members.service.ts)
 
-### API 이름 : `getDashboardMembers(dashboardId, size?)`
+### API 이름 : `getDashboardMembers(params)`
 
 대시보드에 속한 **멤버 목록을 조회**합니다.
 
