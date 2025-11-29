@@ -150,16 +150,16 @@ declineInvitation(invitationId);
 }
 ```
 
-| 필드           | 타입              | 필수 | 설명                      |
-| -------------- | ----------------- | ---- | ------------------------- | -------------------------------- |
-| id             | number            | true | 초대 고유 ID              |
-| inviter        | object            | true | 초대한 사용자 정보 객체   |
-| teamId         | string            | true | 초대가 속한 팀 ID         |
-| dashboard      | object            | true | 초대한 대시보드 정보 객체 |
-| invitee        | object            | true | 초대받은 사용자 정보 객체 |
-| inviteAccepted | boolean           | null | true                      | 초대 수락 여부 (`true`로 변경됨) |
-| createdAt      | string (ISO 형식) | true | 초대 생성일               |
-| updatedAt      | string (ISO 형식) | true | 마지막 수정일             |
+| 필드           | 타입              | 필수  | 설명                                         |
+| -------------- | ----------------- | ----- | -------------------------------------------- |
+| id             | number            | true  | 초대 고유 ID                                 |
+| inviter        | object            | true  | 초대한 사용자 정보 객체                      |
+| teamId         | string            | true  | 초대가 속한 팀 ID                            |
+| dashboard      | object            | true  | 초대한 대시보드 정보 객체                    |
+| invitee        | object            | true  | 초대받은 사용자 정보 객체                    |
+| inviteAccepted | boolean           | true  | 초대 수락 여부 (`true` 또는 `false`로 변경) |
+| createdAt      | string (ISO 형식) | true  | 초대 생성일                                  |
+| updatedAt      | string (ISO 형식) | true  | 마지막 수정일                                |
 
 #### Inviter /invitee 객체
 
