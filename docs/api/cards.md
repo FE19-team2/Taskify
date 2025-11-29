@@ -139,7 +139,7 @@ import { API } from '@/services/...';
         id: number
       } | null,
       imageUrl: string | null,
-      teamId: number,
+      teamId: string,
       columnId: number,
       createdAt: string,
       updatedAt: string
