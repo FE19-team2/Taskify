@@ -47,8 +47,7 @@ import { API } from '@/services/...';
     createdAt: string;
     updatedAt: string;
     isOwner: boolean;
-  }
-  [];
+  }[];
   totalCount: number;
 }
 ```
