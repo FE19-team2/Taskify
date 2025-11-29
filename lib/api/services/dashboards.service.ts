@@ -16,6 +16,8 @@ import {
   updateDashboardResDto,
   getDashboardInvitationsResDto,
   GetDashboardInvitationsResponse,
+  getDashboardInvitationsQueryDto,
+  GetDashboardInvitationsQuery,
   sendDashboardInvitationReqDto,
   SendDashboardInvitationRequest,
   SendDashboardInvitationResponse,
@@ -59,10 +61,15 @@ export async function deleteDashboard(dashboardId: number): Promise<void> {
   await Client.delete<void>(`/dashboards/${dashboardId}`);
 }
 
-export async function getDashboardInvitations(dashboardId: number, page?: number, size?: number) {
+export async function getDashboardInvitations(
+  dashboardId: number,
+  params: GetDashboardInvitationsQuery,
+): Promise<GetDashboardInvitationsResponse> {
+  const validParams = getDashboardInvitationsQueryDto.parse(params);
+  const { page, size } = validParams;
   const query = new URLSearchParams({
-    ...(page && { page: String(page) }),
-    ...(size && { size: String(size) }),
+    size: String(size),
+    page: String(page),
   });
   const res = await Client.get<GetDashboardInvitationsResponse>(
     `/dashboards/${dashboardId}/invitations?${query.toString()}`,
