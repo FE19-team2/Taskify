@@ -99,8 +99,7 @@ import { API } from '@/services/...';
     updatedAt: string;
     createdByMe: boolean;
     userId: number;
-  }
-  [];
+  }[];
 }
 ```
 
