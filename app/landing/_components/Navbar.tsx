@@ -10,10 +10,10 @@ export default function Navbar() {
         <Image src={LogoImage} alt="태스키파이 로고" width={186} height={48} />
       </Link>
       <div className="flex gap-[14px]">
-        <Link href="/login" className="px-[12px] py-[10px]">
+        <Link href="/login" className="px-[12px] py-[10px] text-gray-400 text-base font-medium">
           로그인
         </Link>
-        <Link href="/signup" className="px-[12px] py-[10px]">
+        <Link href="/signup" className="px-[12px] py-[10px] text-gray-400 text-base font-medium">
           회원가입
         </Link>
       </div>

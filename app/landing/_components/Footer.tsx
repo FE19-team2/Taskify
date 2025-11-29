@@ -12,14 +12,18 @@ export default function Footer() {
       <Link href="/">
         <Image src={LogoImage} alt="태스키파이 로고" width={186} height={48} />
       </Link>
-      <div className="flex gap-[100px]">
-        <div className="flex gap-[32px]">
-          <Link href="/privacy">Privacy Policy</Link>
-          <Link href="/faq">FAQ</Link>
+      <div className="flex gap-[88px]">
+        <div className="flex gap-[8px]">
+          <Link href="/privacy" className="px-[12px] py-[10px] text-gray-400 text-base font-medium">
+            Privacy Policy
+          </Link>
+          <Link href="/faq" className="px-[12px] py-[10px] text-gray-400 text-base font-medium">
+            FAQ
+          </Link>
         </div>
         <div className="flex items-center justify-between gap-[14px]">
           <Link href="mailto:">
-            <Image src={EmailIcon} alt="이메일 아이콘" width={20} height={15} />
+            <Image src={EmailIcon} alt="이메일 아이콘" width={20} height={20} />
           </Link>
           <Link href="https://www.facebook.com">
             <Image src={FacebookIcon} alt="페이스북 아이콘" width={20} height={20} />
