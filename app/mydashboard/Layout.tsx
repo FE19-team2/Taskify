@@ -1,6 +1,6 @@
 // app/(dashboard)/layout.tsx
 
-import Sidebar from './_components/layout/Sidebar';
+import Sidebar from '@/app/mydashboard/Layout/Sidebar';
 
 interface Props {
   children: React.ReactNode;
