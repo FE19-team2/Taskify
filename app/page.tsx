@@ -1,3 +1,9 @@
+import React from 'react';
+import Landing from '@/app/landing/page';
+
 export default function Page() {
-  return <div>Taskify</div>;
+  return (
+    <Landing />
+    // <div>Taskify</div>;
+  );
 }
