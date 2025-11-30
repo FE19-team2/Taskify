@@ -1,11 +1,10 @@
 'use client';
 
-import { FC } from 'react'; // icon의 타입을 정의하기 위해 남겨두었습니다
-import type { SVGProps } from 'react'; // Icon은 SVG 아이콘 부품이어야한다 라는 타입 정의
+import { FC } from 'react';
 import { cn } from '@/lib/utils/twmerge';
-import { Icon, IconName } from '../Icons/Icon';
+import { Icon } from '../Icons/Icon';
 import { UserAvatar } from './UserAvatar';
-
+import { SVGProps } from 'react';
 interface Option {
   label: string;
   value: string;
@@ -17,6 +16,7 @@ interface DropdownProps {
   options: Option[];
   onToggle: () => void;
   onSelect: (value: string) => void;
+  icon?: FC<SVGProps<SVGSVGElement>>;
 }
 
 const Dropdown: FC<DropdownProps> = ({ label, isOpen, options, onToggle, onSelect }) => {
@@ -47,14 +47,14 @@ const Dropdown: FC<DropdownProps> = ({ label, isOpen, options, onToggle, onSelec
         <ul
           role="listbox"
           className={cn(
-            'absolute w-[260px] h-[252px] overflow-y-auto mt-2 shadow-lg z-50 -left-38',
+            'absolute w-[260px] h-[252px] overflow-y-auto mt-2 shadow-lg z-50 -left-[38px]',
             'px-1 py-2.5 rounded-[14px] bg-black-400 border border-gray-500',
           )}
         >
           {options.map((opt) => (
             <li
               key={opt.value}
-              role="option"
+              role="options"
               onClick={() => onSelect(opt.value)}
               className="flex items-center space-x-2 px-4 py-2 hover:bg-gray-700 cursor-pointer text-gray-200 rounded-[10px]"
             >

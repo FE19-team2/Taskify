@@ -1,13 +1,10 @@
-import React from 'react';
 import { IconMap, IconName } from '@/components/ui/Icons/IconMap';
-
-export type { IconName };
 
 interface IconProps extends React.SVGProps<SVGSVGElement> {
   name: IconName;
 }
 
-export const Icon: React.FC<IconProps> = ({ name, ...props }) => {
+export const Icon = ({ name, ...props }: IconProps) => {
   const TargetIcon = IconMap[name];
 
   if (!TargetIcon) {
@@ -17,3 +14,5 @@ export const Icon: React.FC<IconProps> = ({ name, ...props }) => {
 
   return <TargetIcon {...props} />;
 };
+
+export type { IconName } from '@/components/ui/Icons/IconMap';
