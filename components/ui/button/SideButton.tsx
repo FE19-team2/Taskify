@@ -1,7 +1,7 @@
 import { forwardRef } from 'react';
 import { buttonVariants } from './ButtonStyle';
 import { cn } from '@/lib/utils/twmerge';
-import IconMap from '@/components/ui/Icons/IconMap';
+import { IconMap } from '@/components/ui/Icons/IconMap';
 
 const { CrownIcon, HashIcon } = IconMap;
 
