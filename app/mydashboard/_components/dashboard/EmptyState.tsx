@@ -1,15 +1,18 @@
-import React from 'react';
+import React, { ReactNode } from 'react';
 import Graph from '@/components/ui/Image/Graph';
 import Letter from '@/components/ui/Image/Letter';
 import Button from '@/components/ui/button/Button';
-import { IconMap } from '@/components/ui/Icons/IconMap';
+import { Icon } from '@/components/ui/Icons/Icon';
 
-const { CirclePlus } = IconMap;
+type OnCreateClick = () => void; // 또는 type onCreateClick = () => void;
+
 interface EmptyStateProps {
   type: 'mine' | 'invited';
+  onCreateClick: OnCreateClick;
+  children?: ReactNode;
 }
 
-const EmptyState = ({ type }: EmptyStateProps) => {
+const EmptyState = ({ type, onCreateClick, children }: EmptyStateProps) => {
   const isMine = type === 'mine';
   const message = isMine ? '대시보드가 없습니다' : '아직 초대받은 대시보드가 없습니다.';
 
@@ -19,10 +22,13 @@ const EmptyState = ({ type }: EmptyStateProps) => {
     <div className="flex flex-col items-center justify-center text-center text-gray-500 p-8">
       <div className={`mb-4 ${iconClassName}`}>{isMine ? <Graph /> : <Letter />}</div>
       <p className="text-lg mb-4 text-gray-400">{message}</p>
+
+      {children}
+
       {isMine && (
-        <Button variant="secondary" size="sm">
+        <Button onClick={onCreateClick} variant="secondary" size="sm">
           생성하기
-          <CirclePlus className="w-[13px] h-[13px]" />
+          <Icon name="CirclePlus" className="w-[13px] h-[13px]" />
         </Button>
       )}
     </div>

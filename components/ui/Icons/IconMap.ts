@@ -7,6 +7,10 @@ import HashIcon from './HashIcon';
 import PlusIcon from './Plus';
 import SearchIcon from './SearchIcon';
 import SettingIcon from './SettingIcon';
+import ArrowLeft from './ArrowLeft';
+import ArrowRight from './ArrowRight';
+import Toggle from './Toggle';
+import UserPlus from './UserPlus';
 export type IconName =
   | 'ArrowDown'
   | 'CirclePlus'
@@ -16,7 +20,11 @@ export type IconName =
   | 'HashIcon'
   | 'PlusIcon'
   | 'SearchIcon'
-  | 'SettingIcon';
+  | 'SettingIcon'
+  | 'ArrowLeft'
+  | 'ArrowRight'
+  | 'Toggle'
+  | 'UserPlus';
 
 export const IconMap: Record<IconName, React.FC<React.SVGProps<SVGSVGElement>>> = {
   ArrowDown,
@@ -28,4 +36,8 @@ export const IconMap: Record<IconName, React.FC<React.SVGProps<SVGSVGElement>>> 
   PlusIcon,
   SettingIcon,
   SearchIcon,
+  ArrowLeft,
+  ArrowRight,
+  Toggle,
+  UserPlus,
 };

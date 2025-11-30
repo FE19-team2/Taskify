@@ -13,14 +13,15 @@ const COLORS = [
 ];
 
 interface UserAvatarProps {
-  name: string;
+  name: string | null | undefined;
   className?: string;
 }
 
 export const UserAvatar: FC<UserAvatarProps> = ({ name, className }) => {
-  const initial = name.charAt(0);
+  const safeName = name && name.trim().length > 0 ? name.trim() : '?';
+  const initial = safeName.charAt(0);
 
-  const colorIndex = generateDeterministicColorIndex(name, COLORS.length);
+  const colorIndex = generateDeterministicColorIndex(safeName, COLORS.length);
 
   const colorClass = COLORS[colorIndex];
 

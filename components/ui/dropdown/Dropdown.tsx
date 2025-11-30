@@ -1,10 +1,10 @@
 'use client';
 
-import { FC } from 'react'; // icon의 타입을 정의하기 위해 남겨두었습니다
+import { FC } from 'react';
 import { cn } from '@/lib/utils/twmerge';
 import { Icon } from '../Icons/Icon';
 import { UserAvatar } from './UserAvatar';
-
+import { SVGProps } from 'react';
 interface Option {
   label: string;
   value: string;
@@ -19,7 +19,7 @@ interface DropdownProps {
   icon?: FC<SVGProps<SVGSVGElement>>;
 }
 
-const Dropdown: FC<DropdownProps> = ({ label, isOpen, options, onToggle, onSelect, icon }) => {
+const Dropdown: FC<DropdownProps> = ({ label, isOpen, options, onToggle, onSelect }) => {
   return (
     <div className="relative inline-block ">
       <button
@@ -54,7 +54,7 @@ const Dropdown: FC<DropdownProps> = ({ label, isOpen, options, onToggle, onSelec
           {options.map((opt) => (
             <li
               key={opt.value}
-              role="option"
+              role="options"
               onClick={() => onSelect(opt.value)}
               className="flex items-center space-x-2 px-4 py-2 hover:bg-gray-700 cursor-pointer text-gray-200 rounded-[10px]"
             >
