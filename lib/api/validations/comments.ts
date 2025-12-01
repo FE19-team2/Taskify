@@ -38,6 +38,8 @@ export const getCommentsQueryDto = z.object({
   cursorId: z.coerce.number().int().positive().optional(),
 });
 
+export type GetCommentsQuery = z.infer<typeof getCommentsQueryDto>;
+
 // 댓글 조회 응답 DTO
 export const getCommentsResDto = z.object({
   cursorId: Id.nullable(),
@@ -47,11 +49,11 @@ export const getCommentsResDto = z.object({
 export type GetCommentsResponse = z.infer<typeof getCommentsResDto>;
 
 // 댓글 수정 요청 및 응답 DTO
-export const editCommentReqDto = z.object({
+export const updateCommentReqDto = z.object({
   content: Content,
 });
 
-export const editCommentResDto = createCommentResDto;
+export const updateCommentResDto = createCommentResDto;
 
-export type EditCommentResponse = z.infer<typeof editCommentResDto>;
-export type EditCommentRequest = z.infer<typeof editCommentReqDto>;
+export type UpdateCommentResponse = z.infer<typeof updateCommentResDto>;
+export type UpdateCommentRequest = z.infer<typeof updateCommentReqDto>;

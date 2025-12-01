@@ -19,3 +19,7 @@ export async function getDashboardMembers(
   const res = await Client.get<GetDashboardMembersResponse>(`/members?${query.toString()}`);
   return getDashboardMembersResDto.parse(res);
 }
+
+export async function deleteDashboardMember(memberId: number): Promise<void> {
+  await Client.delete<void>(`/members/${memberId}`);
+}

@@ -1,12 +1,19 @@
 @import 'tailwindcss';
 
+@font-face {
+  font-family: 'NivaSmallCaps-Bold';
+  src: url('/fonts/NivaSmallCaps-Bold.ttf') format('truetype');
+  font-weight: 700;
+  font-style: normal;
+}
+
 /* -----------------------------
     DESIGN TOKENS – COLORS
 ------------------------------ */
 
 @theme {
   /* --- Background Color Group --- */
-  --color-bg-primary: #1b1b1f;
+  --color-bg-primary: #1b1a1f;
   --color-bg-model: #242429;
   --color-bg-stroke: #676975;
 
@@ -18,7 +25,10 @@
   --color-black-500: #131215;
   --color-black-600: #000000;
 
-  /* --- Gray Tones (100 -> 700) --- */
+
+
+
+  /* --- Gray Tones (100 -> 900) --- */
   --color-gray-100: #f8f7fa;
   --color-gray-200: #ececee;
   --color-gray-300: #d6d5d9;
