@@ -1,9 +1,14 @@
-import React from 'react';
-import Landing from '@/app/landing/page';
+import { cookies } from 'next/headers';
+import { redirect } from 'next/navigation';
+import Landing from './_components/Landing';
 
-export default function Page() {
-  return (
-    <Landing />
-    // <div>Taskify</div>;
-  );
+export default async function Page() {
+  const cookieStore = await cookies();
+  const accessToken = cookieStore.get('accessToken');
+
+  if (accessToken) {
+    redirect('/dashboard');
+  }
+
+  return <Landing />;
 }
