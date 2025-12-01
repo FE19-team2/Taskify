@@ -21,7 +21,6 @@ export function checkErrorType(err: unknown): ErrorResult {
   } else if (err instanceof Error) {
     message = err.message;
   }
-
   return { status, message };
 }
 

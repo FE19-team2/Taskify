@@ -4,7 +4,7 @@ export const inputVariants = cva('transition-colors duration-200 ease-in-out ', 
   variants: {
     variant: {
       primary: ` 
-          bg-black-400 border-gray-700 border-[1px] text-gray-300 outline-none
+          bg-black-400 border-gray-700 px-5 py-1.5 border-[1px] text-gray-300 outline-none rounded-[14px]
           active:bg-black-400 active:text-gray-100 active:border-[1.5px] active:border-blue-B
           disabled:bg-gray-900 disabled:border disabled:border-[1px] disabled:text-gray-500
           focus:bg-black-400 focus:text-gray-100 focus:border-[1.5px] focus:border-blue-B
