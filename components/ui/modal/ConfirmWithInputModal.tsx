@@ -4,7 +4,7 @@ import { ModalRoot } from './ModalRoot';
 import { ConfirmModalProps } from './Confirm.types';
 import { ModalHeader } from './components/Header';
 import { ModalButtons } from './components/ModalButtons';
-import Input from '../input/Input';
+import { ModalInput } from './components/ModalInput';
 
 export function ConfirmWithInputModal({
   open,
@@ -42,9 +42,7 @@ export function ConfirmWithInputModal({
     <ModalRoot open={open} onOpenChange={onOpenChange} size="md" closeOnOutside={false}>
       <div className="flex flex-col pt-6 p-5 text-[#D6D5D9] md:p-[30px]">
         <ModalHeader title={title} onClose={handleClose} />
-        <div className="mb-[30px]">
-          <Input className="px-5 py-1.5" placeholder={placeholder} />
-        </div>
+        <ModalInput placeholder={placeholder} />
         <ModalButtons
           confirmText={confirmText}
           cancelText={cancelText}
