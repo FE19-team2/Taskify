@@ -14,8 +14,11 @@ export default function SignupForm() {
     <form onSubmit={handleSubmit} className="w-[520px] flex flex-col gap-10" method="POST">
       <div className="flex flex-col gap-4">
         <div className="flex flex-col gap-3">
-          <label className="lg-16px-semibold">이메일</label>
+          <label htmlFor="email" className="lg-16px-semibold">
+            이메일
+          </label>
           <Input
+            id="email"
             variant="primary"
             size="lg"
             className="w-full"
@@ -25,8 +28,9 @@ export default function SignupForm() {
           />
         </div>
         <div className="flex flex-col gap-3">
-          <label>닉네임</label>
+          <label htmlFor="nickname">닉네임</label>
           <Input
+            id="nickname"
             variant="primary"
             size="lg"
             className="w-full"
@@ -36,8 +40,9 @@ export default function SignupForm() {
           />
         </div>
         <div className="flex flex-col gap-3">
-          <label>비밀번호</label>
+          <label htmlFor="password">비밀번호</label>
           <Input
+            id="password"
             variant="primary"
             size="lg"
             className="w-full"
@@ -47,8 +52,9 @@ export default function SignupForm() {
           />
         </div>
         <div className="flex flex-col gap-3">
-          <label>비밀번호 확인</label>
+          <label htmlFor="confirmPassword">비밀번호 확인</label>
           <Input
+            id="confirmPassword"
             variant="primary"
             size="lg"
             className="w-full"
@@ -61,7 +67,6 @@ export default function SignupForm() {
       </div>
       <Button
         type="submit"
-        onClick={handleSubmit}
         variant="primary"
         disabled={true}
         size="lg"
