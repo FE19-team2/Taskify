@@ -1,43 +1,13 @@
-import React from 'react';
 import Image from 'next/image';
-import Link from 'next/link';
-import IntroImage from '@/public/images/landing-intro.svg';
 import Feature01 from '@/public/images/feature-01.svg';
 import Feature02 from '@/public/images/feature-02.svg';
 import Feature03Settings from '@/public/images/feature-03-settings.svg';
 import Feature03Invite from '@/public/images/feature-03-invite.svg';
-import Feataure03Member from '@/public/images/feature-03-member.svg';
+import Feature03Member from '@/public/images/feature-03-member.svg';
 
-export default function Intro() {
+export default function Main() {
   return (
     <div>
-      <section className="h-[1000px] flex items-center justify-between ml-[240px] gap-[100px]">
-        <div className="w-[502px] h-[305px]">
-          <div className="mb-[50px]">
-            <h2 className="mb-[10px] text-[60px] font-bold text-gray-100 tracking-[-0.6px] whitespace-nowrap">
-              더 새로워진 일정 관리
-            </h2>
-            <h1 className="text-brand-400 text-[84px] font-normal font-[NivaSmallCaps-Bold]">
-              TASKIFY
-            </h1>
-          </div>
-          <div className="flex gap-5">
-            <Link
-              href="/signup"
-              className="flex w-[200px] h-[60px] justify-center items-center bg-gray-700 rounded-full text-gray-100 lg2-18px-semibold tracking-[-0.18px]"
-            >
-              회원가입
-            </Link>
-            <Link
-              href="/login"
-              className="flex w-[200px] h-[60px] justify-center items-center bg-brand-500 rounded-full text-gray-100 lg2-18px-semibold tracking-[-0.18px]"
-            >
-              로그인
-            </Link>
-          </div>
-        </div>
-        <Image src={IntroImage} alt="소개 이미지" width={1078} height={0} className="h-auto" />
-      </section>
       <section className="h-[800px] flex">
         <div className="w-[1365px] h-[613px] flex items-center justify-between ml-[278px] gap-[127px]">
           <Image src={Feature01} alt="특징 1 이미지" width={736} height={0} className="h-auto" />
