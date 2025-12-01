@@ -1,5 +1,6 @@
 'use client';
 
+import Link from 'next/link';
 import Input from '@/components/ui/input/Input';
 import Button from '@/components/ui/button/Button';
 
@@ -10,7 +11,7 @@ export default function LoginForm() {
   };
 
   return (
-    <form className="w-[520px] flex flex-col mb-5">
+    <form className="w-full sm:w-[520px] flex flex-col mb-5">
       <div className="flex flex-col gap-3 mb-4">
         <label htmlFor="email" className="lg-16px-semibold text-gray-300">
           이메일
@@ -25,7 +26,7 @@ export default function LoginForm() {
           placeholder="이메일을 입력해주세요"
         />
       </div>
-      <div className="flex flex-col gap-3 mb-10">
+      <div className="flex flex-col gap-3 mb-[30px] sm:mb-10">
         <label className="lg-16px-semibold text-gray-300">비밀번호</label>
         <Input
           variant="primary"
@@ -36,15 +37,17 @@ export default function LoginForm() {
           placeholder="비밀번호를 입력해주세요"
         />
       </div>
-      <Button
-        type="submit"
-        variant="primary"
-        disabled={true}
-        size="lg"
-        className="w-full mb-5 disabled:text-brand-950"
-      >
-        로그인
-      </Button>
+      <Link href="/mydashboard">
+        <Button
+          type="submit"
+          variant="primary"
+          disabled={true}
+          size="lg"
+          className="w-full disabled:text-brand-950"
+        >
+          로그인
+        </Button>
+      </Link>
     </form>
   );
 }
