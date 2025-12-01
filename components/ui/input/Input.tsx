@@ -26,7 +26,16 @@ const TEXTAREA_THEMES = ['comment', 'textarea'] as const;
 
 const Input = forwardRef<HTMLInputElement | HTMLTextAreaElement, InputProps>(
   (
-    { className, variant, size, status, onFocus, onBlur, showCommentButtons = false, ...props },
+    {
+      className,
+      variant = 'primary',
+      size = 'md',
+      status,
+      onFocus,
+      onBlur,
+      showCommentButtons = false,
+      ...props
+    },
     externalRef,
   ) => {
     const [isFocused, setIsFocused] = useState(false);

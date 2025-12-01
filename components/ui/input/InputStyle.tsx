@@ -26,15 +26,26 @@ export const inputVariants = cva('transition-colors duration-200 ease-in-out ', 
     },
 
     size: {
-      lg: `w-[290px] h-[54px] px-[20px] py-[6px] rounded-[14px]`,
+      sm: `
+    w-[327px] h-[54px]
+    md:w-[520px] md:h-[54px]
+  `,
 
-      md: `w-[290px] h-[48px] px-[20px] py-[6px] rounded-[12px]`,
+      md: `
+    w-[295px] h-[48px]
+    md:w-[540px] md:h-[54px]
+  `,
 
-      pc: `w-[290px] h-[140px] px-[20px] py-[20px]  border border-gray-700 rounded-[14px]`,
+      lg: `
+    w-[335px] h-[48px]
+    md:w-[540px] md:h-[54px]
+  `,
 
-      mo: `w-[290px] h-[120px] px-[20px] py-[16px]  border border-gray-700 rounded-[12px]`,
-
-      full: `w-[584px] h-[220px]  rounded-[14px]  `,
+      xl: `
+    w-[335px] h-[48px]
+    md:w-[446px] md:h-[54px]
+    lg:w-[740px] lg:h-[54px]
+  `,
     },
 
     status: {
