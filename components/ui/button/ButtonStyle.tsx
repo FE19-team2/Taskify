@@ -1,5 +1,4 @@
 import { cva, type VariantProps } from 'class-variance-authority';
-import { cn } from '@/lib/utils/twmerge';
 
 export const buttonVariants = cva(
   'inline-flex items-center justify-center rounded-[100px] font-medium transition-colors select-none disabled:pointer-events-none',
@@ -30,12 +29,13 @@ export const buttonVariants = cva(
       },
 
       size: {
-        lg: ' gap-2 px-[30px] py-[6px] text-lg',
-        md: ' gap-2 px-[24px] py-3 text-md',
-        sm: ' gap-1 px-[12px] py-2 text-sm',
-        xs: ' gap-[2px] px-[10px] text-xs',
-        side: ' pl-[12px] pr-[14px] py-[16px] rounded-[12px] ',
-        profile: ' gap-[9px]',
+        lg: 'h-[60px] gap-2 text-lg w-[327px] md:w-[520px]',
+        md: 'h-[50px] gap-2 text-md w-[247px] md:w-[358px]',
+        sm: 'h-[50px] gap-2 text-sm w-[141.5px] md:w-[260px]',
+        xs: 'h-[36px] gap-2 text-xs w-[68px]',
+
+        side: 'pl-[12px] pr-[14px] py-[16px] rounded-[12px]',
+        profile: 'gap-[9px]',
       },
 
       full: {
