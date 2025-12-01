@@ -1,5 +1,6 @@
 import { createRequester, FetchClient } from '../request-core';
 import { cookies } from 'next/headers';
+import 'server-only';
 
 const API_BASE_URL = process.env.API_BASE_URL;
 

@@ -7,8 +7,22 @@ export default async function Page() {
   const accessToken = cookieStore.get('accessToken');
 
   if (accessToken) {
-    redirect('/dashboard');
+    redirect('/mydashboard');
   }
 
-  return <Landing />;
+  return (
+    <div className="bg-[#0f1112] w-full flex items-center justify-center min-h-screen overflow-x-hidden">
+      <div
+        className="
+  absolute inset-0 
+  bg-linear-to-r 
+  from-transparent 
+  via-[#00ff66]/4
+  to-transparent
+  pointer-events-none
+"
+      />
+      <Landing />
+    </div>
+  );
 }
