@@ -2,10 +2,10 @@ import { NextResponse, NextRequest } from 'next/server';
 import { BEclient } from '@/lib/api/server/api-client';
 import { createErrorResponse } from '@/lib/api/handle-error';
 import {
-  editCommentReqDto,
-  editCommentResDto,
-  EditCommentRequest,
-  EditCommentResponse,
+  updateCommentReqDto,
+  updateCommentResDto,
+  UpdateCommentRequest,
+  UpdateCommentResponse,
 } from '@/lib/api/validations/comments';
 
 export async function PUT(
@@ -14,14 +14,14 @@ export async function PUT(
 ): Promise<Response> {
   try {
     const body = await req.json();
-    const validatedData = editCommentReqDto.parse(body);
+    const validatedData = updateCommentReqDto.parse(body);
     const { commentId } = await params;
 
-    const backendRes = await BEclient.put<EditCommentResponse, EditCommentRequest>(
+    const backendRes = await BEclient.put<UpdateCommentResponse, UpdateCommentRequest>(
       `/comments/${commentId}`,
       validatedData,
     );
-    const data = editCommentResDto.parse(backendRes);
+    const data = updateCommentResDto.parse(backendRes);
 
     return NextResponse.json(data);
   } catch (err: unknown) {

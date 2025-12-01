@@ -21,7 +21,7 @@ export type CreateColumnResponse = z.infer<typeof createColumnResDto>;
 // 칼럼 조회 응답 DTO
 export const getColumnsResDto = z.object({
   result: z.enum(['SUCCESS']),
-  data: z.array(createColumnResDto),
+  data: z.array(createColumnResDto).nullable(),
 });
 
 export type GetColumnsResponse = z.infer<typeof getColumnsResDto>;
