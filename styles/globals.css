@@ -1,5 +1,12 @@
 @import 'tailwindcss';
 
+@font-face {
+  font-family: 'NivaSmallCaps-Bold';
+  src: url('/fonts/NivaSmallCaps-Bold.ttf') format('truetype');
+  font-weight: 700;
+  font-style: normal;
+}
+
 /* -----------------------------
     DESIGN TOKENS – COLORS
 ------------------------------ */
