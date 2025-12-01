@@ -4,7 +4,7 @@ import Letter from '@/components/ui/Image/Letter';
 import Button from '@/components/ui/button/Button';
 import { Icon } from '@/components/ui/Icons/Icon';
 
-type OnCreateClick = () => void; // 또는 type onCreateClick = () => void;
+type OnCreateClick = () => void;
 
 interface EmptyStateProps {
   type: 'mine' | 'invited';

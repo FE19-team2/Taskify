@@ -76,7 +76,7 @@ const EditDropdown: FC<EditDropdownProps> = ({ isOpen, onToggle, onSelect }) => 
           {editOptions.map((opt) => (
             <li
               key={opt.value}
-              role="options"
+              role="option"
               onClick={() => onSelect(opt.value)}
               className={cn(
                 'flex items-center  px-2.5 py-3 hover:bg-gray-700 cursor-pointer rounded-[10px]',

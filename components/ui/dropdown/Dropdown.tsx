@@ -4,7 +4,6 @@ import { FC } from 'react';
 import { cn } from '@/lib/utils/twmerge';
 import { Icon } from '../Icons/Icon';
 import { UserAvatar } from './UserAvatar';
-import { SVGProps } from 'react';
 interface Option {
   label: string;
   value: string;
@@ -16,7 +15,6 @@ interface DropdownProps {
   options: Option[];
   onToggle: () => void;
   onSelect: (value: string) => void;
-  icon?: FC<SVGProps<SVGSVGElement>>;
 }
 
 const Dropdown: FC<DropdownProps> = ({ label, isOpen, options, onToggle, onSelect }) => {

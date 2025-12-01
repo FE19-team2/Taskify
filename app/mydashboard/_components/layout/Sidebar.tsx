@@ -6,8 +6,8 @@ import { Icon } from '@/components/ui/Icons/Icon';
 
 interface SidebarProps {
   userName: string;
-  isOpen: boolean; // 💡 추가된 Prop
-  onClose: () => void; // 💡 추가된 Prop
+  isOpen: boolean;
+  onClose: () => void;
 }
 const Sidebar = ({ userName, isOpen, onClose }: SidebarProps) => {
   return (
@@ -20,7 +20,7 @@ const Sidebar = ({ userName, isOpen, onClose }: SidebarProps) => {
       <SidebarHeader />
 
       <div className="flex-1 overflow-y-auto py-4 px-3">
-        <button className="text-gray-200 hover:text-white transition flex items-center  cursor-pointer whitespace-nowrap gap-[75px] md:gap-[100px]">
+        <button className="text-gray-200 hover:text-white transition flex items-center justify-between w-full cursor-pointer whitespace-nowrap ">
           <span>대시보드 추가</span> <Icon name="PlusIcon" className="w-[12.5px] h-[12.5px]" />
         </button>
       </div>

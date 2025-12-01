@@ -14,7 +14,7 @@ const DashboardLayout = ({ children }: Props) => {
         <Sidebar userName="Loading" isOpen={true} onClose={() => {}} />
       </div>
 
-      <div className={`relative flex flex-col ml-[340px]`}>{children}</div>
+      <div className={`relative flex flex-col ml-64`}>{children}</div>
     </div>
   );
 };
