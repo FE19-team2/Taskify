@@ -3,6 +3,7 @@ export interface DashboardItem {
   title: string;
   isMine: boolean;
   color: string;
+  inviter?: string;
 }
 interface BaseDashboardListProps {
   dashboards: DashboardItem[];

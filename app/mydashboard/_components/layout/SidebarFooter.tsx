@@ -11,7 +11,7 @@ const SidebarFooter = ({ userName }: SidebarFooterProps) => {
     <div className="p-3 border-t border-gray-700 bg-black-600">
       <div className="flex items-center justify-between h-14 w-full  px-1.5 py-3 rounded-xl hover:bg-gray-700 transition cursor-pointer">
         <div className="flex items-center space-x-2">
-          <UserAvatar name={userName} className="w-8 h-8 text-md" />
+          <UserAvatar name={userName} className="w-8 h-8 text-base" />
 
           <span className="text-lg font-medium text-white">{userName}</span>
         </div>

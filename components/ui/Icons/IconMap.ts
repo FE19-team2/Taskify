@@ -11,6 +11,7 @@ import ArrowLeft from './ArrowLeft';
 import ArrowRight from './ArrowRight';
 import Toggle from './Toggle';
 import UserPlus from './UserPlus';
+import HomeIcon from './HomeIcon';
 export type IconName =
   | 'ArrowDown'
   | 'CirclePlus'
@@ -24,7 +25,8 @@ export type IconName =
   | 'ArrowLeft'
   | 'ArrowRight'
   | 'Toggle'
-  | 'UserPlus';
+  | 'UserPlus'
+  | 'HomeIcon';
 
 export const IconMap: Record<IconName, React.FC<React.SVGProps<SVGSVGElement>>> = {
   ArrowDown,
@@ -40,4 +42,5 @@ export const IconMap: Record<IconName, React.FC<React.SVGProps<SVGSVGElement>>> 
   ArrowRight,
   Toggle,
   UserPlus,
+  HomeIcon,
 };

@@ -1,19 +1,33 @@
 import React from 'react';
 
 interface DashboardSectionProps {
-  title: string;
+  title?: string;
   children: React.ReactNode;
 }
 
-const DashboardSection = ({ title, children }: DashboardSectionProps) => {
+export const DashboardSection = ({ title, children }: DashboardSectionProps) => {
   return (
-    <section className="mb-12">
-      <h2 className="text-2xl font-bold text-white mb-4">{title}</h2>
-      <div className="bg-black-400 rounded-[30px] border border-gray-500 shadow-2xl p-6 min-h-[300px] flex items-center justify-center">
-        {children}
+    <section className="mb-8 md:mb-12">
+      <div className="flex justify-between items-center mb-4">
+        <h2 className="text-2xl font-bold text-white mb-4">{title}</h2>
       </div>
+      <div>{children}</div>
     </section>
   );
 };
 
-export default DashboardSection;
+export const InvitedDashboardSection = ({ title, children }: DashboardSectionProps) => {
+  const childrenArray = React.Children.toArray(children);
+  const firstChild = childrenArray[0];
+  const remainingChildren = childrenArray.slice(1);
+  return (
+    <section className="mb-8">
+      <div className="flex flex-col lg:flex-row  lg:justify-between items-start mb-4">
+        <h2 className="text-xl font-extrabold text-white mb-3 lg:mb-0">{title}</h2>
+        <div className="w-full md:w-full lg:w-auto lg:max-w-xs">{firstChild}</div>
+      </div>
+
+      <div>{remainingChildren}</div>
+    </section>
+  );
+};

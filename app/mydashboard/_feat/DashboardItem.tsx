@@ -2,7 +2,7 @@ import React from 'react';
 import Link from 'next/link';
 import { Icon } from '@/components/ui/Icons/Icon';
 import { cn } from '@/lib/utils/twmerge';
-import { DashboardItem as DashboardItemType } from '@/lib/utils/dashboard';
+import { DashboardItem as DashboardItemType } from '@/lib/utils/dashboardpros';
 
 interface DashboardItemProps {
   dashboard: DashboardItemType;
@@ -10,13 +10,14 @@ interface DashboardItemProps {
   onAccept?: (id: number) => void;
   onReject?: (id: number) => void;
   color: string;
+  className?: string;
 }
 
-const DashboardItem = ({ dashboard, type, onAccept, onReject }: DashboardItemProps) => {
+const DashboardItem = ({ dashboard, type, onAccept, onReject, className }: DashboardItemProps) => {
   const { id, title, isMine, color } = dashboard;
 
   const CrownIcon = isMine && (
-    <div className="ml-2 flex items-center text-yellow-400">
+    <div className="ml-2 flex items-center text-brand-400">
       <Icon name="CrownIcon" className="w-4 h-4" />
     </div>
   );
