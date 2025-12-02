@@ -1,10 +1,8 @@
 'use client';
+
 import React, { useState } from 'react';
 import DashboardColorPicker from './DashboardColorPicker';
-import styles from './styles.module.css';
 import Button from '@/components/ui/button/Button';
-import Input from '@/components/ui/input/Input';
-import { UserAvatar } from '@/components/ui/dropdown/UserAvatar';
 
 export default function DashboardEditForm({
   initial,
@@ -16,12 +14,12 @@ export default function DashboardEditForm({
   const [saving, setSaving] = useState(false);
   const [msg, setMsg] = useState<string | null>(null);
 
-  // Input 컴포넌트 시그니처가 불확실하면 방어적으로 처리
   const handleNameChange = (payload: unknown) => {
     if (typeof payload === 'string') {
       setName(payload);
       return;
     }
+
     const event = payload as React.ChangeEvent<HTMLInputElement> | undefined;
     const value = event?.target?.value ?? '';
     setName(value);
@@ -30,13 +28,18 @@ export default function DashboardEditForm({
   const handleSave = async () => {
     setSaving(true);
     setMsg(null);
+
     try {
       const res = await fetch(`/api/dashboards/${initial?.id ?? ''}`, {
         method: 'PUT',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ name, color }),
       });
-      if (!res.ok) throw new Error('저장 실패');
+
+      if (!res.ok) {
+        throw new Error('저장 실패');
+      }
+
       setMsg('저장되었습니다.');
     } catch (error) {
       console.error(error);
@@ -47,33 +50,33 @@ export default function DashboardEditForm({
   };
 
   return (
-    <div className={styles.formWrap}>
-      <div style={{ marginBottom: 12 }}>
-        <UserAvatar name={name || '익명'} />
-      </div>
-
-      <label className={styles.label}>이름</label>
-      <Input
+    <div className="w-full max-w-[740px]">
+      {/* 이름 입력 */}
+      <label className="block mb-2 text-[#bdbdbd] text-sm">이름</label>
+      <input
         value={name}
         onChange={handleNameChange}
         placeholder="대시보드 이름"
-        className={styles.input}
+        className="w-full px-4 py-3 rounded-[12px] border border-[rgba(255,255,255,0.06)] bg-[#171717] text-white text-base h-[48px]"
       />
 
-      <label className={styles.label} style={{ marginTop: 18 }}>
-        색상
-      </label>
-      <div className={styles.colorRow}>
+      {/* 색상 선택 */}
+      <label className="block mt-6 mb-3 text-[#bdbdbd] text-sm">색상</label>
+      <div className="mt-3">
         <DashboardColorPicker selected={color} onSelect={setColor} />
       </div>
 
-      <div style={{ marginTop: 24 }}>
-        <div style={{ textAlign: 'center' }}>
-          <Button onClick={handleSave} disabled={saving} className={styles.saveBtn}>
-            {saving ? '저장중...' : '저장'}
-          </Button>
-        </div>
-        {msg && <div style={{ marginTop: 12 }}>{msg}</div>}
+      {/* 저장 버튼 */}
+      <div className="mt-8 text-center">
+        <Button
+          onClick={handleSave}
+          disabled={saving}
+          className="inline-block w-[260px] h-[48px] bg-[#09a30d] text-white rounded-full font-semibold shadow-save"
+        >
+          {saving ? '저장중...' : '저장'}
+        </Button>
+
+        {msg && <div className="mt-3 text-sm">{msg}</div>}
       </div>
     </div>
   );
