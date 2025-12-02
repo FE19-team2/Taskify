@@ -11,62 +11,73 @@ export default function SignupForm() {
   };
 
   return (
-    <form onSubmit={handleSubmit} className="w-[520px] flex flex-col gap-10" method="POST">
+    <form onSubmit={handleSubmit} className="w-full flex flex-col gap-10">
       <div className="flex flex-col gap-4">
         <div className="flex flex-col gap-3">
-          <label className="lg-16px-semibold">이메일</label>
+          <label htmlFor="email" className="lg-16px-semibold text-gray-300">
+            이메일
+          </label>
           <Input
+            id="email"
             variant="primary"
             size="lg"
-            className="w-full"
+            className="w-full max-w-full"
             type="email"
             name="email"
             placeholder="이메일을 입력해주세요"
           />
         </div>
         <div className="flex flex-col gap-3">
-          <label>닉네임</label>
+          <label htmlFor="nickname" className="lg-16px-semibold text-gray-300">
+            닉네임
+          </label>
           <Input
+            id="nickname"
             variant="primary"
             size="lg"
-            className="w-full"
+            className="w-full max-w-full"
             type="text"
             name="nickname"
             placeholder="닉네임을 입력해주세요"
           />
         </div>
         <div className="flex flex-col gap-3">
-          <label>비밀번호</label>
+          <label htmlFor="password" className="lg-16px-semibold text-gray-300">
+            비밀번호
+          </label>
           <Input
+            id="password"
             variant="primary"
             size="lg"
-            className="w-full"
+            className="w-full max-w-full"
             type="password"
             name="password"
             placeholder="8자 이상 입력해주세요"
           />
         </div>
         <div className="flex flex-col gap-3">
-          <label>비밀번호 확인</label>
+          <label htmlFor="confirmPassword" className="lg-16px-semibold text-gray-300">
+            비밀번호 확인
+          </label>
           <Input
+            id="confirmPassword"
             variant="primary"
             size="lg"
-            className="w-full"
+            className="w-full max-w-full"
             type="password"
             name="confirmPassword"
             placeholder="비밀번호를 한 번 더 입력해주세요"
           />
         </div>
-        <Checkbox />
+        {/* <Checkbox>
+          이용약관에 동의합니다.
+        </Checkbox> */}
       </div>
       <Button
-        type="submit"
-        onClick={handleSubmit}
         variant="primary"
         disabled={true}
         size="lg"
-        full={true}
-        className="h-[60px] mb-5 disabled:text-brand-950"
+        className="w-full disabled:text-brand-950"
       >
         회원가입
       </Button>

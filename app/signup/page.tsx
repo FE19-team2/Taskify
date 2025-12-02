@@ -35,21 +35,25 @@ interface ErrorResponse {
 
 export default function Page() {
   return (
-    <div className="my-[195px] flex justify-center items-center">
-      <div className="w-[520px] h-[690px] flex justify-center items-center flex-col gap-10">
-        <div className="mx-auto">
-          <Link href="/">
-            <Image src={LogoImage} alt="태스키파이 로고" width={340} height={87} />
-          </Link>
-        </div>
+    <div className="min-h-screen flex flex-col justify-center items-center px-6">
+      <div className="w-full max-w-[520px] flex flex-col items-center gap-10">
+        <Link href="/" className="block">
+          <Image
+            src={LogoImage}
+            alt="태스키파이 로고"
+            width={340}
+            height={87}
+            className="w-[300px] sm:w-[340px] h-auto"
+          />
+        </Link>
         <SignupForm />
-        <div className="text-center -mt-[30px] text-gray-400 whitespace-pre">
-          이미 회원이신가요?{' '}
-          <Link href="/login" className="text-gray-300">
-            로그인하기
-          </Link>
-        </div>
       </div>
+      <p className="text-center text-gray-400 mt-[20px] whitespace-pre">
+        이미 회원이신가요?{'  '}
+        <Link href="/login" className="text-gray-300">
+          로그인하기
+        </Link>
+      </p>
     </div>
   );
 }

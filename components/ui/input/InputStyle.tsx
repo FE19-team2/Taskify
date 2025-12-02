@@ -37,8 +37,9 @@ export const inputVariants = cva('transition-colors duration-200 ease-in-out ', 
   `,
 
       lg: `
-    w-[335px] h-[48px]
+    w-[335px] h-[54px]
     md:w-[540px] md:h-[54px]
+    px-[20px] py-[6px] rounded-[14px]
   `,
 
       xl: `
