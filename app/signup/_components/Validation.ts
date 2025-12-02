@@ -4,8 +4,21 @@ export const validateEmail = (email: string): boolean => {
 };
 
 export const validateNickname = (nickname: string): boolean => {
-  const length = nickname.trim().length;
-  return length >= 2 && length <= 10;
+  if (!nickname || nickname.length === 0) {
+    return '닉네임을 입력해주세요.';
+  }
+
+  const length = nickname.length;
+
+  if (length < 2) {
+    return '닉네임은 2자 이상 입력해주세요.';
+  }
+
+  if (length > 10) {
+    return '닉네임은 10자 이하로 입력해주세요.';
+  }
+
+  return '';
 };
 
 export const validatePassword = (password: string): boolean => {
