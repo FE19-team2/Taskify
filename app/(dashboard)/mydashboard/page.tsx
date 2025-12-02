@@ -115,16 +115,6 @@ const DashboardPage = () => {
 
   return (
     <>
-      <Sidebar
-        userName={currentUserName}
-        isOpen={isSidebarOpen}
-        onClose={() => setIsSidebarOpen(false)}
-        myDashboards={sidebarDashboards}
-        currentPage={sidebarCurrentPage}
-        totalPages={sidebarTotalPages}
-        gotoPage={gotoSidebarPage}
-      />
-
       <DashboardHeader onSidebarToggle={handleSidebarToggle} />
 
       {isSidebarOpen && (

@@ -5,7 +5,7 @@ import React from 'react';
 import MemberManagementList from '../MamberManagment/MemberManagmentList';
 import InvitedMenagmentList from '../MamberManagment/InvitedMenagmentList';
 import GoBackButton from '../MamberManagment/GobackButton';
-import DashboardHeader from '@/app/mydashboard/edit/DashboardHeader';
+import DashboardHeader from '@/app/(dashboard)/mydashboard/edit/DashboardHeader';
 
 export default function Managment() {
   return (

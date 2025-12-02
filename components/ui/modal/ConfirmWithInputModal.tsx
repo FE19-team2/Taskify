@@ -5,6 +5,7 @@ import { ConfirmModalProps } from './Confirm.types';
 import { ModalHeader } from './components/Header';
 import { ModalButtons } from './components/ModalButtons';
 import { ModalInput } from './components/ModalInput';
+import { ColorBoard } from './components/ColorBoard';
 
 export function ConfirmWithInputModal({
   open,
@@ -13,7 +14,9 @@ export function ConfirmWithInputModal({
   placeholder = '',
   confirmText = '확인',
   cancelText = '취소',
+  onChange,
   onConfirm,
+  hasColorBoard = false,
   isLoading = false,
 }: ConfirmModalProps) {
   const handleClose = () => {
@@ -42,7 +45,8 @@ export function ConfirmWithInputModal({
     <ModalRoot open={open} onOpenChange={onOpenChange} size="md" closeOnOutside={false}>
       <div className="flex flex-col pt-6 p-5 text-[#D6D5D9] md:p-[30px]">
         <ModalHeader title={title} onClose={handleClose} />
-        <ModalInput placeholder={placeholder} />
+        <ModalInput onChange={onChange} hasColorBoard={hasColorBoard} placeholder={placeholder} />
+        {hasColorBoard && <ColorBoard />}
         <ModalButtons
           confirmText={confirmText}
           cancelText={cancelText}

@@ -5,6 +5,8 @@ export type ConfirmModalProps = ModalProps & {
   confirmText?: string;
   cancelText?: string;
   placeholder?: string;
-  onConfirm?: () => void | Promise<void>;
+  hasColorBoard?: boolean;
+  onChange: (value: string) => void;
+  onConfirm: () => void | Promise<void>;
   isLoading?: boolean;
 };
