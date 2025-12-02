@@ -19,7 +19,7 @@ export default function LandingSection({
 }: LandingSectionProps) {
   return (
     <section
-      className={`flex flex-col px-[30px] pt-5 pb-20 md:py-25 items-center lg:justify-center lg:gap-[80px] lg:flex-row ${isReverse ? 'lg:flex-row-reverse' : ''}`}
+      className={`flex flex-col w-full px-[30px] pt-5 pb-20 md:py-25 items-center lg:justify-center lg:gap-[80px] lg:flex-row ${isReverse ? 'lg:flex-row-reverse' : ''}`}
     >
       <Image
         src={imageSrc}

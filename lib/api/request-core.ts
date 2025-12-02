@@ -52,7 +52,10 @@ export function createRequester({ baseUrl, getToken }: CreateRequesterOptions) {
         const errorData = await res.json();
         const errorMessage = errorData?.message || res.statusText;
         throw new HttpError(res.status, errorMessage);
-      } catch {
+      } catch (parseError) {
+        if (parseError instanceof HttpError) {
+          throw parseError;
+        }
         throw new HttpError(res.status, res.statusText);
       }
     }

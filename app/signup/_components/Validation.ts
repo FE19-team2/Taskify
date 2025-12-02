@@ -8,14 +8,15 @@ export const validateNickname = (nickname: string): string => {
     return '닉네임을 입력해주세요.';
   }
 
-  const length = nickname.length;
-
-  if (length < 2) {
+  if (nickname.length < 2) {
     return '닉네임은 2자 이상 입력해주세요.';
   }
 
-  if (length > 10) {
-    return '닉네임은 10자 이하로 입력해주세요.';
+  const koreanCount = (nickname.match(/[가-힣]/g) || []).length;
+  const otherCount = nickname.length - koreanCount;
+
+  if (koreanCount > 8 || otherCount > 16) {
+    return '닉네임은 한글 최대 8자, 영문 최대 16자입니다.';
   }
 
   return '';

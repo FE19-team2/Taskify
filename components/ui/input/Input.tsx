@@ -11,13 +11,14 @@ type BaseInputProps = Omit<
 >;
 
 export interface InputProps extends BaseInputProps {
-  onChange?: React.ChangeEventHandler<HTMLInputElement | HTMLTextAreaElement>;
+  onChange?: (value: string) => void;
   onBlur?: React.FocusEventHandler<HTMLInputElement | HTMLTextAreaElement>;
   onFocus?: React.FocusEventHandler<HTMLInputElement | HTMLTextAreaElement>;
 
   variant?: InputVariantsProps['variant'];
   size?: InputVariantsProps['size'];
   status?: InputVariantsProps['status'];
+  errorMessage?: string;
 
   showCommentButtons?: boolean;
 }
@@ -31,9 +32,12 @@ const Input = forwardRef<HTMLInputElement | HTMLTextAreaElement, InputProps>(
       variant = 'primary',
       size = 'md',
       status,
+      onChange,
       onFocus,
+      errorMessage = '',
       onBlur,
       showCommentButtons = false,
+      type = 'text',
       ...props
     },
     externalRef,
@@ -121,13 +125,18 @@ const Input = forwardRef<HTMLInputElement | HTMLTextAreaElement, InputProps>(
     }
 
     return (
-      <input
-        ref={setRefs as React.Ref<HTMLInputElement>}
-        className={combinedClassName}
-        onFocus={onFocus}
-        onBlur={onBlur}
-        {...props}
-      />
+      <>
+        <input
+          type={type}
+          ref={setRefs as React.Ref<HTMLInputElement>}
+          className={combinedClassName}
+          onChange={(event) => {
+            onChange?.(event.target.value);
+          }}
+          onBlur={onBlur}
+        />
+        {errorMessage && <p className="text-[#CA372B] text-sm mt-2.5">{errorMessage}</p>}
+      </>
     );
   },
 );
