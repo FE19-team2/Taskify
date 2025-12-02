@@ -1,10 +1,12 @@
 'use client';
 
+import { useState } from 'react';
 import Input from '@/components/ui/input/Input';
 import Button from '@/components/ui/button/Button';
 import Checkbox from '@/app/signup/_components/Checkbox';
 
 export default function SignupForm() {
+  const [agreeTerms, setAgreeTerms] = useState(false);
   const handleSubmit = (event: React.FormEvent) => {
     event.preventDefault();
     // TODO: 회원가입 로직 구현
@@ -72,14 +74,18 @@ export default function SignupForm() {
             placeholder="비밀번호를 한 번 더 입력해주세요"
           />
         </div>
-        {/* <Checkbox>
+        <Checkbox
+          id="agreeTerms"
+          checked={agreeTerms}
+          onChange={(event) => setAgreeTerms(event.target.checked)}
+        >
           이용약관에 동의합니다.
-        </Checkbox> */}
+        </Checkbox>
       </div>
       <Button
         type="submit"
         variant="primary"
-        disabled={true}
+        disabled={!agreeTerms}
         size="lg"
         className="w-full disabled:text-brand-950"
       >
