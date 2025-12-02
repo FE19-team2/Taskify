@@ -1,4 +1,4 @@
-import { CreateDashboardModal } from './_components/CreateDashboardModal';
+import { CreateDashboardModal } from '@/app/(dashboard)/_components/CreateDashboardModal';
 
 export default function Page() {
   return (
