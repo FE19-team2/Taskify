@@ -134,6 +134,7 @@ const Input = forwardRef<HTMLInputElement | HTMLTextAreaElement, InputProps>(
             onChange?.(event.target.value);
           }}
           onBlur={onBlur}
+          placeholder={props.placeholder}
         />
         {errorMessage && <p className="text-[#CA372B] text-sm mt-2.5">{errorMessage}</p>}
       </>

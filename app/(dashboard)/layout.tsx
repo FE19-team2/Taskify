@@ -1,6 +1,5 @@
-// app/(dashboard)/layout.tsx
-
-import Sidebar from '@/app/mydashboard/_components/layout/Sidebar';
+import Sidebar from '@/app/(dashboard)/mydashboard/_components/layout/Sidebar';
+import DashboardHeader from './mydashboard/edit/DashboardHeader';
 
 interface Props {
   children: React.ReactNode;
@@ -11,6 +10,7 @@ const DashboardLayout = ({ children }: Props) => {
     <div className="  h-screen text-gray-100 bg-black-500">
       <div className={'w-64 fixed h-full z-50 bg-black-500 border-r border-gray-800 '}>
         {/*더미 props*/}
+
         <Sidebar
           userName="Loading"
           isOpen={true}

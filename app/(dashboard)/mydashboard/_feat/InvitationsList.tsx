@@ -1,4 +1,4 @@
-import DashboardItem from '@/app/mydashboard/_feat/DashboardItem';
+import DashboardItem from '@/app/(dashboard)/mydashboard/_feat/DashboardItem';
 import { useReceivedInvitationsMock } from '@/lib/mocks/invitations-api-mock';
 const InvitationsList = () => {
   const {
