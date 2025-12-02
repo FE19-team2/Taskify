@@ -124,6 +124,8 @@ const Input = forwardRef<HTMLInputElement | HTMLTextAreaElement, InputProps>(
       <input
         ref={setRefs as React.Ref<HTMLInputElement>}
         className={combinedClassName}
+        onFocus={onFocus}
+        onBlur={onBlur}
         {...props}
       />
     );
