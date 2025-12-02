@@ -1,5 +1,6 @@
 import { FC } from 'react';
 import { cn } from '@/lib/utils/twmerge';
+import { generateDeterministicColorIndex } from '@/lib/utils/color-hashing';
 
 const COLORS = [
   'bg-profile-green',
@@ -11,28 +12,18 @@ const COLORS = [
   'bg-profile-orange',
 ];
 
-const stringToColorIndex = (str: string): number => {
-  let hash = 0;
-  for (let i = 0; i < str.length; i++) {
-    hash = str.charCodeAt(i) + ((hash << 5) - hash);
-  }
-  return Math.abs(hash) % COLORS.length;
-};
-
-const getUserColorClass = (name: string): string => {
-  const index = stringToColorIndex(name);
-  return COLORS[index];
-};
-
 interface UserAvatarProps {
-  name: string;
+  name: string | null | undefined;
   className?: string;
 }
 
 export const UserAvatar: FC<UserAvatarProps> = ({ name, className }) => {
-  const initial = name.charAt(0);
+  const safeName = name && name.trim().length > 0 ? name.trim() : '?';
+  const initial = safeName.charAt(0);
 
-  const colorClass = getUserColorClass(name);
+  const colorIndex = generateDeterministicColorIndex(safeName, COLORS.length);
+
+  const colorClass = COLORS[colorIndex];
 
   return (
     <div
