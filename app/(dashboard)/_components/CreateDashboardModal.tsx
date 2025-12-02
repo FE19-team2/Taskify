@@ -21,11 +21,10 @@ export function CreateDashboardModal() {
     } catch (error) {
       if (error instanceof HttpError) {
         setMessage(error.message);
-        setIsDialogOpen(true);
       } else {
         setMessage('대시보드 생성에 실패했습니다.');
-        setIsDialogOpen(true);
       }
+      setIsDialogOpen(true);
     }
   };
 
