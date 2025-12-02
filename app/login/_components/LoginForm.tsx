@@ -29,7 +29,6 @@ export default function LoginForm() {
       router.push('/mydashboard');
     } catch (error) {
       setIsModalOpen(true);
-      console.log('1');
       setLoginError((error as HttpError).message || '로그인에 실패했습니다. 다시 시도해주세요.');
     }
   };
