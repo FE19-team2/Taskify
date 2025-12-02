@@ -24,9 +24,13 @@ const CrownWrapper = () => (
     <Icon name="CrownIcon" className="w-full h-full text-brand-400" />
   </div>
 );
-const getRandomColor = () => {
-  const randomIndex = Math.floor(Math.random() * HASH_COLORS.length);
-  return HASH_COLORS[randomIndex];
+
+const getDetermainisticColor = (label: string) => {
+  let hash = 0;
+  for (let i = 0; i < label.length; i++) {
+    hash = label.charCodeAt(i) % HASH_COLORS.length;
+  }
+  return HASH_COLORS[hash];
 };
 
 const HashWrapper = ({ colorClass }: { colorClass: string }) => (
@@ -37,18 +41,17 @@ const HashWrapper = ({ colorClass }: { colorClass: string }) => (
 
 const SideButton = forwardRef<HTMLButtonElement, SideButtonProps>(
   ({ className, full, label, hasCrown = false, hasHash = false, ...props }, ref) => {
-    const hashColorClass = getRandomColor();
+    const hashColorClass = getDetermainisticColor(label);
 
     const baseClassName = cn(buttonVariants({ variant: 'ghost', size: 'side', full }), className);
 
     return (
       <button
         ref={ref}
-        className={cn(baseClassName, 'flex items-stert justify-between')}
+        className={cn(baseClassName, 'flex items-center justify-between')}
         {...props}
       >
         <div className="flex items-center truncate justify-between ">
-          {/* ✅ 2. HashWrapper에 랜덤 색상 클래스 전달 */}
           {hasHash && <HashWrapper colorClass={hashColorClass} />}
           <span className="text-white ">{label}</span>
         </div>

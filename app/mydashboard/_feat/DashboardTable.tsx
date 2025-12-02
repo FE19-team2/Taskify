@@ -33,7 +33,7 @@ const DashboardTable = ({
         <div className="hidden md:flex justify-between items-center p-4 border-b border-gray-700 text-gray-400 font-semibold text-sm">
           <span className="w-1/3 pl-2">이름</span>
           <span className="w-1/3 text-center">초대자</span>
-          <span className="w-1/3 text-right pr-18">수락 여부</span>
+          <span className="w-1/3 text-right pr-[72px]">수락 여부</span>
         </div>
 
         {data.map((dashboard) => (
@@ -47,8 +47,8 @@ const DashboardTable = ({
 
             <div className="w-full flex justify-between items-center md:w-2/3">
               <div className="flex items-center gap-2 text-gray-300 md:w-1/2 md:justify-center">
-                <UserAvatar name={inviter} className="w-5 h-5 text-xs" />
-                <span className="text-sm md:text-base">{inviter}</span>
+                <UserAvatar name={dashboard.inviter} className="w-5 h-5 text-xs" />
+                <span className="text-sm md:text-base">{dashboard.inviter}</span>
               </div>
 
               <div className="flex justify-end gap-2 md:w-1/2 pr-2">

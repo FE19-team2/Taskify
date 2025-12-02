@@ -14,7 +14,7 @@ interface DashboardItemProps {
 }
 
 const DashboardItem = ({ dashboard, type, onAccept, onReject, className }: DashboardItemProps) => {
-  const { id, title, isMine, color } = dashboard;
+  const { id, title, isMine } = dashboard;
 
   const CrownIcon = isMine && (
     <div className="ml-2 flex items-center text-brand-400">

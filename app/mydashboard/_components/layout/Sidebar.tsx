@@ -43,7 +43,7 @@ const Sidebar = ({
         </div>
         {myDashboards.slice(0, 9).map((dashboard) => (
           <div key={dashboard.id} className="mt-3 ">
-            <Link href={`/dashboard/${dashboard.id}`} key={dashboard.id}>
+            <Link href={`/dashboard/${dashboard.id}`}>
               <SideButton
                 label={dashboard.title}
                 hasHash={true}
@@ -67,20 +67,7 @@ const Sidebar = ({
               disabled={currentPage === 1}
               className="flex items-center text-gray-400 hover:text-white disabled:opacity-30 transition pr-2"
             >
-              <svg
-                className="w-4 h-4 ml-1"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth="2"
-                  d="M15 19l-7-7 7-7"
-                ></path>
-              </svg>
+              <Icon name="ArrowLeft" className="w-4 h-4 mr-1" />
               이전
             </button>
             <button
@@ -89,20 +76,7 @@ const Sidebar = ({
               className="flex items-center text-gray-400 hover:text-white disabled:opacity-30 transition pl-2"
             >
               다음
-              <svg
-                className="w-4 h-4 ml-1"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth="2"
-                  d="M9 5l7 7-7 7"
-                ></path>
-              </svg>
+              <Icon name="ArrowRight" className="w-4 h-4 ml-1" />
             </button>
           </div>
         )}
