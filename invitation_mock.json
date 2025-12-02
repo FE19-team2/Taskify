@@ -1,0 +1,425 @@
+{
+  "cursorId": 20,
+  "invitations": [
+    {
+      "id": 1,
+      "inviter": {
+        "nickname": "Manager_A",
+        "email": "manager.a@work.com",
+        "id": 10
+      },
+      "teamId": "team-alpha",
+      "dashboard": {
+        "title": "2025년 Q4 프로젝트 보고서",
+        "id": 101
+      },
+      "invitee": {
+        "nickname": "User_1",
+        "email": "user1@mail.com",
+        "id": 1
+      },
+      "inviteAccepted": false,
+      "createdAt": "2025-11-28T10:00:00.000Z",
+      "updatedAt": "2025-11-28T10:00:00.000Z"
+    },
+    {
+      "id": 2,
+      "inviter": {
+        "nickname": "Designer_B",
+        "email": "designer.b@work.com",
+        "id": 11
+      },
+      "teamId": "team-design",
+      "dashboard": {
+        "title": "브랜드 가이드라인 초안",
+        "id": 102
+      },
+      "invitee": {
+        "nickname": "User_2",
+        "email": "user2@mail.com",
+        "id": 2
+      },
+      "inviteAccepted": true,
+      "createdAt": "2025-11-29T11:15:00.000Z",
+      "updatedAt": "2025-11-29T11:15:00.000Z"
+    },
+    {
+      "id": 3,
+      "inviter": {
+        "nickname": "CEO_C",
+        "email": "ceo.c@company.com",
+        "id": 12
+      },
+      "teamId": "team-exec",
+      "dashboard": {
+        "title": "주간 경영 지표",
+        "id": 103
+      },
+      "invitee": {
+        "nickname": "User_3",
+        "email": "user3@mail.com",
+        "id": 3
+      },
+      "inviteAccepted": false,
+      "createdAt": "2025-11-29T14:30:00.000Z",
+      "updatedAt": "2025-11-29T14:30:00.000Z"
+    },
+    {
+      "id": 4,
+      "inviter": {
+        "nickname": "Developer_D",
+        "email": "dev.d@tech.com",
+        "id": 13
+      },
+      "teamId": "team-dev",
+      "dashboard": {
+        "title": "백엔드 API 상태 모니터링",
+        "id": 104
+      },
+      "invitee": {
+        "nickname": "User_4",
+        "email": "user4@mail.com",
+        "id": 4
+      },
+      "inviteAccepted": false,
+      "createdAt": "2025-11-30T09:00:00.000Z",
+      "updatedAt": "2025-11-30T09:00:00.000Z"
+    },
+    {
+      "id": 5,
+      "inviter": {
+        "nickname": "Planner_E",
+        "email": "planner.e@market.com",
+        "id": 14
+      },
+      "teamId": "team-marketing",
+      "dashboard": {
+        "title": "2026년 마케팅 캠페인 계획",
+        "id": 105
+      },
+      "invitee": {
+        "nickname": "User_5",
+        "email": "user5@mail.com",
+        "id": 5
+      },
+      "inviteAccepted": true,
+      "createdAt": "2025-11-30T16:45:00.000Z",
+      "updatedAt": "2025-11-30T16:45:00.000Z"
+    },
+    {
+      "id": 6,
+      "inviter": {
+        "nickname": "Manager_A",
+        "email": "manager.a@work.com",
+        "id": 10
+      },
+      "teamId": "team-alpha",
+      "dashboard": {
+        "title": "사이드 프로젝트 'X' 대시보드",
+        "id": 106
+      },
+      "invitee": {
+        "nickname": "User_6",
+        "email": "user6@mail.com",
+        "id": 6
+      },
+      "inviteAccepted": false,
+      "createdAt": "2025-12-01T08:30:00.000Z",
+      "updatedAt": "2025-12-01T08:30:00.000Z"
+    },
+    {
+      "id": 7,
+      "inviter": {
+        "nickname": "Designer_B",
+        "email": "designer.b@work.com",
+        "id": 11
+      },
+      "teamId": "team-design",
+      "dashboard": {
+        "title": "UI 컴포넌트 라이브러리",
+        "id": 107
+      },
+      "invitee": {
+        "nickname": "User_7",
+        "email": "user7@mail.com",
+        "id": 7
+      },
+      "inviteAccepted": false,
+      "createdAt": "2025-12-01T10:45:00.000Z",
+      "updatedAt": "2025-12-01T10:45:00.000Z"
+    },
+    {
+      "id": 8,
+      "inviter": {
+        "nickname": "CEO_C",
+        "email": "ceo.c@company.com",
+        "id": 12
+      },
+      "teamId": "team-exec",
+      "dashboard": {
+        "title": "투자 유치 현황",
+        "id": 108
+      },
+      "invitee": {
+        "nickname": "User_8",
+        "email": "user8@mail.com",
+        "id": 8
+      },
+      "inviteAccepted": true,
+      "createdAt": "2025-12-01T13:20:00.000Z",
+      "updatedAt": "2025-12-01T13:20:00.000Z"
+    },
+    {
+      "id": 9,
+      "inviter": {
+        "nickname": "Developer_D",
+        "email": "dev.d@tech.com",
+        "id": 13
+      },
+      "teamId": "team-dev",
+      "dashboard": {
+        "title": "프론트엔드 성능 최적화",
+        "id": 109
+      },
+      "invitee": {
+        "nickname": "User_9",
+        "email": "user9@mail.com",
+        "id": 9
+      },
+      "inviteAccepted": false,
+      "createdAt": "2025-12-01T15:55:00.000Z",
+      "updatedAt": "2025-12-01T15:55:00.000Z"
+    },
+    {
+      "id": 10,
+      "inviter": {
+        "nickname": "Planner_E",
+        "email": "planner.e@market.com",
+        "id": 14
+      },
+      "teamId": "team-marketing",
+      "dashboard": {
+        "title": "소셜 미디어 분석 대시보드",
+        "id": 110
+      },
+      "invitee": {
+        "nickname": "User_10",
+        "email": "user10@mail.com",
+        "id": 10
+      },
+      "inviteAccepted": true,
+      "createdAt": "2025-12-01T17:10:00.000Z",
+      "updatedAt": "2025-12-01T17:10:00.000Z"
+    },
+    {
+      "id": 11,
+      "inviter": {
+        "nickname": "Manager_A",
+        "email": "manager.a@work.com",
+        "id": 10
+      },
+      "teamId": "team-alpha",
+      "dashboard": {
+        "title": "재고 현황 대시보드",
+        "id": 111
+      },
+      "invitee": {
+        "nickname": "User_11",
+        "email": "user11@mail.com",
+        "id": 11
+      },
+      "inviteAccepted": false,
+      "createdAt": "2025-12-02T09:00:00.000Z",
+      "updatedAt": "2025-12-02T09:00:00.000Z"
+    },
+    {
+      "id": 12,
+      "inviter": {
+        "nickname": "Designer_B",
+        "email": "designer.b@work.com",
+        "id": 11
+      },
+      "teamId": "team-design",
+      "dashboard": {
+        "title": "2026년 디자인 트렌드 리서치",
+        "id": 112
+      },
+      "invitee": {
+        "nickname": "User_12",
+        "email": "user12@mail.com",
+        "id": 12
+      },
+      "inviteAccepted": false,
+      "createdAt": "2025-12-02T09:30:00.000Z",
+      "updatedAt": "2025-12-02T09:30:00.000Z"
+    },
+    {
+      "id": 13,
+      "inviter": {
+        "nickname": "CEO_C",
+        "email": "ceo.c@company.com",
+        "id": 12
+      },
+      "teamId": "team-exec",
+      "dashboard": {
+        "title": "법무팀 자문 내역",
+        "id": 113
+      },
+      "invitee": {
+        "nickname": "User_13",
+        "email": "user13@mail.com",
+        "id": 13
+      },
+      "inviteAccepted": true,
+      "createdAt": "2025-12-02T10:15:00.000Z",
+      "updatedAt": "2025-12-02T10:15:00.000Z"
+    },
+    {
+      "id": 14,
+      "inviter": {
+        "nickname": "Developer_D",
+        "email": "dev.d@tech.com",
+        "id": 13
+      },
+      "teamId": "team-dev",
+      "dashboard": {
+        "title": "클라우드 비용 최적화",
+        "id": 114
+      },
+      "invitee": {
+        "nickname": "User_14",
+        "email": "user14@mail.com",
+        "id": 14
+      },
+      "inviteAccepted": false,
+      "createdAt": "2025-12-02T11:00:00.000Z",
+      "updatedAt": "2025-12-02T11:00:00.000Z"
+    },
+    {
+      "id": 15,
+      "inviter": {
+        "nickname": "Planner_E",
+        "email": "planner.e@market.com",
+        "id": 14
+      },
+      "teamId": "team-marketing",
+      "dashboard": {
+        "title": "광고 효율 분석 (2월)",
+        "id": 115
+      },
+      "invitee": {
+        "nickname": "User_15",
+        "email": "user15@mail.com",
+        "id": 15
+      },
+      "inviteAccepted": true,
+      "createdAt": "2025-12-02T13:45:00.000Z",
+      "updatedAt": "2025-12-02T13:45:00.000Z"
+    },
+    {
+      "id": 16,
+      "inviter": {
+        "nickname": "Manager_A",
+        "email": "manager.a@work.com",
+        "id": 10
+      },
+      "teamId": "team-alpha",
+      "dashboard": {
+        "title": "월별 KPI 달성률",
+        "id": 116
+      },
+      "invitee": {
+        "nickname": "User_16",
+        "email": "user16@mail.com",
+        "id": 16
+      },
+      "inviteAccepted": false,
+      "createdAt": "2025-12-02T14:20:00.000Z",
+      "updatedAt": "2025-12-02T14:20:00.000Z"
+    },
+    {
+      "id": 17,
+      "inviter": {
+        "nickname": "Designer_B",
+        "email": "designer.b@work.com",
+        "id": 11
+      },
+      "teamId": "team-design",
+      "dashboard": {
+        "title": "웹사이트 A/B 테스트 결과",
+        "id": 117
+      },
+      "invitee": {
+        "nickname": "User_17",
+        "email": "user17@mail.com",
+        "id": 17
+      },
+      "inviteAccepted": false,
+      "createdAt": "2025-12-02T15:05:00.000Z",
+      "updatedAt": "2025-12-02T15:05:00.000Z"
+    },
+    {
+      "id": 18,
+      "inviter": {
+        "nickname": "CEO_C",
+        "email": "ceo.c@company.com",
+        "id": 12
+      },
+      "teamId": "team-exec",
+      "dashboard": {
+        "title": "인력 현황 및 채용 계획",
+        "id": 118
+      },
+      "invitee": {
+        "nickname": "User_18",
+        "email": "user18@mail.com",
+        "id": 18
+      },
+      "inviteAccepted": true,
+      "createdAt": "2025-12-02T15:50:00.000Z",
+      "updatedAt": "2025-12-02T15:50:00.000Z"
+    },
+    {
+      "id": 19,
+      "inviter": {
+        "nickname": "Developer_D",
+        "email": "dev.d@tech.com",
+        "id": 13
+      },
+      "teamId": "team-dev",
+      "dashboard": {
+        "title": "새로운 기능 개발 로드맵",
+        "id": 119
+      },
+      "invitee": {
+        "nickname": "User_19",
+        "email": "user19@mail.com",
+        "id": 19
+      },
+      "inviteAccepted": false,
+      "createdAt": "2025-12-02T16:35:00.000Z",
+      "updatedAt": "2025-12-02T16:35:00.000Z"
+    },
+    {
+      "id": 20,
+      "inviter": {
+        "nickname": "Planner_E",
+        "email": "planner.e@market.com",
+        "id": 14
+      },
+      "teamId": "team-marketing",
+      "dashboard": {
+        "title": "경쟁사 분석 리포트",
+        "id": 120
+      },
+      "invitee": {
+        "nickname": "User_20",
+        "email": "user20@mail.com",
+        "id": 20
+      },
+      "inviteAccepted": true,
+      "createdAt": "2025-12-02T17:20:00.000Z",
+      "updatedAt": "2025-12-02T17:20:00.000Z"
+    }
+  ]
+}
