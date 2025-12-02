@@ -1,7 +1,7 @@
 'use client';
 
 import { useState } from 'react';
-import { redirect } from 'next/navigation';
+import { useRouter } from 'next/navigation';
 import { login } from '@/lib/api/services/auth.service';
 import { HttpError } from '@/lib/api/request-core';
 import Input from '@/components/ui/input/Input';
@@ -20,14 +20,16 @@ export default function LoginForm() {
   const [loginError, setLoginError] = useState('');
   const [emailError, setEmailError] = useState('');
   const [passwordError, setPasswordError] = useState('');
+  const router = useRouter();
 
   const handleSubmit = async (event: React.FormEvent) => {
     event.preventDefault();
     try {
       await login({ email, password });
-      redirect('/mydashboard');
+      router.push('/mydashboard');
     } catch (error) {
       setIsModalOpen(true);
+      console.log('1');
       setLoginError((error as HttpError).message || '로그인에 실패했습니다. 다시 시도해주세요.');
     }
   };

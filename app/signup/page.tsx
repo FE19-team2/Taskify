@@ -1,37 +1,7 @@
-import React from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import LogoImage from '@/public/images/logo.svg';
 import SignupForm from '@/app/signup/_components/SignupForm';
-
-interface SignUpForm {
-  email: string;
-  nickname: string;
-  password: string;
-  confirmPassword: string;
-}
-
-interface SignUpError {
-  email?: string;
-  nickname?: string;
-  password?: string;
-  confirmPassword?: string;
-}
-
-interface SignUpResponse {
-  success: boolean;
-  message?: string;
-  id: number;
-  email: string;
-  nickname: string;
-  profileImageUrl: string;
-  createdAt: string;
-  updatedAt: string;
-}
-
-interface ErrorResponse {
-  message: string;
-}
 
 export default function Page() {
   return (
@@ -48,7 +18,7 @@ export default function Page() {
         </Link>
         <SignupForm />
       </div>
-      <p className="text-center text-gray-400 mt-[20px] whitespace-pre">
+      <p className="text-center text-gray-400 mt-5 whitespace-pre">
         이미 회원이신가요?{'  '}
         <Link href="/login" className="text-gray-300">
           로그인하기
