@@ -3,7 +3,7 @@ export const validateEmail = (email: string): boolean => {
   return emailRegex.test(email);
 };
 
-export const validateNickname = (nickname: string): boolean => {
+export const validateNickname = (nickname: string): string => {
   if (!nickname || nickname.length === 0) {
     return '닉네임을 입력해주세요.';
   }
