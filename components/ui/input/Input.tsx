@@ -37,6 +37,7 @@ const Input = forwardRef<HTMLInputElement | HTMLTextAreaElement, InputProps>(
       errorMessage = '',
       onBlur,
       showCommentButtons = false,
+      type = 'text',
       ...props
     },
     externalRef,
@@ -126,6 +127,7 @@ const Input = forwardRef<HTMLInputElement | HTMLTextAreaElement, InputProps>(
     return (
       <>
         <input
+          type={type}
           ref={setRefs as React.Ref<HTMLInputElement>}
           className={combinedClassName}
           onChange={(event) => {

@@ -1,0 +1,395 @@
+{
+  "members": [
+    {
+      "id": 1,
+      "userId": 1001,
+      "email": "user1001@example.com",
+      "nickname": "선기훈",
+      "profileImageUrl": "https://example.com/profiles/1001.jpg",
+      "createdAt": "2025-12-02T08:39:57.880Z",
+      "updatedAt": "2025-12-02T08:39:57.880Z",
+      "isOwner": true
+    },
+    {
+      "id": 2,
+      "userId": 1002,
+      "email": "user1002@example.com",
+      "nickname": "Bob_Kim",
+      "profileImageUrl": "https://example.com/profiles/1002.jpg",
+      "createdAt": "2025-12-02T08:39:57.880Z",
+      "updatedAt": "2025-12-02T08:39:57.880Z",
+      "isOwner": false
+    },
+    {
+      "id": 3,
+      "userId": 1003,
+      "email": "user1003@example.com",
+      "nickname": "Charlie_Lee",
+      "profileImageUrl": "https://example.com/profiles/1003.jpg",
+      "createdAt": "2025-12-02T08:39:57.880Z",
+      "updatedAt": "2025-12-02T08:39:57.880Z",
+      "isOwner": false
+    },
+    {
+      "id": 4,
+      "userId": 1004,
+      "email": "user1004@example.com",
+      "nickname": "David_Choi",
+      "profileImageUrl": "https://example.com/profiles/1004.jpg",
+      "createdAt": "2025-12-02T08:39:57.880Z",
+      "updatedAt": "2025-12-02T08:39:57.880Z",
+      "isOwner": false
+    },
+    {
+      "id": 5,
+      "userId": 1005,
+      "email": "user1005@example.com",
+      "nickname": "Eve_Yoon",
+      "profileImageUrl": "https://example.com/profiles/1005.jpg",
+      "createdAt": "2025-12-02T08:39:57.880Z",
+      "updatedAt": "2025-12-02T08:39:57.880Z",
+      "isOwner": false
+    },
+    {
+      "id": 6,
+      "userId": 1006,
+      "email": "user1006@example.com",
+      "nickname": "Frank_Jang",
+      "profileImageUrl": "https://example.com/profiles/1006.jpg",
+      "createdAt": "2025-12-02T08:39:57.880Z",
+      "updatedAt": "2025-12-02T08:39:57.880Z",
+      "isOwner": false
+    },
+    {
+      "id": 7,
+      "userId": 1007,
+      "email": "user1007@example.com",
+      "nickname": "Grace_Kang",
+      "profileImageUrl": "https://example.com/profiles/1007.jpg",
+      "createdAt": "2025-12-02T08:39:57.880Z",
+      "updatedAt": "2025-12-02T08:39:57.880Z",
+      "isOwner": false
+    },
+    {
+      "id": 8,
+      "userId": 1008,
+      "email": "user1008@example.com",
+      "nickname": "Henry_Han",
+      "profileImageUrl": "https://example.com/profiles/1008.jpg",
+      "createdAt": "2025-12-02T08:39:57.880Z",
+      "updatedAt": "2025-12-02T08:39:57.880Z",
+      "isOwner": false
+    },
+    {
+      "id": 9,
+      "userId": 1009,
+      "email": "user1009@example.com",
+      "nickname": "Ivy_Moon",
+      "profileImageUrl": "https://example.com/profiles/1009.jpg",
+      "createdAt": "2025-12-02T08:39:57.880Z",
+      "updatedAt": "2025-12-02T08:39:57.880Z",
+      "isOwner": false
+    },
+    {
+      "id": 10,
+      "userId": 1010,
+      "email": "user1010@example.com",
+      "nickname": "Jack_Oh",
+      "profileImageUrl": "https://example.com/profiles/1010.jpg",
+      "createdAt": "2025-12-02T08:39:57.880Z",
+      "updatedAt": "2025-12-02T08:39:57.880Z",
+      "isOwner": false
+    },
+    {
+      "id": 11,
+      "userId": 1011,
+      "email": "user1011@example.com",
+      "nickname": "Kelly_Kwon",
+      "profileImageUrl": "https://example.com/profiles/1011.jpg",
+      "createdAt": "2025-12-02T08:39:57.880Z",
+      "updatedAt": "2025-12-02T08:39:57.880Z",
+      "isOwner": false
+    },
+    {
+      "id": 12,
+      "userId": 1012,
+      "email": "user1012@example.com",
+      "nickname": "Liam_Ryu",
+      "profileImageUrl": "https://example.com/profiles/1012.jpg",
+      "createdAt": "2025-12-02T08:39:57.880Z",
+      "updatedAt": "2025-12-02T08:39:57.880Z",
+      "isOwner": false
+    },
+    {
+      "id": 13,
+      "userId": 1013,
+      "email": "user1013@example.com",
+      "nickname": "Mia_Shin",
+      "profileImageUrl": "https://example.com/profiles/1013.jpg",
+      "createdAt": "2025-12-02T08:39:57.880Z",
+      "updatedAt": "2025-12-02T08:39:57.880Z",
+      "isOwner": false
+    },
+    {
+      "id": 14,
+      "userId": 1014,
+      "email": "user1014@example.com",
+      "nickname": "Noah_Woo",
+      "profileImageUrl": "https://example.com/profiles/1014.jpg",
+      "createdAt": "2025-12-02T08:39:57.880Z",
+      "updatedAt": "2025-12-02T08:39:57.880Z",
+      "isOwner": false
+    },
+    {
+      "id": 15,
+      "userId": 1015,
+      "email": "user1015@example.com",
+      "nickname": "Olivia_Ahn",
+      "profileImageUrl": "https://example.com/profiles/1015.jpg",
+      "createdAt": "2025-12-02T08:39:57.880Z",
+      "updatedAt": "2025-12-02T08:39:57.880Z",
+      "isOwner": false
+    },
+    {
+      "id": 16,
+      "userId": 1016,
+      "email": "user1016@example.com",
+      "nickname": "Peter_Bae",
+      "profileImageUrl": "https://example.com/profiles/1016.jpg",
+      "createdAt": "2025-12-02T08:39:57.880Z",
+      "updatedAt": "2025-12-02T08:39:57.880Z",
+      "isOwner": false
+    },
+    {
+      "id": 17,
+      "userId": 1017,
+      "email": "user1017@example.com",
+      "nickname": "Quinn_Byun",
+      "profileImageUrl": "https://example.com/profiles/1017.jpg",
+      "createdAt": "2025-12-02T08:39:57.880Z",
+      "updatedAt": "2025-12-02T08:39:57.880Z",
+      "isOwner": false
+    },
+    {
+      "id": 18,
+      "userId": 1018,
+      "email": "user1018@example.com",
+      "nickname": "Riley_Chung",
+      "profileImageUrl": "https://example.com/profiles/1018.jpg",
+      "createdAt": "2025-12-02T08:39:57.880Z",
+      "updatedAt": "2025-12-02T08:39:57.880Z",
+      "isOwner": false
+    },
+    {
+      "id": 19,
+      "userId": 1019,
+      "email": "user1019@example.com",
+      "nickname": "Sam_Do",
+      "profileImageUrl": "https://example.com/profiles/1019.jpg",
+      "createdAt": "2025-12-02T08:39:57.880Z",
+      "updatedAt": "2025-12-02T08:39:57.880Z",
+      "isOwner": false
+    },
+    {
+      "id": 20,
+      "userId": 1020,
+      "email": "user1020@example.com",
+      "nickname": "Taylor_Eom",
+      "profileImageUrl": "https://example.com/profiles/1020.jpg",
+      "createdAt": "2025-12-02T08:39:57.880Z",
+      "updatedAt": "2025-12-02T08:39:57.880Z",
+      "isOwner": false
+    },
+    {
+      "id": 21,
+      "userId": 1021,
+      "email": "user1021@example.com",
+      "nickname": "Uma_Gong",
+      "profileImageUrl": "https://example.com/profiles/1021.jpg",
+      "createdAt": "2025-12-02T08:39:57.880Z",
+      "updatedAt": "2025-12-02T08:39:57.880Z",
+      "isOwner": false
+    },
+    {
+      "id": 22,
+      "userId": 1022,
+      "email": "user1022@example.com",
+      "nickname": "Victor_Ha",
+      "profileImageUrl": "https://example.com/profiles/1022.jpg",
+      "createdAt": "2025-12-02T08:39:57.880Z",
+      "updatedAt": "2025-12-02T08:39:57.880Z",
+      "isOwner": false
+    },
+    {
+      "id": 23,
+      "userId": 1023,
+      "email": "user1023@example.com",
+      "nickname": "Will_Heo",
+      "profileImageUrl": "https://example.com/profiles/1023.jpg",
+      "createdAt": "2025-12-02T08:39:57.880Z",
+      "updatedAt": "2025-12-02T08:39:57.880Z",
+      "isOwner": false
+    },
+    {
+      "id": 24,
+      "userId": 1024,
+      "email": "user1024@example.com",
+      "nickname": "Xena_Hong",
+      "profileImageUrl": "https://example.com/profiles/1024.jpg",
+      "createdAt": "2025-12-02T08:39:57.880Z",
+      "updatedAt": "2025-12-02T08:39:57.880Z",
+      "isOwner": false
+    },
+    {
+      "id": 25,
+      "userId": 1025,
+      "email": "user1025@example.com",
+      "nickname": "Yara_Hwang",
+      "profileImageUrl": "https://example.com/profiles/1025.jpg",
+      "createdAt": "2025-12-02T08:39:57.880Z",
+      "updatedAt": "2025-12-02T08:39:57.880Z",
+      "isOwner": false
+    },
+    {
+      "id": 26,
+      "userId": 1026,
+      "email": "user1026@example.com",
+      "nickname": "Zane_Jeong",
+      "profileImageUrl": "https://example.com/profiles/1026.jpg",
+      "createdAt": "2025-12-02T08:39:57.880Z",
+      "updatedAt": "2025-12-02T08:39:57.880Z",
+      "isOwner": false
+    },
+    {
+      "id": 27,
+      "userId": 1027,
+      "email": "user1027@example.com",
+      "nickname": "Ava_Joo",
+      "profileImageUrl": "https://example.com/profiles/1027.jpg",
+      "createdAt": "2025-12-02T08:39:57.880Z",
+      "updatedAt": "2025-12-02T08:39:57.880Z",
+      "isOwner": false
+    },
+    {
+      "id": 28,
+      "userId": 1028,
+      "email": "user1028@example.com",
+      "nickname": "Ben_Ju",
+      "profileImageUrl": "https://example.com/profiles/1028.jpg",
+      "createdAt": "2025-12-02T08:39:57.880Z",
+      "updatedAt": "2025-12-02T08:39:57.880Z",
+      "isOwner": false
+    },
+    {
+      "id": 29,
+      "userId": 1029,
+      "email": "user1029@example.com",
+      "nickname": "Cora_Kwon",
+      "profileImageUrl": "https://example.com/profiles/1029.jpg",
+      "createdAt": "2025-12-02T08:39:57.880Z",
+      "updatedAt": "2025-12-02T08:39:57.880Z",
+      "isOwner": false
+    },
+    {
+      "id": 30,
+      "userId": 1030,
+      "email": "user1030@example.com",
+      "nickname": "Dean_Lee",
+      "profileImageUrl": "https://example.com/profiles/1030.jpg",
+      "createdAt": "2025-12-02T08:39:57.880Z",
+      "updatedAt": "2025-12-02T08:39:57.880Z",
+      "isOwner": false
+    },
+    {
+      "id": 31,
+      "userId": 1031,
+      "email": "user1031@example.com",
+      "nickname": "Ella_Lim",
+      "profileImageUrl": "https://example.com/profiles/1031.jpg",
+      "createdAt": "2025-12-02T08:39:57.880Z",
+      "updatedAt": "2025-12-02T08:39:57.880Z",
+      "isOwner": false
+    },
+    {
+      "id": 32,
+      "userId": 1032,
+      "email": "user1032@example.com",
+      "nickname": "Finn_Min",
+      "profileImageUrl": "https://example.com/profiles/1032.jpg",
+      "createdAt": "2025-12-02T08:39:57.880Z",
+      "updatedAt": "2025-12-02T08:39:57.880Z",
+      "isOwner": false
+    },
+    {
+      "id": 33,
+      "userId": 1033,
+      "email": "user1033@example.com",
+      "nickname": "Gina_Nam",
+      "profileImageUrl": "https://example.com/profiles/1033.jpg",
+      "createdAt": "2025-12-02T08:39:57.880Z",
+      "updatedAt": "2025-12-02T08:39:57.880Z",
+      "isOwner": false
+    },
+    {
+      "id": 34,
+      "userId": 1034,
+      "email": "user1034@example.com",
+      "nickname": "Hugo_Oh",
+      "profileImageUrl": "https://example.com/profiles/1034.jpg",
+      "createdAt": "2025-12-02T08:39:57.880Z",
+      "updatedAt": "2025-12-02T08:39:57.880Z",
+      "isOwner": false
+    },
+    {
+      "id": 35,
+      "userId": 1035,
+      "email": "user1035@example.com",
+      "nickname": "Iris_Park",
+      "profileImageUrl": "https://example.com/profiles/1035.jpg",
+      "createdAt": "2025-12-02T08:39:57.880Z",
+      "updatedAt": "2025-12-02T08:39:57.880Z",
+      "isOwner": false
+    },
+    {
+      "id": 36,
+      "userId": 1036,
+      "email": "user1036@example.com",
+      "nickname": "Jake_Pyo",
+      "profileImageUrl": "https://example.com/profiles/1036.jpg",
+      "createdAt": "2025-12-02T08:39:57.880Z",
+      "updatedAt": "2025-12-02T08:39:57.880Z",
+      "isOwner": false
+    },
+    {
+      "id": 37,
+      "userId": 1037,
+      "email": "user1037@example.com",
+      "nickname": "Kate_Rha",
+      "profileImageUrl": "https://example.com/profiles/1037.jpg",
+      "createdAt": "2025-12-02T08:39:57.880Z",
+      "updatedAt": "2025-12-02T08:39:57.880Z",
+      "isOwner": false
+    },
+    {
+      "id": 38,
+      "userId": 1038,
+      "email": "user1038@example.com",
+      "nickname": "Leo_Seo",
+      "profileImageUrl": "https://example.com/profiles/1038.jpg",
+      "createdAt": "2025-12-02T08:39:57.880Z",
+      "updatedAt": "2025-12-02T08:39:57.880Z",
+      "isOwner": false
+    },
+    {
+      "id": 39,
+      "userId": 1039,
+      "email": "user1039@example.com",
+      "nickname": "Mona_Sim",
+      "profileImageUrl": "https://example.com/profiles/1039.jpg",
+      "createdAt": "2025-12-02T08:39:57.880Z",
+      "updatedAt": "2025-12-02T08:39:57.880Z",
+      "isOwner": false
+    }
+  ],
+  "totalCount": 50
+}
