@@ -25,9 +25,9 @@ const Sidebar = ({
   return (
     <aside
       className={`
-                w-64 md:w-64 flex flex-col border-r border-gray-700 bg-black-600 fixed 
-                h-screen z-50 transition-transform duration-300 overflow-hidden
-                ${isOpen ? 'translate-x-0' : '-translate-x-full md:translate-x-0'}
+                 md:w-64 flex flex-col border-r border-gray-700 bg-black-600 fixed 
+                h-screen z-40 transition-transform duration-300 overflow-hidden
+                ${isOpen ? 'translate-x-0' : '-translate-x-full md:translate-x-0'} '} 
 `}
     >
       <div>

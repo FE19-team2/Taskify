@@ -115,18 +115,6 @@ const DashboardPage = () => {
 
   return (
     <>
-      <Sidebar
-        userName={currentUserName}
-        isOpen={isSidebarOpen}
-        onClose={() => setIsSidebarOpen(false)}
-        myDashboards={sidebarDashboards}
-        currentPage={sidebarCurrentPage}
-        totalPages={sidebarTotalPages}
-        gotoPage={gotoSidebarPage}
-      />
-
-      <DashboardHeader onSidebarToggle={handleSidebarToggle} />
-
       {isSidebarOpen && (
         <div
           onClick={() => setIsSidebarOpen(false)}
@@ -137,65 +125,7 @@ const DashboardPage = () => {
       <main
         className={`flex-1 min-h-screen px-4 pt-[66px] ${isSidebarOpen ? 'pointer-events-none' : ''} md:ml-64 md:px-10 md:pt-16`}
       >
-        <div className="pt-0 md:pt-6">
-          <h1 className="text-3xl md:text-4xl font-extrabold text-white mb-6 md:mb-10">홈</h1>
-        </div>
-
         {/*   내 대시보드 섹션 */}
-        <DashboardSection title="내 대시보드">
-          <div className="md:w-full mx-auto">
-            {myError ? (
-              <ErrorDisplay message={myError.message} />
-            ) : (
-              <DashboardList
-                type="mine"
-                dashboards={dashboardsToShow}
-                isLoading={isMyLoading}
-                error={myError}
-                currentPage={myCurrentPage}
-                totalPages={myTotalPages}
-                gotoPage={gotoMyPage}
-                onCreateClick={() => setIsCreateModalOpen(true)}
-              />
-            )}
-          </div>
-        </DashboardSection>
-
-        <InvitedDashboardSection title="초대받은 대시보드">
-          <div className="w-full mb-4 md:w-full lg:w-auto lg:max-w-xs ">
-            <SearchInput>
-              <Input
-                variant="primary"
-                size="lg"
-                type="text"
-                value={searchKeyword}
-                onChange={(event) => setSearchKeyword(event.target.value)}
-                placeholder="검색"
-                className="w-full pl-10"
-              />
-            </SearchInput>
-          </div>
-
-          <div className="w-full  md:w-full md:h-auto mx-auto mt-4 px-5 md:px-0">
-            {invitedError ? (
-              <ErrorDisplay message={invitedError.message} />
-            ) : showInvitedEmptyState ? (
-              <EmptyState type="invited" onCreateClick={() => setIsCreateModalOpen(true)} />
-            ) : (
-              <DashboardList
-                type="invited"
-                dashboards={invitedDashboards}
-                isLoading={isInvitedLoading}
-                error={invitedError}
-                hasMore={hasMore}
-                loadNextPage={loadNextPage}
-                onAccept={handleAccept}
-                onReject={handleReject}
-                onCreateClick={() => setIsCreateModalOpen(true)}
-              />
-            )}
-          </div>
-        </InvitedDashboardSection>
       </main>
     </>
   );

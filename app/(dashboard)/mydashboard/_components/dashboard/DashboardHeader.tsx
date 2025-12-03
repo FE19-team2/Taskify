@@ -1,5 +1,6 @@
 import React from 'react';
 import { Icon } from '@/components/ui/Icons/Icon';
+import Link from 'next/link';
 
 interface DashboardHeaderProps {
   onSidebarToggle: () => void;
@@ -22,13 +23,15 @@ const DashboardHeader = ({ onSidebarToggle }: DashboardHeaderProps) => {
       </div>
 
       <div className="flex items-center space-x-4 md:space-x-6">
-        <button
+        <Link
+          href={'/mydashboard/edit'}
+          target="_blank"
           className="flex items-center space-x-1 text-gray-400 hover:text-white transition"
           aria-label="관리"
         >
           <Icon name="SettingIcon" className="w-5 h-5" />
           <span className="hidden md:block">관리</span>
-        </button>
+        </Link>
 
         <button
           className="flex items-center space-x-1 text-gray-400 hover:text-white transition"

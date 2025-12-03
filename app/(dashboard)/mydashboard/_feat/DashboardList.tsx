@@ -3,7 +3,7 @@
 import React from 'react';
 import InfiniteScroll from 'react-infinite-scroll-component';
 import EmptyState from '../_components/dashboard/EmptyState';
-import DashboardTable from './DashboardTable';
+import DashboardTable from './InvitedDashboardTable';
 import ErrorDisplay from '../_components/dashboard/ErrorDisplay';
 import LoadingSpinner from '../_components/dashboard/Loading';
 import { DashboardItem } from '@/lib/utils/dashboardpros';

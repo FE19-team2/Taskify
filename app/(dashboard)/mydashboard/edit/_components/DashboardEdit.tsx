@@ -2,7 +2,7 @@
 
 import React from 'react';
 import DashboardEditForm from '../DashboardEditForm';
-import DashboardHeader from '../DashboardHeader';
+import DashboardHeader from '../EditDashboardHeader';
 import GoBackButton from '../MamberManagment/GobackButton';
 export default function DashboardEdit() {
   return (

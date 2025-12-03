@@ -7,7 +7,7 @@ import Image from 'next/image';
 export default function GoBackButton() {
   return (
     <Link
-      href="/mydashboard"
+      href={'/mydashboard'}
       className="absolute top-1 right-0 rounded-full transition duration-150 text-white flex flex-col items-center justify-center"
       style={{ width: '48px' }}
       aria-label="돌아가기"
