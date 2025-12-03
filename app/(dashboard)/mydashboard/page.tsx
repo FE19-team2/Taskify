@@ -115,6 +115,8 @@ const DashboardPage = () => {
 
   return (
     <>
+      <DashboardHeader onSidebarToggle={handleSidebarToggle} />
+
       {isSidebarOpen && (
         <div
           onClick={() => setIsSidebarOpen(false)}
