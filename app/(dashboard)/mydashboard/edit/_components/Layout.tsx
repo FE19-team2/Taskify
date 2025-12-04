@@ -4,7 +4,6 @@
 import { useState } from 'react';
 import Sidebar from './Sidebar';
 import MainContent from './MainContent';
-//mport DeleteModal from './DeleteModal';
 import { ActiveContent } from '../editType/EditTypes'; // 타입 경로 확인
 
 export default function Layout() {
@@ -17,8 +16,8 @@ export default function Layout() {
 
   // 2. 삭제 모달 열기 핸들러
   const handleDeleteClick = () => {
-    // 콘텐츠는 그대로 두고 모달만 엽니다.
-    setIsModalOpen(true);
+    // TODO: 삭제 모달 기능 구현 예정
+    console.log('Delete dashboard clicked');
   };
 
   return (
@@ -34,9 +33,6 @@ export default function Layout() {
       <main className="flex-1 p-8 overflow-y-auto">
         <MainContent activeContent={activeContent} />
       </main>
-
-      {/* 모달 조건부 렌더링 */}
-      {/* {isModalOpen && <DeleteModal onClose={() => setIsModalOpen(false)} />} */}
     </div>
   );
 }
