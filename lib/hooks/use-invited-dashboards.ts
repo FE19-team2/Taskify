@@ -1,36 +1,10 @@
-// use-invited-dashboards.ts
-
 'use client';
 
 import { useState, useCallback, useEffect } from 'react';
 import { DashboardItem } from '../utils/dashboardpros';
-import { ca, tr } from 'zod/locales';
-import { set } from 'zod';
+import { getInvitations } from '../api/services/invitations.service';
 
-// --- Mock 설정 ---
-const PAGE_SIZE = 10; // 한 번에 불러올 데이터 개수
-const TOTAL_ITEMS = 50; // 총 데이터 개수
-
-interface RawInvitationData {
-  id: number;
-  title: string;
-  inviter: string;
-}
-
-const mockInvitationData: RawInvitationData[] = Array.from({ length: TOTAL_ITEMS }, (_, i) => ({
-  id: i + 1,
-  title: `초대 대시보드 ${i + 1} (Mock)`,
-  inviter: i % 2 === 0 ? '김코드' : '박테스트',
-}));
-
-const mapToDashboardItem = (raw: RawInvitationData): DashboardItem => ({
-  id: raw.id,
-  title: raw.title,
-  color: '#30A9DE',
-  isMine: false,
-  inviter: raw.inviter,
-});
-// --------------------
+const PAGE_SIZE = 10;
 
 interface InfiniteScrollHookReturn {
   dashboards: DashboardItem[];
@@ -44,11 +18,10 @@ interface InfiniteScrollHookReturn {
 }
 
 const useInvitedDashboards = (): InfiniteScrollHookReturn => {
-  const [allInvitations, setAllInvitations] = useState(mockInvitationData);
   const [dashboards, setDashboards] = useState<DashboardItem[]>([]);
-  const [isLoading, setIsLoading] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState<Error | null>(null);
-  const [cursor, setCursor] = useState(0);
+  const [cursorId, setCursorId] = useState<number | null>(null);
   const [hasMore, setHasMore] = useState(true);
   const [reloadKey, setReloadKey] = useState(0);
   const [searchKeyword, setSearchKeyword] = useState('');
@@ -57,66 +30,74 @@ const useInvitedDashboards = (): InfiniteScrollHookReturn => {
     setReloadKey((prev) => prev + 1);
   }, []);
 
-  const filteredInvitations = allInvitations.filter((inv) =>
-    inv.title.toLowerCase().includes(searchKeyword.toLowerCase()),
-  );
-
   const loadDashboards = useCallback(
     async (append: boolean) => {
       if (!hasMore && append) return;
       if (isLoading) return;
 
       setIsLoading(true);
+      setError(null);
 
       try {
-        await new Promise((resolve) => setTimeout(resolve, 500));
+        const params: { size: number; cursorId?: number; title?: string } = {
+          size: PAGE_SIZE,
+        };
 
-        const startIndex = append ? cursor : 0;
-        const endIndex = startIndex + PAGE_SIZE;
+        if (append && cursorId !== null) {
+          params.cursorId = cursorId;
+        }
 
-        const chunk = filteredInvitations.slice(startIndex, endIndex);
+        if (searchKeyword && searchKeyword.trim()) {
+          params.title = searchKeyword;
+        }
 
-        const newDashboardItems: DashboardItem[] = chunk.map(mapToDashboardItem);
+        const response = await getInvitations(params);
+
+        const newDashboardItems: DashboardItem[] = response.invitations.map((inv) => ({
+          id: inv.dashboard.id,
+          title: inv.dashboard.title,
+          color: '#30A9DE',
+          isMine: false,
+          inviter: inv.inviter.nickname,
+          invitationId: inv.id,
+        }));
 
         setDashboards((prev) => (append ? [...prev, ...newDashboardItems] : newDashboardItems));
-
-        const nextCursor = startIndex + newDashboardItems.length;
-        setCursor(nextCursor);
-
-        if (nextCursor < filteredInvitations.length) {
-          setHasMore(true);
-        } else {
-          setHasMore(false);
-        }
-      } catch (error) {
-        console.error('대시보드 로드 중 오류 발생:', error);
-        setError(error instanceof Error ? error : new Error('알 수 없는 오류'));
+        setCursorId(response.cursorId);
+        setHasMore(response.cursorId !== null);
+      } catch (err) {
+        console.error('초대받은 대시보드 로드 중 오류:', err);
+        setError(null);
         setHasMore(false);
+        if (!append) {
+          setDashboards([]);
+        }
       } finally {
         setIsLoading(false);
       }
     },
-    [hasMore, isLoading, filteredInvitations, cursor],
+    [hasMore, isLoading, cursorId, searchKeyword],
   );
 
   useEffect(() => {
-    setCursor(0);
+    setCursorId(null);
     setHasMore(true);
     setDashboards([]);
-    if (!isLoading) {
+    const timer = setTimeout(() => {
       loadDashboards(false);
-    }
-  }, [reloadKey, filteredInvitations.length, searchKeyword]);
+    }, 0);
+    return () => clearTimeout(timer);
+  }, [reloadKey, searchKeyword, loadDashboards]);
 
-  const loadNextPage = () => {
+  const loadNextPage = useCallback(() => {
     if (isLoading || !hasMore) return;
     loadDashboards(true);
-  };
+  }, [isLoading, hasMore, loadDashboards]);
 
   return {
     dashboards,
     isLoading,
-    error: null,
+    error,
     hasMore,
     loadNextPage,
     reloadDashboards,

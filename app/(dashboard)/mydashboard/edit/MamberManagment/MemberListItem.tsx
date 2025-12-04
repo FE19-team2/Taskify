@@ -2,7 +2,6 @@
 
 import React, { useCallback } from 'react';
 import Button from '@/components/ui/button/Button';
-import { int } from 'zod';
 
 const PROFILE_COLOR_CLASSES = [
   'bg-profile-green',

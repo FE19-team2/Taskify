@@ -34,7 +34,6 @@ export default function InvitedMenagmentList() {
   // 초대 취소 핸들러
   const handleCancelInvitation = (invitationId: number) => {
     console.log(`초대 ID: ${invitationId} 취소 요청 (실제 API 호출 필요)`);
-    // 실제 구현에서는 API 호출 후 상태를 업데이트 필요
   };
 
   return (

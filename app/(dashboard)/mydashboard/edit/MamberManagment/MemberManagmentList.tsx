@@ -33,7 +33,6 @@ export default function MemberManagementList() {
   // 멤버 삭제 핸들러
   const handleDeleteMember = (memberId: number) => {
     console.log(`멤버 ID: ${memberId} 삭제 요청 (실제 API 호출 필요)`);
-    // 실제 구현에서는 API 호출 후 상태를 업데이트 필요
   };
 
   return (

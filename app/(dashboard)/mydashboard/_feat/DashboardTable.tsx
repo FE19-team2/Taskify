@@ -14,6 +14,7 @@ interface DashboardTableProps {
   gotoPage?: (page: number) => void;
   isLoading?: boolean;
   inviter?: string;
+  onCreateDashboard?: () => void;
 }
 
 const DashboardTable = ({
@@ -25,7 +26,7 @@ const DashboardTable = ({
   totalPages,
   gotoPage,
   isLoading,
-  inviter,
+  onCreateDashboard,
 }: DashboardTableProps) => {
   if (type === 'invited') {
     return (
@@ -75,68 +76,120 @@ const DashboardTable = ({
       </div>
     );
   }
+  // 화면 크기별 대시보드 개수 제한
+  const getDisplayedDashboards = () => {
+    // PC: 3개, 태블릿: 1개, 모바일: 1개
+    // 미디어 쿼리는 CSS에서 처리하므로 모든 데이터를 전달하고 CSS로 제어
+    return data;
+  };
+
   return (
     <div className="space-y-6">
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3 md:gap-4 lg:gap-5">
-        {data.map((dashboard, index) => (
-          <DashboardItemComponent
-            key={dashboard.id}
-            dashboard={dashboard}
-            color={dashboard.color}
-            type={type}
-            onAccept={onAccept}
-            onReject={onReject}
-            className={index % 2 === 0 ? 'hidden lg:block' : ''}
-          />
-        ))}
+      <div className="flex gap-3 overflow-hidden flex-col items-center md:justify-between md:flex-row">
+        <button
+          onClick={onCreateDashboard}
+          className="flex items-center justify-center w-full md:w-[222px] lg:w-[355px] h-20 border-2 border-dashed rounded-[20px] hover:border-violet-500 hover:bg-[#1F1F1F] transition group border-black-300 shrink-0"
+        >
+          <svg
+            className="w-6 h-6 text-gray-400 group-hover:text-violet-500 mr-2"
+            viewBox="0 0 24 24"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M12 5V19M5 12H19"
+              stroke="currentColor"
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            />
+          </svg>
+          <span className="text-gray-400 group-hover:text-violet-500 font-medium">
+            새로운 대시보드
+          </span>
+        </button>
+        {getDisplayedDashboards()
+          .slice(0, 1)
+          .map((dashboard) => (
+            <DashboardItemComponent
+              key={dashboard.id}
+              dashboard={dashboard}
+              color={dashboard.color}
+              type={type}
+              onAccept={onAccept}
+              onReject={onReject}
+              className="w-full md:w-[222px] lg:w-[355px] shrink-0"
+            />
+          ))}
+        {getDisplayedDashboards()
+          .slice(1, 3)
+          .map((dashboard) => (
+            <DashboardItemComponent
+              key={dashboard.id}
+              dashboard={dashboard}
+              color={dashboard.color}
+              type={type}
+              onAccept={onAccept}
+              onReject={onReject}
+              className="w-[335px] md:w-[222px] lg:w-[355px] shrink-0 hidden lg:flex"
+            />
+          ))}
       </div>
       {type === 'mine' && totalPages && totalPages > 1 && currentPage && gotoPage && (
-        <div className="flex justify-end items-center mt-6">
-          <span className="text-white text-lg mr-4">
+        <div className="flex justify-end items-center mt-6 gap-4">
+          <span className="text-white text-base">
             {currentPage} of {totalPages}
           </span>
 
-          <button
-            onClick={() => gotoPage(currentPage - 1)}
-            disabled={currentPage === 1 || isLoading}
-            className="p-2 mx-1 text-gray-500 hover:text-white disabled:opacity-50 transition"
-          >
-            <svg
-              className="w-5 h-5"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-              xmlns="http://www.w3.org/2000/svg"
+          <div className="flex gap-3">
+            <button
+              onClick={() => gotoPage(currentPage - 1)}
+              disabled={currentPage === 1 || isLoading}
+              className="w-10 h-10 flex items-center justify-center border rounded-lg hover:bg-gray-700 disabled:opacity-30 disabled:cursor-not-allowed transition"
+              style={{ borderColor: '#262629' }}
             >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth="2"
-                d="M15 19l-7-7 7-7"
-              ></path>
-            </svg>
-          </button>
+              <svg
+                width="16"
+                height="16"
+                viewBox="0 0 16 16"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M10 12L6 8L10 4"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  className="text-gray-400"
+                />
+              </svg>
+            </button>
 
-          <button
-            onClick={() => gotoPage(currentPage + 1)}
-            disabled={currentPage === totalPages || isLoading}
-            className="p-2 mx-1 text-gray-500 hover:text-white disabled:opacity-50 transition"
-          >
-            <svg
-              className="w-5 h-5"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-              xmlns="http://www.w3.org/2000/svg"
+            <button
+              onClick={() => gotoPage(currentPage + 1)}
+              disabled={currentPage === totalPages || isLoading}
+              className="w-10 h-10 flex items-center justify-center border rounded-lg hover:bg-gray-700 disabled:opacity-30 disabled:cursor-not-allowed transition"
+              style={{ borderColor: '#262629' }}
             >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth="2"
-                d="M9 5l7 7-7 7"
-              ></path>
-            </svg>
-          </button>
+              <svg
+                width="16"
+                height="16"
+                viewBox="0 0 16 16"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M6 4L10 8L6 12"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  className="text-gray-400"
+                />
+              </svg>
+            </button>
+          </div>
         </div>
       )}
     </div>

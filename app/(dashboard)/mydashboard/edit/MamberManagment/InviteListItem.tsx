@@ -1,7 +1,6 @@
 'use client';
 import React, { useCallback } from 'react';
 import Button from '@/components/ui/button/Button';
-import ivitationMock from '@/invitation_mock.json';
 export interface Invitation {
   id: number;
   inviter: {

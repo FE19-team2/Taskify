@@ -14,8 +14,6 @@ interface Dashboard {
 type DashboardType = 'mine' | 'invited';
 
 async function fetchDashboards(type: DashboardType): Promise<Dashboard[]> {
-  console.log(`Fetching dashboards of type: ${type}`);
-
   if (type === 'mine') {
     const params = { size: 1000 };
     const response: GetDashboardsResponse = await getDashboards(params);

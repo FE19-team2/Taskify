@@ -1,4 +1,4 @@
-import { useState, useCallback, useEffect, useMemo } from 'react';
+import { useState, useCallback, useEffect } from 'react';
 import { mockDashboardApiData, RawDashboardApiData } from './dashboard-data';
 import { DashboardItem } from '@/lib/utils/dashboardpros';
 

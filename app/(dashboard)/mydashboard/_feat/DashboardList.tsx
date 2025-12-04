@@ -24,18 +24,10 @@ interface DashboardListProps {
 }
 
 const DashboardList = (props: DashboardListProps) => {
-  const {
-    type,
-    dashboards,
-    isLoading,
-    error,
-    hasMore,
-    loadNextPage,
-    onCreateClick,
-    onAccept,
-    onReject,
-  } = props;
+  const { type, dashboards, error, hasMore, loadNextPage, onCreateClick, onAccept, onReject } =
+    props;
 
+  // 데이터가 없을 때 EmptyState 표시
   if (dashboards.length === 0) {
     const emptyStateProps = {
       type: type,
@@ -46,14 +38,6 @@ const DashboardList = (props: DashboardListProps) => {
       return (
         <EmptyState {...emptyStateProps}>
           <ErrorDisplay message={error.message || '데이터를 불러올 수 없습니다.'} />
-        </EmptyState>
-      );
-    }
-
-    if (isLoading) {
-      return (
-        <EmptyState {...emptyStateProps}>
-          <LoadingSpinner />
         </EmptyState>
       );
     }
@@ -71,6 +55,7 @@ const DashboardList = (props: DashboardListProps) => {
     totalPages: type === 'mine' ? props.totalPages : undefined,
     gotoPage: type === 'mine' ? props.gotoPage : undefined,
     isLoading: props.isLoading,
+    onCreateDashboard: onCreateClick,
   };
 
   if (type === 'invited' && hasMore !== undefined && loadNextPage) {
@@ -79,7 +64,7 @@ const DashboardList = (props: DashboardListProps) => {
         dataLength={dashboards.length}
         next={loadNextPage}
         hasMore={hasMore}
-        loader={<LoadingSpinner />}
+        loader={hasMore ? <LoadingSpinner /> : null}
         endMessage={
           <p className="text-center text-gray-500 my-4 text-sm">모든 목록을 불러왔습니다.</p>
         }

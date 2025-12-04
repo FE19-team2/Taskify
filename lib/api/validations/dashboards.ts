@@ -25,15 +25,15 @@ export type CreateDashboardResponse = z.infer<typeof createDashboardResDto>;
 // 대시보드 조회 쿼리 DTO
 
 export const getDashboardsQueryDto = z.object({
-  cursorId: z.coerce.number().int().positive().optional(),
-  size: z.coerce.number().int().nonnegative().default(10),
+  cursorId: z.coerce.number().int().nonnegative().optional(),
+  size: z.coerce.number().int().min(1).max(100).default(10),
 });
 
 export type GetDashboardsQuery = z.infer<typeof getDashboardsQueryDto>;
 
 // 대시보드 조회 응답 DTO
 export const getDashboardsResDto = z.object({
-  cursorId: Id.nullable(),
+  cursorId: z.number().int().nonnegative().nullable(),
   totalCount: z.number().int().nonnegative(),
   dashboards: z.array(createDashboardResDto),
 });

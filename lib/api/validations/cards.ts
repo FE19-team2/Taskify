@@ -14,12 +14,12 @@ export const CardAssigneeSchema = z.object({
 // 카드 기본 요청 DTO
 export const defaultCardReqDto = z.object({
   columnId: Id,
-  assigneeUserId: Id.nullable(),
+  assigneeUserId: Id.optional(),
   title: Title,
   description: Description,
-  dueDate: ISODateTime,
-  tags: Tags,
-  imageUrl: URL,
+  dueDate: ISODateTime.optional(),
+  tags: Tags.optional().default([]),
+  imageUrl: URL.optional(),
 });
 
 export const defaultCardResDto = z.object({
@@ -36,6 +36,8 @@ export const defaultCardResDto = z.object({
   updatedAt: ISODateTime,
 });
 
+export type CardDto = z.infer<typeof defaultCardResDto>;
+
 // 카드 생성 요청 및 응답 DTO
 export const createCardReqDto = defaultCardReqDto.extend({ dashboardId: Id });
 export const createCardResDto = defaultCardResDto;
@@ -47,11 +49,14 @@ export type CreateCardResponse = z.infer<typeof createCardResDto>;
 // 카드 조회 쿼리 DTO
 export const getCardsQueryDto = z.object({
   columnId: z.coerce.number().int().positive(),
-  size: z.coerce.number().int().nonnegative().default(10),
-  cursorId: z.coerce.number().int().positive().optional(),
+  size: z.coerce.number().int().nonnegative().default(10).optional(),
+  cursorId: z
+    .union([z.coerce.number().int().positive(), z.literal(''), z.null(), z.undefined()])
+    .optional()
+    .transform((val) => (val === '' || val === null || val === undefined ? undefined : val)),
 });
 
-export type GetCardsQuery = z.infer<typeof getCardsQueryDto>;
+export type GetCardsQuery = z.input<typeof getCardsQueryDto>;
 
 // 카드 조회 요청 DTO
 export const getCardsResDto = z.object({

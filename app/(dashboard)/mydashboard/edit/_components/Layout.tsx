@@ -9,12 +9,10 @@ import { ActiveContent } from '../editType/EditTypes'; // 타입 경로 확인
 
 export default function Layout() {
   const [activeContent, setActiveContent] = useState<ActiveContent>('dashboard');
-  const [isModalOpen, setIsModalOpen] = useState(false);
 
   // 1. 메인 콘텐츠 변경 핸들러
   const handleSidebarClick = (content: ActiveContent) => {
     setActiveContent(content);
-    setIsModalOpen(false); // 콘텐츠 변경 시 모달은 닫음
   };
 
   // 2. 삭제 모달 열기 핸들러

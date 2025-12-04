@@ -13,47 +13,28 @@ interface DashboardItemProps {
   className?: string;
 }
 
-const DashboardItem = ({ dashboard, type, onAccept, onReject, className }: DashboardItemProps) => {
-  const { id, title, isMine } = dashboard;
+const DashboardItem = ({ dashboard, color, className }: DashboardItemProps) => {
+  const { id, title } = dashboard;
 
-  const CrownIcon = isMine && (
-    <div className="ml-2 flex items-center text-brand-400">
-      <Icon name="CrownIcon" className="w-4 h-4" />
-    </div>
-  );
-  const InvitationButtons = type === 'invited' && (
-    <div className="flex space-x-2 shrink-0">
-      <button
-        onClick={(event) => {
-          event.preventDefault();
-          onAccept && onAccept(id);
-        }}
-        className="px-3 py-1 text-sm font-semibold text-green-400 border border-green-400 rounded-md hover:bg-green-900 transition"
-      >
-        수락
-      </button>
-      <button
-        onClick={(event) => {
-          event.preventDefault();
-          onReject && onReject(id);
-        }}
-        className="px-3 py-1 text-sm font-semibold text-red-400 border border-red-400 rounded-md hover:bg-red-900 transition"
-      >
-        거절
-      </button>
-    </div>
-  );
   return (
     <Link
       href={`/dashboard/${id}`}
       className={cn(
-        'flex items-center justify-between p-4 bg-gray-800 rounded-lg shadow-md hover:bg-gray-700 transition duration-150 cursor-pointer',
+        'relative flex items-center justify-between px-6 h-20 bg-black-300 border border-black-300 rounded-[20px] hover:opacity-80 transition duration-150 cursor-pointer group',
+        className,
       )}
     >
-      <span className="text-white font-semibold truncate">{title}</span>
-
-      {CrownIcon}
-      {InvitationButtons}
+      {/* 타이틀 영역 */}
+      <div className="flex items-center min-w-0 flex-1">
+        <div className="relative w-8 h-8 flex items-center justify-center shrink-0">
+          <Icon name="HashIcon" className="mt-4 w-8 h-8" style={{ color }} />
+        </div>
+        <span className="text-white font-medium truncate text-base">{title}</span>
+      </div>
+      {/* 오른쪽 화살표 */}
+      <div className="flex items-center justify-center w-9 h-9 rounded-md group-hover:bg-[#2E2E2E] transition shrink-0">
+        <Icon name="ArrowRight" className="w-5 h-5 text-gray-400" />
+      </div>
     </Link>
   );
 };

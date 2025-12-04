@@ -12,6 +12,7 @@ export function ConfirmWithInputModal({
   onOpenChange,
   title,
   placeholder = '',
+  value,
   confirmText = '확인',
   cancelText = '취소',
   onChange,
@@ -45,7 +46,12 @@ export function ConfirmWithInputModal({
     <ModalRoot open={open} onOpenChange={onOpenChange} size="md" closeOnOutside={false}>
       <div className="flex flex-col pt-6 p-5 text-[#D6D5D9] md:p-[30px]">
         <ModalHeader title={title} onClose={handleClose} />
-        <ModalInput onChange={onChange} hasColorBoard={hasColorBoard} placeholder={placeholder} />
+        <ModalInput
+          onChange={onChange}
+          hasColorBoard={hasColorBoard}
+          placeholder={placeholder}
+          value={value}
+        />
         {hasColorBoard && <ColorBoard />}
         <ModalButtons
           confirmText={confirmText}

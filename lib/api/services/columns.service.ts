@@ -20,7 +20,7 @@ export async function getColumns(params: GetColumnsQuery): Promise<GetColumnsRes
   const query = new URLSearchParams({
     dashboardId: String(dashboardId),
   });
-  const res = await Client.get<GetColumnsResponse>(`/columns?${query}`);
+  const res = await Client.get<GetColumnsResponse>(`/columns?${query.toString()}`);
   return getColumnsResDto.parse(res);
 }
 

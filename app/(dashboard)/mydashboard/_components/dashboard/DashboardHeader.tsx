@@ -1,11 +1,24 @@
+'use client';
+
 import React from 'react';
 import { Icon } from '@/components/ui/Icons/Icon';
+import { useRouter } from 'next/navigation';
 
 interface DashboardHeaderProps {
   onSidebarToggle: () => void;
 }
 
 const DashboardHeader = ({ onSidebarToggle }: DashboardHeaderProps) => {
+  const router = useRouter();
+
+  const handleLogout = () => {
+    // 쿠키에서 토큰 삭제
+    document.cookie = 'accessToken=; path=/; expires=Thu, 01 Jan 1970 00:00:01 GMT;';
+
+    // 로그인 페이지로 리다이렉트
+    router.push('/login');
+  };
+
   return (
     <header
       className="fixed top-0 w-full h-[50px] md:h-16 flex items-center bg-black-400 border-b border-gray-800 z-40 
@@ -36,6 +49,15 @@ const DashboardHeader = ({ onSidebarToggle }: DashboardHeaderProps) => {
         >
           <Icon name="UserPlus" className="w-6 h-6" />
           <span className="hidden md:block">공유</span>
+        </button>
+
+        <button
+          onClick={handleLogout}
+          className="flex items-center space-x-1 text-gray-400 hover:text-red-500 transition"
+          aria-label="로그아웃"
+        >
+          <Icon name="LogOut" className="w-5 h-5" />
+          <span className="hidden md:block">로그아웃</span>
         </button>
       </div>
     </header>

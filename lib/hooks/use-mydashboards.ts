@@ -2,31 +2,10 @@
 
 import { useState, useCallback, useEffect, useMemo } from 'react';
 import { DashboardItem } from '../utils/dashboardpros';
+import { getDashboards } from '../api/services/dashboards.service';
 
 const SIDEBAR_PAGE_SIZE = 10;
 const TEST_PAGE_SIZE = 3;
-
-interface RawDashboardApiData {
-  id: number;
-  title: string;
-  color: string;
-  createdByMe: boolean;
-}
-
-const mockDashboardApiData: RawDashboardApiData[] = Array.from({ length: 25 }, (_, i) => ({
-  id: i + 1,
-  title: `나의 대시보드 ${i + 1} (Mock)`,
-  color: i % 3 === 0 ? '#FF7070' : '#40C0F0',
-  createdByMe: i % 5 !== 0,
-}));
-
-const mapToDashboardItem = (raw: RawDashboardApiData): DashboardItem => ({
-  id: raw.id,
-  title: raw.title,
-  color: raw.color,
-  isMine: raw.createdByMe,
-});
-// --------------------
 
 interface PaginationDashboardHookReturn {
   dashboards: DashboardItem[];
@@ -48,112 +27,116 @@ interface PaginationDashboardHookReturn {
 }
 
 const useMyDashboards = (): PaginationDashboardHookReturn => {
-  const [allDashboards, setAllDashboards] = useState(mockDashboardApiData);
+  const [allDashboards, setAllDashboards] = useState<DashboardItem[]>([]);
   const [dashboards, setDashboards] = useState<DashboardItem[]>([]);
-  const [isLoading, setIsLoading] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
   const [mainCurrentPage, setMainCurrentPage] = useState(1);
   const [error, setError] = useState<Error | null>(null);
   const [sidebarCurrentPage, setSidebarCurrentPage] = useState(1);
-
-  const [, setReloadKey] = useState(0);
+  const [reloadKey, setReloadKey] = useState(0);
 
   const mainTotalPages = Math.ceil(allDashboards.length / TEST_PAGE_SIZE);
   const sidebarTotalPages = Math.ceil(allDashboards.length / SIDEBAR_PAGE_SIZE);
-  const gotoSidebarPage = (page: number) => {
-    if (page < 1 || page > sidebarTotalPages) return;
-    setSidebarCurrentPage(page);
-  };
-  const gotoMainPage = (page: number) => {
-    if (page < 1 || page > mainTotalPages) return;
-    setMainCurrentPage(page);
-  };
-  const fullDashboardList: DashboardItem[] = useMemo(() => {
-    return allDashboards.map(mapToDashboardItem);
-  }, [allDashboards]);
+
+  const gotoSidebarPage = useCallback(
+    (page: number) => {
+      if (page < 1 || page > sidebarTotalPages) return;
+      setSidebarCurrentPage(page);
+    },
+    [sidebarTotalPages],
+  );
+
+  const gotoMainPage = useCallback(
+    (page: number) => {
+      if (page < 1 || page > mainTotalPages) return;
+      setMainCurrentPage(page);
+    },
+    [mainTotalPages],
+  );
 
   const paginatedSidebarList: DashboardItem[] = useMemo(() => {
     const startIndex = (sidebarCurrentPage - 1) * SIDEBAR_PAGE_SIZE;
     const endIndex = startIndex + SIDEBAR_PAGE_SIZE;
+    return allDashboards.slice(startIndex, endIndex);
+  }, [allDashboards, sidebarCurrentPage]);
 
-    const chunk = fullDashboardList.slice(startIndex, endIndex);
-    return chunk;
-  }, [fullDashboardList, sidebarCurrentPage]);
-  const handleCreateDashboard = useCallback((title: string, color: string) => {
-    const newDashboard: RawDashboardApiData = {
-      id: Date.now(),
-      title: title,
-      color: color,
-      createdByMe: true,
-    };
-    setAllDashboards((prev) => [newDashboard, ...prev]);
+  const handleCreateDashboard = useCallback(() => {
     setReloadKey((prev) => prev + 1);
-    alert(`[Mock] 대시보드 '${title}' 생성 및 목록 갱신 시뮬레이션`);
   }, []);
 
-  const loadDashboards = useCallback(
-    async (page: number) => {
-      if (isLoading) return;
+  // 전체 대시보드 목록 로드
+  useEffect(() => {
+    const fetchAllDashboards = async () => {
       setIsLoading(true);
       setError(null);
 
       try {
-        await new Promise((resolve) => setTimeout(resolve, 500));
+        const allData: DashboardItem[] = [];
+        let cursorId: number | null = null;
 
-        const startIndex = (page - 1) * TEST_PAGE_SIZE;
-        const endIndex = startIndex + TEST_PAGE_SIZE;
+        // 모든 대시보드를 가져올 때까지 반복
+        while (true) {
+          const params: { size: number; cursorId?: number } = { size: 20 };
+          if (cursorId !== null) {
+            params.cursorId = cursorId;
+          }
+          const response = await getDashboards(params);
 
-        const chunk = allDashboards.slice(startIndex, endIndex);
+          const items = response.dashboards.map((dd) => ({
+            id: dd.id,
+            title: dd.title,
+            color: dd.color,
+            isMine: dd.createdByMe,
+          }));
 
-        const newDashboardItems: DashboardItem[] = chunk.map(mapToDashboardItem);
+          allData.push(...items);
 
-        setDashboards(newDashboardItems);
+          if (!response.cursorId) break;
+          cursorId = response.cursorId;
+        }
 
-        setMainCurrentPage(page);
+        setAllDashboards(allData);
       } catch (err) {
-        console.error('Failed to load my dashboards (Mock/API):', err);
-        setError(
-          err instanceof Error ? err : new Error('알 수 없는 대시보드 로딩 오류가 발생했습니다.'),
-        );
+        console.error('Failed to load dashboards:', err);
+        setError(err instanceof Error ? err : new Error('대시보드 로딩 실패'));
       } finally {
         setIsLoading(false);
       }
-    },
-    [isLoading, allDashboards],
-  );
+    };
 
+    fetchAllDashboards();
+  }, [reloadKey]);
+
+  // 메인 페이지네이션을 위한 슬라이싱
   useEffect(() => {
-    if (mainCurrentPage >= 1 && mainCurrentPage <= mainTotalPages && allDashboards.length > 0) {
-      loadDashboards(mainCurrentPage);
+    if (mainCurrentPage > mainTotalPages && mainTotalPages > 0) {
+      setMainCurrentPage(mainTotalPages);
+      return;
     }
 
-    if (mainCurrentPage > mainTotalPages && mainTotalPages > 0) {
-      console.warn('페이지 범위 초과 감지: 마지막 페이지로 리셋합니다.');
-      setMainCurrentPage(mainTotalPages);
-    }
-  }, [mainCurrentPage, mainTotalPages, allDashboards.length, loadDashboards]);
+    const startIndex = (mainCurrentPage - 1) * TEST_PAGE_SIZE;
+    const endIndex = startIndex + TEST_PAGE_SIZE;
+    setDashboards(allDashboards.slice(startIndex, endIndex));
+  }, [mainCurrentPage, mainTotalPages, allDashboards]);
 
   const reloadDashboards = useCallback(() => {
     setReloadKey((prev) => prev + 1);
   }, []);
+
   return {
-    // 메인 섹션용
-    dashboards, // 3개씩 목록
+    dashboards,
     isLoading,
     error,
     mainCurrentPage,
     mainTotalPages,
     gotoMainPage,
-
-    // 사이드바 섹션용
-
-    sidebarDashboards: paginatedSidebarList, // 10개씩 목록
+    sidebarDashboards: paginatedSidebarList,
     sidebarCurrentPage,
     sidebarTotalPages,
     gotoSidebarPage,
-
     reloadDashboards,
     handleCreateDashboard,
-    dataAll: fullDashboardList,
+    dataAll: allDashboards,
   };
 };
 

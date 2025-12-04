@@ -43,9 +43,9 @@ export default function EditMenu({ cardId, onEdit, onDeleteSuccess }: EditMenuPr
     }
   }, [isDialogOpen, isDeleteSuccess, onDeleteSuccess]);
 
-  const handleEdit = () => {
-    setIsOpen(false);
+  const handleEdit = async () => {
     onEdit();
+    setIsOpen(false);
   };
 
   const handleDeleteClick = () => {

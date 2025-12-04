@@ -12,35 +12,42 @@ interface SidebarProps {
   currentPage: number;
   totalPages: number;
   gotoPage: (page: number) => void;
+  onCreateDashboard?: () => void;
 }
 const Sidebar = ({
   userName,
   isOpen,
-  onClose,
   myDashboards,
   currentPage,
   totalPages,
   gotoPage,
+  onCreateDashboard,
 }: SidebarProps) => {
   return (
     <aside
       className={`
-                w-64 md:w-64 flex flex-col border-r border-gray-700 bg-black-600 fixed 
+                w-64 flex flex-col border-r border-gray-700 bg-black-600 fixed 
                 h-screen z-50 transition-transform duration-300 overflow-hidden
-                ${isOpen ? 'translate-x-0' : '-translate-x-full md:translate-x-0'}
+                ${isOpen ? 'translate-x-0' : '-translate-x-full'} md:translate-x-0
 `}
     >
       <div>
         <SidebarHeader />
       </div>
       <div className="grow py-4 px-3">
-        <button className="text-gray-200 hover:text-white transition flex items-center justify-between w-full cursor-pointer whitespace-nowrap ">
+        <button
+          onClick={onCreateDashboard}
+          className="text-gray-200 hover:text-white transition flex items-center justify-between w-full cursor-pointer whitespace-nowrap "
+        >
           <span>대시보드 추가</span> <Icon name="PlusIcon" className="w-[12.5px] h-[12.5px]" />
         </button>
-        <div className="flex items-center mt-4 gap-2">
+        <Link
+          href="/mydashboard"
+          className="flex items-center mt-4 gap-2 hover:opacity-80 transition cursor-pointer"
+        >
           <Icon name="HomeIcon" className=" w-6 h-6" />
           <span className="ml-2 text-white font-medium">홈</span>
-        </div>
+        </Link>
         {myDashboards.slice(0, 9).map((dashboard) => (
           <div key={dashboard.id} className="mt-3 ">
             <Link href={`/dashboard/${dashboard.id}`}>
