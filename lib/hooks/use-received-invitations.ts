@@ -84,7 +84,6 @@ const useMyDashboards = (): PaginationDashboardHookReturn => {
       createdByMe: true,
     };
     setAllDashboards((prev) => [newDashboard, ...prev]);
-    setReloadKey((prev) => prev + 1);
     alert(`[Mock] 대시보드 '${title}' 생성 및 목록 갱신 시뮬레이션`);
   }, []);
 

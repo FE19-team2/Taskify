@@ -29,8 +29,8 @@ export interface Member {
   nickname: string;
   profileImageUrl: string | null;
   isOwner: boolean;
-  createdAt?: string;
-  updatedAt?: string;
+  createdAt?: string | null;
+  updatedAt?: string | null;
 }
 
 interface MemberListItemProps {

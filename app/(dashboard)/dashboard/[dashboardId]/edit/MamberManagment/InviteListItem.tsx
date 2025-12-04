@@ -20,8 +20,8 @@ export interface Invitation {
     id: number;
   };
   inviteAccepted: boolean | null;
-  createdAt: string;
-  updatedAt: string;
+  createdAt: string | null;
+  updatedAt: string | null;
 }
 
 interface InvitationListItemProps {
