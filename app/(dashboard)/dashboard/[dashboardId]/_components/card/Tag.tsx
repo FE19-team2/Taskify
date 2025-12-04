@@ -4,7 +4,7 @@ import { useState } from 'react';
 import { getRandomHexColor } from '@/lib/utils/get-random-hex-color';
 
 export function Tag({ name }: { name: string }) {
-  const [bgColor] = useState(() => getRandomHexColor());
+  const [bgColor] = useState(() => getRandomHexColor(name));
   return (
     <p
       style={{ backgroundColor: bgColor }}

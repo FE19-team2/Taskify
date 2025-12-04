@@ -53,6 +53,7 @@ const Dropdown: FC<DropdownProps> = ({ label, isOpen, options, onToggle, onSelec
             <li
               key={opt.value}
               role="option"
+              aria-selected={false}
               onClick={() => onSelect(opt.value)}
               className="flex items-center space-x-2 px-4 py-2 hover:bg-gray-700 cursor-pointer text-gray-200 rounded-[10px]"
             >

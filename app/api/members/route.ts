@@ -24,6 +24,7 @@ export async function GET(req: NextRequest): Promise<Response> {
     const backendRes = await BEclient.get<GetDashboardMembersResponse>(
       `/members?${query.toString()}`,
     );
+
     const data = getDashboardMembersResDto.parse(backendRes);
     return NextResponse.json(data);
   } catch (err: unknown) {

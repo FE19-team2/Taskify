@@ -1,5 +1,5 @@
 import { z } from 'zod';
-import { Id, URL, Nickname, ISODateTime } from './common';
+import { Id, URL, Nickname } from './common';
 // 댓글 유효성 검사 스키마
 const Content = z.string().min(1).max(512);
 
@@ -22,8 +22,8 @@ export const createCommentReqDto = CommentsSchema;
 export const createCommentResDto = z.object({
   id: Id,
   content: Content,
-  createdAt: ISODateTime,
-  updatedAt: ISODateTime,
+  createdAt: z.string().datetime({ offset: true }),
+  updatedAt: z.string().datetime({ offset: true }),
   cardId: Id,
   author: AuthorSchema,
 });
@@ -31,14 +31,19 @@ export const createCommentResDto = z.object({
 export type CreateCommentRequest = z.infer<typeof createCommentReqDto>;
 export type CreateCommentResponse = z.infer<typeof createCommentResDto>;
 
+export type CommentDto = CreateCommentResponse;
+
 // 댓글 조회 쿼리 DTO
 export const getCommentsQueryDto = z.object({
   cardId: z.coerce.number().int().positive(),
-  size: z.coerce.number().int().nonnegative().default(10),
-  cursorId: z.coerce.number().int().positive().optional(),
+  size: z.coerce.number().int().positive().default(10).optional(),
+  cursorId: z
+    .union([z.coerce.number().int().positive(), z.literal(''), z.null(), z.undefined()])
+    .optional()
+    .transform((val) => (val === '' || val === null || val === undefined ? undefined : val)),
 });
 
-export type GetCommentsQuery = z.infer<typeof getCommentsQueryDto>;
+export type GetCommentsQuery = z.input<typeof getCommentsQueryDto>;
 
 // 댓글 조회 응답 DTO
 export const getCommentsResDto = z.object({

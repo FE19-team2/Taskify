@@ -51,7 +51,6 @@ const useMyDashboards = (): PaginationDashboardHookReturn => {
   const [allDashboards, setAllDashboards] = useState(mockDashboardApiData);
   const [dashboards, setDashboards] = useState<DashboardItem[]>([]);
   const [isLoading, setIsLoading] = useState(false);
-  const [reloadKey, setReloadKey] = useState(0);
   const [mainCurrentPage, setMainCurrentPage] = useState(1);
   const [error, setError] = useState<Error | null>(null);
   const [sidebarCurrentPage, setSidebarCurrentPage] = useState(1);
@@ -85,7 +84,6 @@ const useMyDashboards = (): PaginationDashboardHookReturn => {
       createdByMe: true,
     };
     setAllDashboards((prev) => [newDashboard, ...prev]);
-    setReloadKey((prev) => prev + 1);
     alert(`[Mock] 대시보드 '${title}' 생성 및 목록 갱신 시뮬레이션`);
   }, []);
 
@@ -129,11 +127,11 @@ const useMyDashboards = (): PaginationDashboardHookReturn => {
       console.warn('페이지 범위 초과 감지: 마지막 페이지로 리셋합니다.');
       setMainCurrentPage(mainTotalPages);
     }
-  }, [mainCurrentPage, mainTotalPages, allDashboards.length]);
+  }, [mainCurrentPage, mainTotalPages, allDashboards.length, loadDashboards]);
 
   const reloadDashboards = useCallback(() => {
-    setReloadKey((prev) => prev + 1);
-  }, []);
+    loadDashboards(mainCurrentPage);
+  }, [mainCurrentPage, loadDashboards]);
   return {
     // 메인 섹션용
     dashboards, // 3개씩 목록

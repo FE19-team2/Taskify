@@ -6,9 +6,14 @@ import { Tag } from '../Tag';
 type TagInputProps = {
   tags?: string[];
   dashboardTags?: string[];
+  onTagsChange?: (tags: string[]) => void;
 };
 
-export default function TagInput({ tags: initialTags, dashboardTags }: TagInputProps) {
+export default function TagInput({
+  tags: initialTags,
+  dashboardTags,
+  onTagsChange,
+}: TagInputProps) {
   const [inputValue, setInputValue] = useState('');
   const [tags, setTags] = useState<string[]>(initialTags ?? []);
   const [isFocused, setIsFocused] = useState(false);
@@ -34,7 +39,9 @@ export default function TagInput({ tags: initialTags, dashboardTags }: TagInputP
       setInputValue('');
       return;
     }
-    setTags((prev) => [...prev, value]);
+    const newTags = [...tags, value];
+    setTags(newTags);
+    onTagsChange?.(newTags);
     setInputValue('');
   };
 
@@ -57,7 +64,9 @@ export default function TagInput({ tags: initialTags, dashboardTags }: TagInputP
 
     if (event.key === 'Backspace' && !inputValue && tags.length) {
       event.preventDefault();
-      setTags((prev) => prev.slice(0, prev.length - 1));
+      const newTags = tags.slice(0, tags.length - 1);
+      setTags(newTags);
+      onTagsChange?.(newTags);
       return;
     }
   };

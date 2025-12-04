@@ -63,7 +63,7 @@ export function ModalRoot({
 
   return (
     <div
-      className={MODAL_WRAPPER_CLASS}
+      className={MODAL_WRAPPER_CLASS + (className ? ` ${className}` : '')}
       onClick={() => {
         if (closeOnOutside) onOpenChange(false);
       }}
@@ -80,7 +80,27 @@ export function ModalRoot({
           event.stopPropagation();
         }}
       >
-        <div className="max-h-[inherit] overflow-auto" role="dialog" aria-modal="true">
+        <style>{`
+          [role="dialog"]::-webkit-scrollbar {
+            width: 6px;
+          }
+          [role="dialog"]::-webkit-scrollbar-track {
+            background: transparent;
+          }
+          [role="dialog"]::-webkit-scrollbar-thumb {
+            background: #524F5B;
+            border-radius: 3px;
+          }
+          [role="dialog"]::-webkit-scrollbar-thumb:hover {
+            background: #76A5EA;
+          }
+        `}</style>
+        <div
+          className="max-h-[inherit] overflow-auto"
+          role="dialog"
+          aria-modal="true"
+          style={{ scrollbarWidth: 'thin', scrollbarColor: '#524F5B transparent' }}
+        >
           {children}
         </div>
       </div>

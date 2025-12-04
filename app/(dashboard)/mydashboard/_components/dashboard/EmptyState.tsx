@@ -19,11 +19,11 @@ const EmptyState = ({ type, onCreateClick, children }: EmptyStateProps) => {
 
   const iconClassName = 'w-20 h-20 text-gray-600';
   const baseClasses =
-    'bg-black-400 rounded-[30px] border border-gray-500 shadow-2xl p-6 min-h-[300px] flex items-center justify-center';
+    'bg-black-400 rounded-[30px] border border-gray-500 shadow-2xl p-6 flex flex-col items-center justify-center';
   return (
-    <div className={cn(baseClasses, 'min-h-[184px] w-full')}>
+    <div className={cn(baseClasses, 'h-[272px] w-full')}>
       <div className={`mb-4 ${iconClassName}`}>{isMine ? <Graph /> : <Letter />}</div>
-      <p className="text-lg mb-4 text-gray-400">{message}</p>
+      <p className="text-lg mb-4 text-gray-400 text-center">{message}</p>
 
       {children}
 

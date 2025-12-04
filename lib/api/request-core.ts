@@ -42,6 +42,7 @@ export function createRequester({ baseUrl, getToken }: CreateRequesterOptions) {
     if (body !== undefined) init.body = JSON.stringify(body);
 
     const res = await fetch(baseUrl + path, init);
+
     if (res.status === 204) return;
 
     if (res.ok) {

@@ -4,6 +4,7 @@ export interface DashboardItem {
   isMine: boolean;
   color: string;
   inviter?: string;
+  invitationId?: number;
 }
 interface BaseDashboardListProps {
   dashboards: DashboardItem[];

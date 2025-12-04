@@ -3,18 +3,30 @@ import { Id, ISODateTime, Email, Nickname, URL } from './common';
 
 const MemberSchema = z.object({
   id: Id,
+  userId: Id,
   nickname: Nickname,
   email: Email,
-  profileUrl: URL.nullable(),
+  profileImageUrl: URL.nullable(),
   createdAt: ISODateTime,
   updatedAt: ISODateTime,
   isOwner: z.boolean(),
 });
 
 export const getDashboardMembersQueryDto = z.object({
-  page: z.coerce.number().int().positive().default(1),
-  size: z.coerce.number().int().nonnegative().default(20),
-  dashboardId: z.coerce.number().int().positive(),
+  page: z
+    .union([z.string(), z.number(), z.null()])
+    .optional()
+    .transform((val) => (val ? Number(val) : undefined))
+    .pipe(z.number().int().positive().optional()),
+  size: z
+    .union([z.string(), z.number(), z.null()])
+    .optional()
+    .transform((val) => (val ? Number(val) : undefined))
+    .pipe(z.number().int().positive().optional()),
+  dashboardId: z
+    .union([z.string(), z.number()])
+    .transform((val) => Number(val))
+    .pipe(z.number().int().positive()),
 });
 
 export const getDashboardMembersResDto = z.object({
