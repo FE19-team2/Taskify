@@ -101,11 +101,17 @@ const DashboardLayout = ({ children }: Props) => {
       setShowPasswordModal(true);
     };
 
+    const handleReloadDashboards = () => {
+      reloadDashboards();
+    };
+
     window.addEventListener('openPasswordModal', handleOpenPasswordModal);
+    window.addEventListener('reloadDashboards', handleReloadDashboards);
     return () => {
       window.removeEventListener('openPasswordModal', handleOpenPasswordModal);
+      window.removeEventListener('reloadDashboards', handleReloadDashboards);
     };
-  }, []);
+  }, [reloadDashboards]);
 
   const handleCreateDashboard = useCallback(async () => {
     if (!dashboardTitle.trim()) {

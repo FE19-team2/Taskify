@@ -77,6 +77,10 @@ export default function Layout({ dashboardId }: LayoutProps) {
     setIsDeleting(true);
     try {
       await deleteDashboard(dashboardId);
+
+      // 사이드바 대시보드 목록 새로고침
+      window.dispatchEvent(new CustomEvent('reloadDashboards'));
+
       setDialogMessage('대시보드가 삭제되었습니다.');
       setDialogOpen(true);
       router.push('/mydashboard');

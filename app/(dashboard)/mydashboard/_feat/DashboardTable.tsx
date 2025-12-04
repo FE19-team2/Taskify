@@ -56,7 +56,9 @@ const DashboardTable = ({
                 <Button
                   variant="secondary"
                   size="xs"
-                  onClick={() => onReject && onReject(dashboard.id)}
+                  onClick={() =>
+                    onReject && dashboard.invitationId && onReject(dashboard.invitationId)
+                  }
                   className="text-xs px-2 py-1 rounded-2xl"
                 >
                   거절
@@ -64,7 +66,9 @@ const DashboardTable = ({
                 <Button
                   variant="primary"
                   size="xs"
-                  onClick={() => onAccept && onAccept(dashboard.id)}
+                  onClick={() =>
+                    onAccept && dashboard.invitationId && onAccept(dashboard.invitationId)
+                  }
                   className="text-xs px-2 py-1 rounded-2xl text-white bg-green-600 hover:bg-green-700 transition"
                 >
                   수락
@@ -85,7 +89,7 @@ const DashboardTable = ({
 
   return (
     <div className="space-y-6">
-      <div className="flex gap-3 overflow-hidden flex-col items-center md:justify-between md:flex-row">
+      <div className="flex gap-3 overflow-x-auto">
         <button
           onClick={onCreateDashboard}
           className="flex items-center justify-center w-full md:w-[222px] lg:w-[355px] h-20 border-2 border-dashed rounded-[20px] hover:border-violet-500 hover:bg-[#1F1F1F] transition group border-black-300 shrink-0"
@@ -108,32 +112,19 @@ const DashboardTable = ({
             새로운 대시보드
           </span>
         </button>
-        {getDisplayedDashboards()
-          .slice(0, 1)
-          .map((dashboard) => (
-            <DashboardItemComponent
-              key={dashboard.id}
-              dashboard={dashboard}
-              color={dashboard.color}
-              type={type}
-              onAccept={onAccept}
-              onReject={onReject}
-              className="w-full md:w-[222px] lg:w-[355px] shrink-0"
-            />
-          ))}
-        {getDisplayedDashboards()
-          .slice(1, 3)
-          .map((dashboard) => (
-            <DashboardItemComponent
-              key={dashboard.id}
-              dashboard={dashboard}
-              color={dashboard.color}
-              type={type}
-              onAccept={onAccept}
-              onReject={onReject}
-              className="w-[335px] md:w-[222px] lg:w-[355px] shrink-0 hidden lg:flex"
-            />
-          ))}
+        {getDisplayedDashboards().map((dashboard, index) => (
+          <DashboardItemComponent
+            key={dashboard.id}
+            dashboard={dashboard}
+            color={dashboard.color}
+            type={type}
+            onAccept={onAccept}
+            onReject={onReject}
+            className={`w-full md:w-[222px] lg:w-[355px] shrink-0 ${
+              index >= 1 ? 'hidden md:flex' : ''
+            } ${index >= 2 ? 'hidden lg:flex' : ''}`}
+          />
+        ))}
       </div>
       {type === 'mine' && totalPages && totalPages > 1 && currentPage && gotoPage && (
         <div className="flex justify-end items-center mt-6 gap-4">
