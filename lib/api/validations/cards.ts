@@ -1,5 +1,5 @@
 import { z } from 'zod';
-import { Id, Nickname, Title, URL, ISODateTime } from './common';
+import { Id, Nickname, Title, URL, CustomDateTime, FlexibleDateTime } from './common';
 
 export const Description = z.string().max(256);
 export const Tags = z.array(z.string().min(1).max(12)).max(10);
@@ -17,7 +17,7 @@ export const defaultCardReqDto = z.object({
   assigneeUserId: Id.optional(),
   title: Title,
   description: Description,
-  dueDate: ISODateTime.optional(),
+  dueDate: CustomDateTime.optional(),
   tags: Tags.optional().default([]),
   imageUrl: URL.optional(),
 });
@@ -27,13 +27,13 @@ export const defaultCardResDto = z.object({
   title: Title,
   description: Description,
   tags: Tags,
-  dueDate: ISODateTime,
+  dueDate: FlexibleDateTime,
   assignee: CardAssigneeSchema.nullable(),
   imageUrl: URL,
   teamId: z.string(),
   columnId: Id,
-  createdAt: ISODateTime,
-  updatedAt: ISODateTime,
+  createdAt: FlexibleDateTime,
+  updatedAt: FlexibleDateTime,
 });
 
 export type CardDto = z.infer<typeof defaultCardResDto>;

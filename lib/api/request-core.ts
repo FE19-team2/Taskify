@@ -46,7 +46,11 @@ export function createRequester({ baseUrl, getToken }: CreateRequesterOptions) {
     if (res.status === 204) return;
 
     if (res.ok) {
-      const data = await res.json();
+      const text = await res.text();
+      if (!text || text.trim() === '') {
+        return undefined as T;
+      }
+      const data = JSON.parse(text);
       return data as T;
     } else {
       try {

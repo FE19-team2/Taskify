@@ -95,7 +95,8 @@ const useMyDashboards = (): PaginationDashboardHookReturn => {
           cursorId = response.cursorId;
         }
 
-        setAllDashboards(allData);
+        // 최신 대시보드가 앞에 오도록 역순 정렬
+        setAllDashboards(allData.reverse());
       } catch (err) {
         console.error('Failed to load dashboards:', err);
         setError(err instanceof Error ? err : new Error('대시보드 로딩 실패'));

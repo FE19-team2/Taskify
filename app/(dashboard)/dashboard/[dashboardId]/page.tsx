@@ -47,6 +47,7 @@ export default function Page() {
   const [dialogOpen, setDialogOpen] = useState(false);
   const [dialogMessage, setDialogMessage] = useState('');
   const [activeCard, setActiveCard] = useState<CardDto | null>(null);
+  const [dashboardTags, setDashboardTags] = useState<string[]>([]);
 
   // 초기 데이터 로드
   useEffect(() => {
@@ -107,6 +108,15 @@ export default function Page() {
           profileImageUrl: member.profileImageUrl,
         })),
       );
+
+      // 모든 카드의 태그 수집
+      const allTags = new Set<string>();
+      columnsWithCards.forEach((col) => {
+        col.cards.forEach((card) => {
+          card.tags.forEach((tag) => allTags.add(tag));
+        });
+      });
+      setDashboardTags(Array.from(allTags));
     } catch (error) {
       console.error('대시보드 데이터 로드 실패:', error);
     } finally {
@@ -451,7 +461,7 @@ export default function Page() {
             dashboardId={dashboardId}
             columns={columns.map((col) => ({ id: col.id, title: col.title }))}
             members={members}
-            dashboardTags={[]}
+            dashboardTags={dashboardTags}
             onCardCreated={async () => {
               // 해당 컬럼의 카드만 새로고침
               if (!selectedColumnId) {
@@ -494,7 +504,7 @@ export default function Page() {
             dashboardId={dashboardId}
             columns={columns.map((col) => ({ id: col.id, title: col.title }))}
             members={members}
-            dashboardTags={[]}
+            dashboardTags={dashboardTags}
             editMode={true}
             cardData={editingCard}
             onCardCreated={async () => {

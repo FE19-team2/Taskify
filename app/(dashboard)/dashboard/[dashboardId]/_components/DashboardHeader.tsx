@@ -5,12 +5,14 @@ import { useRouter } from 'next/navigation';
 
 type DashboardHeaderProps = {
   title: string;
+  isOwner: boolean;
   onManageDashboard: () => void;
   onInviteMembers: () => void;
 };
 
 export function DashboardHeader({
   title,
+  isOwner,
   onManageDashboard,
   onInviteMembers,
 }: DashboardHeaderProps) {
@@ -32,13 +34,15 @@ export function DashboardHeader({
       </div>
 
       <div className="flex items-center gap-3">
-        <button
-          onClick={onManageDashboard}
-          className="flex items-center gap-2 px-4 py-2 rounded-lg border border-[#2F2F33] hover:border-[#5534DA] transition-colors"
-        >
-          <Icon name="SettingIcon" className="w-5 h-5 text-gray-500" />
-          <span className="text-[14px] md:text-[16px] text-white">관리</span>
-        </button>
+        {isOwner && (
+          <button
+            onClick={onManageDashboard}
+            className="flex items-center gap-2 px-4 py-2 rounded-lg border border-[#2F2F33] hover:border-[#5534DA] transition-colors"
+          >
+            <Icon name="SettingIcon" className="w-5 h-5 text-gray-500" />
+            <span className="text-[14px] md:text-[16px] text-white">관리</span>
+          </button>
+        )}
 
         <button
           onClick={onInviteMembers}

@@ -46,6 +46,9 @@ export default function DashboardEditForm({
         color: color,
       });
 
+      // 사이드바 대시보드 목록 새로고침
+      window.dispatchEvent(new CustomEvent('reloadDashboards'));
+
       setMsg('저장되었습니다.');
     } catch (error) {
       console.error(error);

@@ -58,13 +58,18 @@ export default function CardCreateModal({
       setTitle(cardData.title);
       setDescription(cardData.description);
       setSelectedColumnId(cardData.columnId);
-      setSelectedMemberId(cardData.assignee?.id || null);
+
+      // 기존 담당자가 현재 멤버 목록에 있는지 확인
+      const assigneeId = cardData.assignee?.id;
+      const isMemberInList = assigneeId && members.some((mm) => mm.id === assigneeId);
+      setSelectedMemberId(isMemberInList ? assigneeId : null);
+
       setDueDate(cardData.dueDate ? cardData.dueDate.split('T')[0] : '');
       setTags(cardData.tags || []);
       setExistingImageUrl(cardData.imageUrl || null);
       setImageFile(null);
     }
-  }, [editMode, cardData, open]);
+  }, [editMode, cardData, open, members]);
 
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
@@ -140,14 +145,22 @@ export default function CardCreateModal({
       }
 
       const cardPayload = {
-        assigneeUserId: selectedMemberId || undefined,
         columnId: selectedColumnId,
         title: title.trim(),
         description: description.trim(),
-        dueDate: dueDate ? dueDate : undefined,
         tags: tags.length > 0 ? tags : [],
         imageUrl: uploadedImageUrl,
       };
+
+      // 담당자가 선택된 경우에만 추가
+      if (selectedMemberId !== null) {
+        cardPayload.assigneeUserId = selectedMemberId;
+      }
+
+      // 마감일이 있는 경우에만 추가
+      if (dueDate) {
+        cardPayload.dueDate = `${dueDate} 00:00`;
+      }
 
       if (editMode && cardData) {
         // 2-1. 카드 수정

@@ -10,11 +10,16 @@ import {
 export async function GET(req: NextRequest): Promise<Response> {
   try {
     const searchParams = req.nextUrl.searchParams;
-    const raw = {
-      size: searchParams.get('size'),
-      cursorId: searchParams.get('cursorId'),
-      title: searchParams.get('title'),
-    };
+    const raw: Record<string, string | undefined> = {};
+
+    const sizeParam = searchParams.get('size');
+    const cursorIdParam = searchParams.get('cursorId');
+    const titleParam = searchParams.get('title');
+
+    if (sizeParam !== null) raw.size = sizeParam;
+    if (cursorIdParam !== null) raw.cursorId = cursorIdParam;
+    if (titleParam !== null) raw.title = titleParam;
+
     const validatedQuery = getInvitationsQueryDto.parse(raw);
     const query = new URLSearchParams({
       ...(validatedQuery.size && { size: String(validatedQuery.size) }),
