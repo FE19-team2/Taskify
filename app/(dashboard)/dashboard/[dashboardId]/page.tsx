@@ -103,7 +103,7 @@ export default function Page() {
       setColumns(columnsWithCards);
       setMembers(
         membersData.members.map((member) => ({
-          id: member.id,
+          id: member.userId,
           nickname: member.nickname,
           profileImageUrl: member.profileImageUrl,
         })),
@@ -508,9 +508,28 @@ export default function Page() {
             editMode={true}
             cardData={editingCard}
             onCardCreated={async () => {
-              // 전체 데이터 새로고침
-              await loadDashboardData();
-              setEditingCard(null);
+              try {
+                const cardsData = await getCards({
+                  columnId: editingCard.columnId,
+                  size: 10,
+                  cursorId: undefined,
+                });
+                setColumns((prevColumns) =>
+                  prevColumns.map((col) =>
+                    col.id === editingCard.columnId
+                      ? {
+                          ...col,
+                          cards: cardsData.cards,
+                          cursorId: cardsData.cursorId,
+                          hasMore: cardsData.cursorId !== null,
+                        }
+                      : col,
+                  ),
+                );
+                console.log('컬럼 업데이트 완료');
+              } catch (error) {
+                console.error('카드 목록 새로고침 실패:', error);
+              }
             }}
           />
         )}
