@@ -144,7 +144,17 @@ export default function CardCreateModal({
         }
       }
 
-      const cardPayload = {
+      type CardPayload = {
+        columnId: number;
+        title: string;
+        description: string;
+        tags: string[];
+        imageUrl?: string;
+        assigneeUserId?: number;
+        dueDate?: string;
+      };
+
+      const cardPayload: CardPayload = {
         columnId: selectedColumnId,
         title: title.trim(),
         description: description.trim(),
