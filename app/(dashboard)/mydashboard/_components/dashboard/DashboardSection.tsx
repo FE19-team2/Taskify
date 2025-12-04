@@ -20,11 +20,17 @@ export const InvitedDashboardSection = ({ title, children }: DashboardSectionPro
   const childrenArray = React.Children.toArray(children);
   const searchInput = childrenArray.find(
     (child): child is React.ReactElement =>
-      React.isValidElement(child) && child?.type?.name === 'SearchInput',
+      React.isValidElement(child) &&
+      typeof child.type === 'function' &&
+      child.type.name === 'SearchInput',
   );
   const otherChildren = childrenArray.filter(
-    (child): child is React.ReactElement =>
-      !(React.isValidElement(child) && child?.type?.name === 'SearchInput'),
+    (child) =>
+      !(
+        React.isValidElement(child) &&
+        typeof child.type === 'function' &&
+        child.type.name === 'SearchInput'
+      ),
   );
 
   return (
