@@ -2,6 +2,7 @@
 
 import { useState, useRef, useEffect } from 'react';
 import Image from 'next/image';
+import { DialogModal } from '@/components/ui/modal/Dialog';
 
 interface ImageUploadProps {
   file: File | null;
@@ -11,6 +12,8 @@ interface ImageUploadProps {
 
 export default function ImageUpload({ file, onFileChange, existingImageUrl }: ImageUploadProps) {
   const [previewUrl, setPreviewUrl] = useState<string | null>(existingImageUrl || null);
+  const [dialogOpen, setDialogOpen] = useState(false);
+  const [dialogMessage, setDialogMessage] = useState('');
   const fileInputRef = useRef<HTMLInputElement>(null);
 
   // file prop이 변경되면 previewUrl 업데이트
@@ -42,13 +45,15 @@ export default function ImageUpload({ file, onFileChange, existingImageUrl }: Im
 
     // 파일 크기 체크 (5MB)
     if (selectedFile.size > 5 * 1024 * 1024) {
-      alert('파일 크기는 5MB 이하여야 합니다.');
+      setDialogMessage('파일 크기는 5MB 이하여야 합니다.');
+      setDialogOpen(true);
       return;
     }
 
     // 파일 타입 체크
     if (!selectedFile.type.startsWith('image/')) {
-      alert('이미지 파일만 업로드 가능합니다.');
+      setDialogMessage('이미지 파일만 업로드 가능합니다.');
+      setDialogOpen(true);
       return;
     }
 
@@ -114,6 +119,7 @@ export default function ImageUpload({ file, onFileChange, existingImageUrl }: Im
         onChange={handleFileSelect}
         className="hidden"
       />
+      <DialogModal open={dialogOpen} onOpenChange={setDialogOpen} description={dialogMessage} />
     </div>
   );
 }

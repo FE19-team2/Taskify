@@ -388,7 +388,12 @@ export default function Page() {
           dashboardTitle="포트폴리오"
           columnCount={columns.length}
           onCreateColumn={() => setIsColumnModalOpen(true)}
-          onManageDashboard={() => console.log('대시보드 관리')}
+          onManageDashboard={() => {
+            console.log('onManageDashboard 호출됨, dashboardId:', dashboardId);
+            const url = `/dashboard/${dashboardId}/edit`;
+            console.log('이동할 URL:', url);
+            window.location.href = url;
+          }}
           onInviteMembers={() => console.log('멤버 초대')}
         >
           {columns.map((column) => (

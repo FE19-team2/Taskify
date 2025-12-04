@@ -14,9 +14,13 @@ import Input from '@/components/ui/input/Input';
 import EmptyState from './_components/dashboard/EmptyState';
 import ErrorDisplay from './_components/dashboard/ErrorDisplay';
 import { useDashboardContext } from '../layout';
+import { DialogModal } from '@/components/ui/modal/Dialog';
 
 const DashboardPage = () => {
   const { openCreateModal } = useDashboardContext();
+  const [dialogOpen, setDialogOpen] = useState(false);
+  const [dialogMessage, setDialogMessage] = useState('');
+
   const {
     dashboards: myDashboards,
     isLoading: isMyLoading,
@@ -49,23 +53,27 @@ const DashboardPage = () => {
   const handleAccept = async (InvitationId: number) => {
     try {
       await acceptInvitation(InvitationId);
-      alert('대시보드가 수락되었습니다.');
+      setDialogMessage('대시보드가 수락되었습니다.');
+      setDialogOpen(true);
       reloadInvitedDashboards();
       reloadMyDashboards();
     } catch (error) {
       console.error('수락 실패:', error);
-      alert('수락에 실패했습니다. 다시 시도해 주세요.');
+      setDialogMessage('수락에 실패했습니다. 다시 시도해 주세요.');
+      setDialogOpen(true);
     }
   };
 
   const handleReject = async (invitationId: number) => {
     try {
       await declineInvitation(invitationId);
-      alert('대시보드 초대를 거절했습니다.');
+      setDialogMessage('대시보드 초대를 거절했습니다.');
+      setDialogOpen(true);
       reloadInvitedDashboards();
     } catch (error) {
       console.error('거절 실패:', error);
-      alert('거절에 실패했습니다. 다시 시도해 주세요.');
+      setDialogMessage('거절에 실패했습니다. 다시 시도해 주세요.');
+      setDialogOpen(true);
     }
   };
 
@@ -145,6 +153,8 @@ const DashboardPage = () => {
           />
         </InvitedDashboardSection>
       </main>
+
+      <DialogModal open={dialogOpen} onOpenChange={setDialogOpen} description={dialogMessage} />
     </>
   );
 };

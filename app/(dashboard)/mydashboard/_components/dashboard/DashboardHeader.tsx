@@ -2,7 +2,7 @@
 
 import React from 'react';
 import { Icon } from '@/components/ui/Icons/Icon';
-import { useRouter } from 'next/navigation';
+import { useRouter, usePathname } from 'next/navigation';
 
 interface DashboardHeaderProps {
   onSidebarToggle: () => void;
@@ -10,6 +10,18 @@ interface DashboardHeaderProps {
 
 const DashboardHeader = ({ onSidebarToggle }: DashboardHeaderProps) => {
   const router = useRouter();
+  const pathname = usePathname();
+
+  const handleManage = () => {
+    // 현재 경로에서 dashboardId 추출
+    const match = pathname.match(/\/dashboard\/(\d+)/);
+    if (match) {
+      const dashboardId = match[1];
+      router.push(`/dashboard/${dashboardId}/edit`);
+    } else {
+      console.log('현재 대시보드 페이지가 아닙니다');
+    }
+  };
 
   const handleLogout = () => {
     // 쿠키에서 토큰 삭제
@@ -36,7 +48,8 @@ const DashboardHeader = ({ onSidebarToggle }: DashboardHeaderProps) => {
 
       <div className="flex items-center space-x-4 md:space-x-6">
         <button
-          className="flex items-center space-x-1 text-gray-400 hover:text-white transition"
+          onClick={handleManage}
+          className="flex items-center space-x-1 text-gray-400 hover:text-white transition cursor-pointer"
           aria-label="관리"
         >
           <Icon name="SettingIcon" className="w-5 h-5" />

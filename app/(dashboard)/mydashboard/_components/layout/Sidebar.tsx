@@ -6,6 +6,8 @@ import SideButton from '@/components/ui/button/SideButton';
 import Link from 'next/link';
 interface SidebarProps {
   userName: string;
+  userEmail: string;
+  profileImageUrl: string | null;
   isOpen: boolean;
   onClose: () => void;
   myDashboards: DashboardItem[];
@@ -13,15 +15,19 @@ interface SidebarProps {
   totalPages: number;
   gotoPage: (page: number) => void;
   onCreateDashboard?: () => void;
+  onProfileClick?: () => void;
 }
 const Sidebar = ({
   userName,
+  userEmail,
+  profileImageUrl,
   isOpen,
   myDashboards,
   currentPage,
   totalPages,
   gotoPage,
   onCreateDashboard,
+  onProfileClick,
 }: SidebarProps) => {
   return (
     <aside
@@ -89,7 +95,12 @@ const Sidebar = ({
         )}
       </div>
       <div className="shrink-0  border-gray-700 px-3 py-4">
-        <SidebarFooter userName={userName} />
+        <SidebarFooter
+          userName={userName}
+          userEmail={userEmail}
+          profileImageUrl={profileImageUrl}
+          onProfileClick={onProfileClick}
+        />
       </div>
     </aside>
   );

@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState, useCallback, createContext, useContext } from 'react';
+import React, { useState, useCallback, createContext, useContext, useEffect } from 'react';
 import Sidebar from '@/app/(dashboard)/mydashboard/_components/layout/Sidebar';
 import DashboardHeader from './mydashboard/_components/dashboard/DashboardHeader';
 import useMyDashboards from '@/lib/hooks/use-mydashboards';
@@ -10,6 +10,9 @@ import { DialogModal } from '@/components/ui/modal/Dialog';
 import { createDashboard } from '@/lib/api/services/dashboards.service';
 import { useConfirmModalStore } from '@/components/ui/modal/ConfirmModalStore';
 import { useRouter } from 'next/navigation';
+import ProfileEditModal from './dashboard/[dashboardId]/edit/_components/ProfileEditModal';
+import PasswordChangeModal from './dashboard/[dashboardId]/edit/_components/PasswordChangeModal';
+import { getUserProfile } from '@/lib/api/services/users.service';
 
 interface Props {
   children: React.ReactNode;
@@ -35,7 +38,10 @@ const DashboardLayout = ({ children }: Props) => {
   const [isLoading, setIsLoading] = useState(false);
   const [dialogOpen, setDialogOpen] = useState(false);
   const [dialogMessage, setDialogMessage] = useState('');
-  const { user } = useUser();
+  const [showProfileModal, setShowProfileModal] = useState(false);
+  const [showPasswordModal, setShowPasswordModal] = useState(false);
+  const { user: hookUser } = useUser();
+  const [user, setUser] = useState(hookUser);
   const router = useRouter();
   const { color, dashboardTitle } = useConfirmModalStore();
 
@@ -47,6 +53,22 @@ const DashboardLayout = ({ children }: Props) => {
     reloadDashboards,
   } = useMyDashboards();
 
+  // 사용자 정보 직접 로드
+  useEffect(() => {
+    const loadUser = async () => {
+      try {
+        const userData = await getUserProfile();
+        setUser(userData);
+      } catch (error) {
+        console.error('Failed to load user:', error);
+      }
+    };
+
+    if (!user) {
+      loadUser();
+    }
+  }, [user]);
+
   const handleSidebarToggle = useCallback(() => {
     setIsSidebarOpen((prev) => !prev);
   }, []);
@@ -57,6 +79,32 @@ const DashboardLayout = ({ children }: Props) => {
 
   const handleOpenCreateModal = useCallback(() => {
     setIsCreateModalOpen(true);
+  }, []);
+
+  const handleProfileClick = useCallback(() => {
+    setShowProfileModal(true);
+  }, []);
+
+  const handleProfileSuccess = useCallback(async () => {
+    // 프로필 업데이트 후 사용자 정보 다시 로드
+    try {
+      const userData = await getUserProfile();
+      setUser(userData);
+    } catch (error) {
+      console.error('Failed to reload user:', error);
+    }
+  }, []);
+
+  useEffect(() => {
+    const handleOpenPasswordModal = () => {
+      setShowProfileModal(false);
+      setShowPasswordModal(true);
+    };
+
+    window.addEventListener('openPasswordModal', handleOpenPasswordModal);
+    return () => {
+      window.removeEventListener('openPasswordModal', handleOpenPasswordModal);
+    };
   }, []);
 
   const handleCreateDashboard = useCallback(async () => {
@@ -104,6 +152,8 @@ const DashboardLayout = ({ children }: Props) => {
 
         <Sidebar
           userName={currentUserName}
+          userEmail={user?.email || ''}
+          profileImageUrl={user?.profileImageUrl || null}
           isOpen={isSidebarOpen}
           onClose={handleSidebarClose}
           myDashboards={sidebarDashboards}
@@ -111,6 +161,7 @@ const DashboardLayout = ({ children }: Props) => {
           totalPages={sidebarTotalPages}
           gotoPage={gotoSidebarPage}
           onCreateDashboard={handleOpenCreateModal}
+          onProfileClick={handleProfileClick}
         />
 
         <div className="relative flex flex-col h-screen ml-0 md:ml-64 overflow-hidden">
@@ -131,6 +182,20 @@ const DashboardLayout = ({ children }: Props) => {
         />
 
         <DialogModal open={dialogOpen} onOpenChange={setDialogOpen} description={dialogMessage} />
+
+        {/* 프로필 편집 모달 */}
+        {showProfileModal && user && (
+          <ProfileEditModal
+            user={user}
+            onClose={() => setShowProfileModal(false)}
+            onSuccess={handleProfileSuccess}
+          />
+        )}
+
+        {/* 비밀번호 변경 모달 */}
+        {showPasswordModal && (
+          <PasswordChangeModal onClose={() => setShowPasswordModal(false)} onSuccess={() => {}} />
+        )}
       </div>
     </DashboardContext.Provider>
   );

@@ -1,5 +1,6 @@
 // components/Sidebar.tsx
 
+'use client';
 import React from 'react';
 import { ActiveContent } from '../editType/EditTypes';
 
@@ -10,19 +11,29 @@ interface SidebarProps {
   onContentChange: (content: ActiveContent) => void;
   // '삭제하기' 버튼 클릭 시 호출됩니다 (모달 열기).
   onDeleteClick: () => void;
+  // 대시보드 소유자 여부
+  isOwner: boolean;
+  // 삭제 중 상태
+  isDeleting: boolean;
 }
 
-export default function Sidebar({ activeContent, onContentChange, onDeleteClick }: SidebarProps) {
+export default function Sidebar({
+  activeContent,
+  onContentChange,
+  onDeleteClick,
+  isOwner,
+  isDeleting,
+}: SidebarProps) {
   const baseClasses = 'w-full p-3 text-left rounded-lg transition duration-150';
   const activeClasses = 'bg-transparent text-white font-bold';
   const inactiveClasses = 'text-gray-100 hover:bg-gray-600 hover:bg-opacity-50';
+  const disabledClasses = 'text-gray-500 cursor-not-allowed opacity-50';
 
   return (
-    <aside className="w-[540px] bg-black-500 shadow-lg p-4 flex flex-col space-y-2">
-      {/* 1. 대시보드 편집 버튼 */}
-      <div className="w-[276px] h-[175px] ml-auto mt-[90px]">
+    <aside className="w-[540px] bg-black-500 shadow-lg p-4 flex flex-col h-full">
+      <div className="w-[276px] ml-auto mt-[90px] space-y-2">
+        {/* 1. 대시보드 편집 버튼 */}
         <button
-          // 클릭 시 'dashboard' 상태로 변경 요청
           onClick={() => onContentChange('dashboard')}
           className={`${baseClasses} ${activeContent === 'dashboard' ? activeClasses : inactiveClasses}`}
         >
@@ -30,20 +41,19 @@ export default function Sidebar({ activeContent, onContentChange, onDeleteClick 
         </button>
         {/* 2. 멤버 관리 버튼 */}
         <button
-          // 클릭 시 'members' 상태로 변경 요청
           onClick={() => onContentChange('members')}
           className={`${baseClasses} ${activeContent === 'members' ? activeClasses : inactiveClasses}`}
         >
           멤버 관리
         </button>
-        <div className="flex-1" /> {/* 나머지 공간을 채워서 삭제 버튼을 하단에 배치 */}
-        {/* 3. 삭제하기 버튼 (모달 열기 기능) */}
+        {/* 3. 삭제하기 버튼 */}
         <button
-          // 클릭 시 모달 열기 함수 호출
           onClick={onDeleteClick}
-          className={`${baseClasses} bg-transparent text-red-A hover:bg-gray-600 hover:bg-opacity-50'`}
+          disabled={!isOwner || isDeleting}
+          className={`${baseClasses} ${!isOwner || isDeleting ? disabledClasses : 'bg-transparent text-red-A hover:bg-gray-600 hover:bg-opacity-50'}`}
+          title={!isOwner ? '소유자만 삭제할 수 있습니다' : ''}
         >
-          삭제하기
+          {isDeleting ? '삭제 중...' : '삭제하기'}
         </button>
       </div>
     </aside>

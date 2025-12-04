@@ -38,8 +38,12 @@ export function ColumnList({
           </button>
 
           <button
-            onClick={onManageDashboard}
-            className="flex items-center gap-2 px-4 py-2 rounded-lg border border-[#2F2F33] hover:border-[#5534DA] transition-colors"
+            onClick={(event) => {
+              event.preventDefault();
+              event.stopPropagation();
+              onManageDashboard();
+            }}
+            className="flex items-center gap-2 px-4 py-2 rounded-lg border border-[#2F2F33] hover:border-[#5534DA] transition-colors cursor-pointer"
           >
             <Icon name="SettingIcon" className="w-5 h-5 text-gray-500" />
             <span className="text-[14px] md:text-[16px] text-white">관리</span>

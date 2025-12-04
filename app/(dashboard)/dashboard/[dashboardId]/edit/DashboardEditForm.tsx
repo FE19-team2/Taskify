@@ -3,6 +3,7 @@
 import React, { useState } from 'react';
 import DashboardColorPicker from './DashboardColorPicker';
 import Button from '@/components/ui/button/Button';
+import { updateDashboard } from '@/lib/api/services/dashboards.service';
 
 export default function DashboardEditForm({
   initial,
@@ -26,19 +27,24 @@ export default function DashboardEditForm({
   };
 
   const handleSave = async () => {
+    if (!initial?.id) {
+      setMsg('대시보드 ID가 없습니다.');
+      return;
+    }
+
+    if (!name.trim()) {
+      setMsg('대시보드 이름을 입력해주세요.');
+      return;
+    }
+
     setSaving(true);
     setMsg(null);
 
     try {
-      const res = await fetch(`/api/dashboards/${initial?.id ?? ''}`, {
-        method: 'PUT',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ name, color }),
+      await updateDashboard(Number(initial.id), {
+        title: name.trim(),
+        color: color,
       });
-
-      if (!res.ok) {
-        throw new Error('저장 실패');
-      }
 
       setMsg('저장되었습니다.');
     } catch (error) {
@@ -57,7 +63,7 @@ export default function DashboardEditForm({
         value={name}
         onChange={handleNameChange}
         placeholder="대시보드 이름"
-        className="w-full px-4 py-3 rounded-[12px] border border-[rgba(255,255,255,0.06)] bg-[#171717] text-white text-base h-[48px]"
+        className="w-full px-4 py-3 rounded-xl border border-[rgba(255,255,255,0.06)] bg-[#171717] text-white text-base h-12"
       />
 
       {/* 색상 선택 */}
@@ -71,7 +77,7 @@ export default function DashboardEditForm({
         <Button
           onClick={handleSave}
           disabled={saving}
-          className="inline-block w-[260px] h-[48px] bg-[#09a30d] text-white rounded-full font-semibold shadow-save"
+          className="inline-block w-[260px] h-12 bg-[#09a30d] text-white rounded-full font-semibold shadow-save"
         >
           {saving ? '저장중...' : '저장'}
         </Button>
