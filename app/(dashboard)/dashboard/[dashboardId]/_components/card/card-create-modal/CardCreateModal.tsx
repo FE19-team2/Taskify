@@ -59,12 +59,18 @@ export default function CardCreateModal({
       setDescription(cardData.description);
       setSelectedColumnId(cardData.columnId);
 
-      // 기존 담당자가 현재 멤버 목록에 있는지 확인
+      // 기존 담당자 설정 (assignee.id가 사용자 ID입니다)
       const assigneeId = cardData.assignee?.id;
       const isMemberInList = assigneeId && members.some((mm) => mm.id === assigneeId);
       setSelectedMemberId(isMemberInList ? assigneeId : null);
 
-      setDueDate(cardData.dueDate ? cardData.dueDate.split('T')[0] : '');
+      // dueDate에서 날짜 부분만 추출 (YYYY-MM-DD 형식)
+      if (cardData.dueDate) {
+        const dateOnly = cardData.dueDate.split('T')[0].split(' ')[0];
+        setDueDate(dateOnly);
+      } else {
+        setDueDate('');
+      }
       setTags(cardData.tags || []);
       setExistingImageUrl(cardData.imageUrl || null);
       setImageFile(null);
@@ -168,9 +174,14 @@ export default function CardCreateModal({
       }
 
       // 마감일이 있는 경우에만 추가
-      if (dueDate) {
-        cardPayload.dueDate = `${dueDate} 00:00`;
+      if (dueDate && dueDate.trim()) {
+        const formattedDate = `${dueDate.trim()} 00:00`;
+        console.log('📅 원본 dueDate:', dueDate);
+        console.log('📅 포맷된 dueDate:', formattedDate);
+        cardPayload.dueDate = formattedDate;
       }
+
+      console.log('📤 전송할 카드 데이터:', JSON.stringify(cardPayload, null, 2));
 
       if (editMode && cardData) {
         // 2-1. 카드 수정

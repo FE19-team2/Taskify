@@ -50,12 +50,18 @@ const DashboardHeader = ({ onSidebarToggle }: DashboardHeaderProps) => {
     }
   };
 
-  const handleLogout = () => {
-    // 쿠키에서 토큰 삭제
-    document.cookie = 'accessToken=; path=/; expires=Thu, 01 Jan 1970 00:00:01 GMT;';
-
-    // 로그인 페이지로 리다이렉트
-    router.push('/login');
+  const handleLogout = async () => {
+    try {
+      // 서버에서 쿠키 삭제
+      await fetch('/api/auth/logout', {
+        method: 'POST',
+      });
+    } catch (error) {
+      console.error('로그아웃 실패:', error);
+    } finally {
+      // 로그인 페이지로 리다이렉트
+      router.push('/login');
+    }
   };
 
   return (
